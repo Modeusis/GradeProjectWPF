@@ -4,9 +4,35 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TournamentsApplication"
+        xmlns:v="clr-namespace:TournamentsApplication.View"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        WindowStyle="None"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        Title="MainWindow" Height="600" Width="800">
     <Grid>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="550"/>
+        </Grid.RowDefinitions>
+        <ContentControl Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Content="{Binding CurrentView}"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Style="{StaticResource ContentButtonStyle}" Command="{Binding ChangeViewCommand}" CommandParameter="{x:Type v:RegistrationView}" Margin="10,0,0,0" HorizontalAlignment="Left" Grid.Column="0" Cursor="">
+                <TextBlock Style="{StaticResource SmallTextBlock}" Text="I dont have an account"/>
+            </Button>
+            <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Stretch" Cursor="">
+                <Button Style="{StaticResource TabButtonStyle}" Command="{Binding MinimizeWindowCommand}">
+                    <Image Style="{StaticResource TabImageStyle}" Source="./Resources/Images/minus.png" Margin="0,14,0,0"/>
+                </Button>
+                <Button Style="{StaticResource TabButtonStyle}" Command="{Binding CloseWindowCommand}">
+                    <Image Style="{StaticResource TabImageStyle}" Source="./Resources/Images/close.png"/>
+                </Button>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>

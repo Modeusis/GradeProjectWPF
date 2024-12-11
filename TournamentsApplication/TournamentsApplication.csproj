@@ -9,14 +9,29 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Fonts\NunitoFont.ttf" />
+    <None Remove="Resources\Images\backgroundCS2.png" />
+    <None Remove="Resources\Images\close.png" />
+    <None Remove="Resources\Images\minus.png" />
+    <None Remove="Resources\Images\s1mpleGraff.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Images\backgroundCS2.png" />
+    <Resource Include="Resources\Images\close.png" />
+    <Resource Include="Resources\Images\minus.png" />
+    <Resource Include="Resources\Images\s1mpleGraff.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="VIew\" />
-    <Folder Include="ViewModel\" />
-    <Folder Include="Styles\" />
+    <Resource Include="Resources\Fonts\NunitoFont.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>

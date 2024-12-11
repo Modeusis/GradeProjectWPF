@@ -48,5 +48,7 @@ namespace TournamentsApplication.Model
         }
 
         public Team Team { get; set; }
+
+        public ICollection<FavPlayer> FavPlayers { get; set; }
     }
 }

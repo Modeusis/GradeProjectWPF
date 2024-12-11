@@ -22,7 +22,7 @@ namespace TournamentsApplication.Model
         private DateTime created_at;
         private DateTime? updated_at;
 
-        public int UserId { 
+        public int UserId {
             get { return user_id; }
             set { user_id = value; OnPropertyChanged(nameof(UserId)); }
         }
@@ -37,9 +37,9 @@ namespace TournamentsApplication.Model
             set { logo = value; OnPropertyChanged(nameof(Logo)); }
         }
         public byte[] HeaderImg
-        { 
+        {
             get { return headerImg; }
-            set { headerImg = value; OnPropertyChanged( nameof(HeaderImg)); }   
+            set { headerImg = value; OnPropertyChanged(nameof(HeaderImg)); }
         }
         public string? Description
         {
@@ -73,5 +73,9 @@ namespace TournamentsApplication.Model
         }
 
         public ICollection<TournamentComment> Comments { get; set; }
+
+        public ICollection<FavPlayer> FavPlayers{get; set;}
+        public ICollection<FavTournament> FavTournaments {get; set;}
+        public ICollection<FavTeam> FavTeams {get; set;}
     }
 }

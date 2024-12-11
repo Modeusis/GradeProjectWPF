@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\University\GradeProject\TournamentsApplication\TournamentsApplication\obj\Debug\net8.0-windows\
+C:\programms\GitProject\GradeProjectWPF\TournamentsApplication\obj\Debug\net8.0-windows\
 TournamentsApplication
 none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
-D:\University\GradeProject\TournamentsApplication\TournamentsApplication\App.xaml
-11407045341
+C:\programms\GitProject\GradeProjectWPF\TournamentsApplication\App.xaml
+4-2023152594
 
-20995919100
-212459355311
-MainWindow.xaml;
+281060218627
+212-385728927
+MainWindow.xaml;Styles\DarkThemeDictionary.xaml;View\LoginView.xaml;View\RegistrationView.xaml;
 
 False
 

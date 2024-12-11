@@ -62,5 +62,6 @@ namespace TournamentsApplication.Model
         public Discipline Discipline { get; set; }
         public ICollection<TournamentTeam> TournamentTeams { get; set; }
         public ICollection<TournamentComment> TournamentComments { get; set; }
+        public ICollection<FavTournament> FavTournaments { get; set; }
     }
 }

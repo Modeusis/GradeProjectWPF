@@ -43,5 +43,6 @@ namespace TournamentsApplication.Model
         public ICollection<Player> Players { get; set; }
         public ICollection<TournamentTeam> TournamentTeams { get; set; }
         public ICollection<Match> Matches { get; set; }
+        public ICollection<FavTeam> FavTeams { get; set; }
     }
 }

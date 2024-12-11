@@ -1,0 +1,73 @@
+﻿<UserControl x:Class="TournamentsApplication.View.LoginView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TournamentsApplication.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800">
+    <Grid>
+        <Grid>
+               <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="../Resources/Images/s1mpleGraff.jpg"  Opacity="1" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Rectangle Grid.Column="0" Grid.ColumnSpan="2">
+                        <Rectangle.Fill>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                <GradientStop Color="#001d1e33" Offset="0"/>
+                                <GradientStop Color="#1d1e33" Offset="0.35"/>
+                                <GradientStop Color="#1d1e33" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Grid Grid.Column="0" Grid.ColumnSpan="2">
+                    <Grid.RowDefinitions>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="80"/>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="3*"/>
+                        </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="400"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <!--<StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Stretch">
+                        <Button Style="{StaticResource TabButtonStyle}" Command="{Binding MinimizeWindowCommand}">
+                            <Image Style="{StaticResource TabImageStyle}" Source="../Resources/Images/minus.png" Margin="0,14,0,0"/>
+                        </Button>
+                        <Button Style="{StaticResource TabButtonStyle}" Command="{Binding CloseWindowCommand}">
+                            <Image Style="{StaticResource TabImageStyle}" Source="../Resources/Images/close.png"/>
+                        </Button>
+                    </StackPanel>-->
+                    <TextBlock Style="{StaticResource HeaderTextBlock}" Grid.Column="1" Grid.Row="2" Text="Welcome back, champ"/>
+                        <Grid Grid.Column="1" Grid.Row="3" Grid.RowSpan="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Style="{StaticResource H2TextBlock}" Grid.Row="0" Text="Login"/>
+                            <TextBox Style="{StaticResource H2TextBox}" Grid.Row="0" Grid.Column="1"/>
+                            <TextBlock Style="{StaticResource H2TextBlock}" Grid.Row="1" Text="Password"/>
+                            <TextBox Style="{StaticResource H2TextBox}" Grid.Row="1" Grid.Column="1"/>
+                        </Grid>
+                        <Button Content="Sign in" Style="{StaticResource HeadButton}" Grid.Row="5" Grid.Column="1"/>
+                        <!--<Button Style="{StaticResource ContentButtonStyle}" Command="{Binding ChangeToRegisterCommand}"  Grid.Row="6" Grid.Column="1" Cursor="">
+                            <TextBlock Style="{StaticResource SmallTextBlock}" Text="I dont have an account"/>
+                        </Button>-->
+                    </Grid>
+                </Grid>
+            </Grid>
+    </Grid>
+</UserControl>

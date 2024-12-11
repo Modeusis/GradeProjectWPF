@@ -18,6 +18,9 @@ namespace TournamentsApplication.Model
         public DbSet<TournamentComment> TournamentComments { get; set; } = null!;
         public DbSet<TournamentTeam> TournamentTeams { get; set; } = null!;
         public DbSet<Discipline> Disciplines { get; set; } = null!;
+        public DbSet<FavTeam> FavTeams { get; set; } = null!;
+        public DbSet<FavPlayer> FavPlayers { get; set; } = null!;
+        public DbSet<FavTournament> FavTournaments { get; set; } = null!;
 
         public ApplicationContext()
         {
@@ -31,6 +34,9 @@ namespace TournamentsApplication.Model
             TournamentComments.Load();
             TournamentTeams.Load();
             Disciplines.Load();
+            FavTournaments.Load();
+            FavPlayers.Load();
+            FavTeams.Load();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -44,6 +50,18 @@ namespace TournamentsApplication.Model
                 .HasMany(f => f.Comments)
                 .WithOne(a => a.User)
                 .HasForeignKey(a => a.Author);
+            modelBuilder.Entity<User>()
+                .HasMany(a => a.FavPlayers)
+                .WithOne(f => f.User)
+                .HasForeignKey(f => f.UserId);
+            modelBuilder.Entity<User>()
+                .HasMany(a => a.FavTournaments)
+                .WithOne(f => f.User)
+                .HasForeignKey(f => f.UserId);
+            modelBuilder.Entity<User>()
+                .HasMany(a => a.FavTeams)
+                .WithOne(f => f.User)
+                .HasForeignKey(f => f.UserId);
             modelBuilder.Entity<Tournament>()
                 .HasMany(f => f.TournamentComments)
                 .WithOne(a => a.Tournament)
@@ -58,6 +76,10 @@ namespace TournamentsApplication.Model
                 .HasForeignKey(f => f.TournamentId);
             modelBuilder.Entity<Tournament>()
                 .HasMany(a => a.TournamentComments)
+                .WithOne(f => f.Tournament)
+                .HasForeignKey(f => f.TournamentId);
+            modelBuilder.Entity<Tournament>()
+                .HasMany(a => a.FavTournaments)
                 .WithOne(f => f.Tournament)
                 .HasForeignKey(f => f.TournamentId);
             modelBuilder.Entity<Discipline>()
@@ -80,7 +102,14 @@ namespace TournamentsApplication.Model
                 .HasMany(a => a.Matches)
                 .WithOne(f => f.SecondTeam)
                 .HasForeignKey(f => f.SecondParticipantId);
-
+            modelBuilder.Entity<Team>()
+                .HasMany(a => a.FavTeams)
+                .WithOne(f => f.Team)
+                .HasForeignKey(f => f.TeamId);
+            modelBuilder.Entity<Player>()
+                .HasMany(a => a.FavPlayers)
+                .WithOne(f => f.Player)
+                .HasForeignKey(f => f.PlayerId);
         }
     }
 }

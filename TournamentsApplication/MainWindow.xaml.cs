@@ -8,6 +8,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TournamentsApplication.View;
+using TournamentsApplication.ViewModel;
 
 namespace TournamentsApplication
 {
@@ -19,6 +21,8 @@ namespace TournamentsApplication
         public MainWindow()
         {
             InitializeComponent();
+
+            DataContext = new MainVM();
         }
     }
 }
