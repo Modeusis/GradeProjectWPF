@@ -10,17 +10,17 @@
         <Grid>
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="4*"/>
                     <ColumnDefinition Width="6*"/>
+                    <ColumnDefinition Width="4*"/>
                 </Grid.ColumnDefinitions>
-                <Image Grid.Column="1" Source="../Resources/Images/backgroundCS2.png"  Opacity="1" Stretch="UniformToFill" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Image Grid.Column="0" Source="../Resources/Images/backgroundCS2.png"  Opacity="1" Stretch="UniformToFill" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                 <Rectangle Grid.Column="0" Grid.ColumnSpan="2">
                     <Rectangle.Fill>
                         <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                            
-                            <GradientStop Color="#1d1e33" Offset="0"/>
+
+                            <GradientStop Color="#001d1e33" Offset="0"/>
                             <GradientStop Color="#1d1e33" Offset="0.4"/>
-                            <GradientStop Color="#001d1e33" Offset="1"/>
+                            <GradientStop Color="#1d1e33" Offset="1"/>
                         </LinearGradientBrush>
                     </Rectangle.Fill>
                 </Rectangle>

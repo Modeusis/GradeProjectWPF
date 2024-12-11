@@ -9,12 +9,11 @@ using System.Windows;
 
 namespace TournamentsApplication.Utility
 {
-    public class ViewModelBase
+    public class ViewModelBase : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string propName = null)
         {
-            MessageBox.Show(propName);
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
     }
