@@ -24,7 +24,42 @@
     </Style>
     <Style TargetType="TextBlock" x:Key="SmallTextBlock">
         <Setter Property="Foreground" Value="#fffafa"/>
+        <Setter Property="FontFamily" Value="pack://application:,,,/Resources/Fonts/NunitoFont.ttf#Nunito"/>
         <Setter Property="TextDecorations" Value="Underline"/>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="ErrorTextBlock">
+        <Setter Property="Margin" Value="10"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Foreground" Value="#5c60a3"/>
+        <Setter Property="FontFamily" Value="pack://application:,,,/Resources/Fonts/NunitoFont.ttf#Nunito"/>
+    </Style>
+    <!--Border-->
+    <Style x:Key="FadeOutBorderStyle" TargetType="Border">
+        <Setter Property="Background" Value="#252641" />
+        <Setter Property="BorderBrush" Value="#5c60a3" />
+        <Setter Property="BorderThickness" Value="3" />
+        <Setter Property="CornerRadius" Value="10" />
+        <Setter Property="Margin" Value="10, 5, 0, 0"/>
+        <Setter Property="Width" Value="200"/>
+        <Setter Property="Height" Value="50"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsVisible}" Value="True">
+                <DataTrigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation
+                            Storyboard.TargetProperty="Opacity"
+                            From="1" To="0" Duration="0:0:1" BeginTime="0:0:5" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </DataTrigger.EnterActions>
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
     <!--TextBoxes-->
     <Style x:Key="H2TextBox" TargetType="TextBox">

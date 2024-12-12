@@ -72,9 +72,6 @@
                         <TextBox Style="{StaticResource H2TextBox}" Grid.Row="3" Grid.Column="1"/>
                     </Grid>
                     <Button Content="Start it" Style="{StaticResource HeadButton}" Grid.Row="7" Grid.Column="1"/>
-                    <Button Style="{StaticResource ContentButtonStyle}" Grid.Row="8" Grid.Column="1">
-                        <TextBlock Style="{StaticResource SmallTextBlock}" Text="I'm already have an account"/>
-                    </Button>
                 </Grid>
             </Grid>
         </Grid>

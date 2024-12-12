@@ -13,9 +13,13 @@ namespace TournamentsApplication.ViewModel
     class MainVM : ViewModelBase
     {
         private UserControl currentView;
+        private string currentText;
+        private string statusText;
+        private bool isVisible;
         RelayCommand? closeWindowCommand;
         RelayCommand? minimizeWindowCommand;
         RelayCommand? changeViewCommand;
+        RelayCommand? animationCompletedCommand;
         public RelayCommand CloseWindowCommand
         {
             get
@@ -45,23 +49,29 @@ namespace TournamentsApplication.ViewModel
             get { return currentView; }
             set { currentView = value; OnPropertyChanged(); }
         }
+        public string CurrentText
+        {
+            get { return currentText; }
+            set { currentText = value; OnPropertyChanged(); }
+        }
+        public string StatusText
+        {
+            get { return statusText; }
+            set { statusText = value; OnPropertyChanged(); }
+        }
+        public bool IsVisible
+        {
+            get { return isVisible; }
+            set { isVisible = value; OnPropertyChanged(); }
+        }
 
         public MainVM()
         {
             CurrentView = new LoginView();
+            CurrentText = "I dont have an account";
+            IsVisible = false;
         }
 
-        //public RelayCommand ChangeViewCommand
-        //{
-        //    get
-        //    {
-        //        return changeViewCommand ??
-        //            (changeViewCommand = new RelayCommand((obj) =>
-        //            {
-        //                CurrentView = new RegistrationView();
-        //            }));
-        //    }
-        //}
         public RelayCommand ChangeViewCommand
         {
             get
@@ -69,12 +79,52 @@ namespace TournamentsApplication.ViewModel
                 return changeViewCommand ??
                     (changeViewCommand = new RelayCommand((obj) =>
                     {
-                        if (obj is Type viewType)
+                        if (CurrentView.GetType() == typeof(LoginView))
                         {
-                            var view = Activator.CreateInstance(viewType) as UserControl;
-                            CurrentView = view;
+                            CurrentView = new RegistrationView();
+                            CurrentText = "I already have an account";
+                            ShowStatusMessage("Text");
                         }
+                        else
+                        {
+                            CurrentView = new LoginView();
+                            CurrentText = "I dont have an account";
+                        }
+                            
                     }));
+            }
+        }
+        //public RelayCommand ChangeViewCommand
+        //{
+        //    get
+        //    {
+        //        return changeViewCommand ??
+        //            (changeViewCommand = new RelayCommand((obj) =>
+        //            {
+        //                if (obj is Type viewType)
+        //                {
+        //                    var view = Activator.CreateInstance(viewType) as UserControl;
+        //                    CurrentView = view;
+        //                }
+        //            }));
+        //    }
+        //}
+        public void ShowStatusMessage(string message)
+        {
+            StatusText = message;
+            IsVisible = true;
+        }
+
+        
+        public RelayCommand AnimationCompletedCommand
+        {
+            get
+            {
+                return animationCompletedCommand ??= new RelayCommand((obj) =>
+                {
+                    IsVisible = false;
+                    MessageBox.Show("1");
+                });
             }
         }
     }

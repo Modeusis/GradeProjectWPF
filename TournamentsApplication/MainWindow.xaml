@@ -3,27 +3,38 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:local="clr-namespace:TournamentsApplication"
+        xmlns:u="clr-namespace:TournamentsApplication.Utility"
         xmlns:v="clr-namespace:TournamentsApplication.View"
+        
         mc:Ignorable="d"
         WindowStyle="None"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
         Title="MainWindow" Height="600" Width="800">
+    <Window.Resources>
+        <u:BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="550"/>
         </Grid.RowDefinitions>
         <ContentControl Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Content="{Binding CurrentView}"/>
+        <Border Visibility="{Binding IsVisible, Converter={StaticResource BoolToVisibilityConverter}}"
+        Grid.Row="1" Style="{StaticResource FadeOutBorderStyle}">
+            <TextBlock Style="{StaticResource ErrorTextBlock}" Text="{Binding StatusText}"/>
+        </Border>
+
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Button Style="{StaticResource ContentButtonStyle}" Command="{Binding ChangeViewCommand}" CommandParameter="{x:Type v:RegistrationView}" Margin="10,0,0,0" HorizontalAlignment="Left" Grid.Column="0" Cursor="">
-                <TextBlock Style="{StaticResource SmallTextBlock}" Text="I dont have an account"/>
+                <TextBlock Style="{StaticResource SmallTextBlock}" Text="{Binding CurrentText}"/>
             </Button>
             <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Stretch" Cursor="">
                 <Button Style="{StaticResource TabButtonStyle}" Command="{Binding MinimizeWindowCommand}">

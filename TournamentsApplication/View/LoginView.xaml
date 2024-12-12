@@ -39,14 +39,6 @@
                         <ColumnDefinition Width="400"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <!--<StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Stretch">
-                        <Button Style="{StaticResource TabButtonStyle}" Command="{Binding MinimizeWindowCommand}">
-                            <Image Style="{StaticResource TabImageStyle}" Source="../Resources/Images/minus.png" Margin="0,14,0,0"/>
-                        </Button>
-                        <Button Style="{StaticResource TabButtonStyle}" Command="{Binding CloseWindowCommand}">
-                            <Image Style="{StaticResource TabImageStyle}" Source="../Resources/Images/close.png"/>
-                        </Button>
-                    </StackPanel>-->
                     <TextBlock Style="{StaticResource HeaderTextBlock}" Grid.Column="1" Grid.Row="2" Text="Welcome back, champ"/>
                         <Grid Grid.Column="1" Grid.Row="3" Grid.RowSpan="2">
                             <Grid.ColumnDefinitions>
@@ -62,11 +54,8 @@
                             <TextBlock Style="{StaticResource H2TextBlock}" Grid.Row="1" Text="Password"/>
                             <TextBox Style="{StaticResource H2TextBox}" Grid.Row="1" Grid.Column="1"/>
                         </Grid>
-                        <Button Content="Sign in" Style="{StaticResource HeadButton}" Grid.Row="5" Grid.Column="1"/>
-                        <!--<Button Style="{StaticResource ContentButtonStyle}" Command="{Binding ChangeToRegisterCommand}"  Grid.Row="6" Grid.Column="1" Cursor="">
-                            <TextBlock Style="{StaticResource SmallTextBlock}" Text="I dont have an account"/>
-                        </Button>-->
-                    </Grid>
+                    <Button Content="Sign in" Style="{StaticResource HeadButton}" Grid.Row="5" Grid.Column="1"/>
+                </Grid>
                 </Grid>
             </Grid>
     </Grid>
