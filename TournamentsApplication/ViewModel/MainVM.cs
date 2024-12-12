@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Animation;
 using TournamentsApplication.Utility;
 using TournamentsApplication.View;
 
@@ -12,10 +13,10 @@ namespace TournamentsApplication.ViewModel
 {
     class MainVM : ViewModelBase
     {
+        public string StatusText => StatusService.Instance.StatusText;
+        public double StatusOpacity => StatusService.Instance.StatusOpacity;
         private UserControl currentView;
         private string currentText;
-        private string statusText;
-        private bool isVisible;
         RelayCommand? closeWindowCommand;
         RelayCommand? minimizeWindowCommand;
         RelayCommand? changeViewCommand;
@@ -54,22 +55,15 @@ namespace TournamentsApplication.ViewModel
             get { return currentText; }
             set { currentText = value; OnPropertyChanged(); }
         }
-        public string StatusText
-        {
-            get { return statusText; }
-            set { statusText = value; OnPropertyChanged(); }
-        }
-        public bool IsVisible
-        {
-            get { return isVisible; }
-            set { isVisible = value; OnPropertyChanged(); }
-        }
 
         public MainVM()
         {
             CurrentView = new LoginView();
             CurrentText = "I dont have an account";
-            IsVisible = false;
+
+            
+
+            StatusService.Instance.StatusChanged += OnStatusChanged;
         }
 
         public RelayCommand ChangeViewCommand
@@ -83,7 +77,7 @@ namespace TournamentsApplication.ViewModel
                         {
                             CurrentView = new RegistrationView();
                             CurrentText = "I already have an account";
-                            ShowStatusMessage("Text");
+                            StatusService.Instance.SetStatusMessage(CurrentText);
                         }
                         else
                         {
@@ -94,38 +88,11 @@ namespace TournamentsApplication.ViewModel
                     }));
             }
         }
-        //public RelayCommand ChangeViewCommand
-        //{
-        //    get
-        //    {
-        //        return changeViewCommand ??
-        //            (changeViewCommand = new RelayCommand((obj) =>
-        //            {
-        //                if (obj is Type viewType)
-        //                {
-        //                    var view = Activator.CreateInstance(viewType) as UserControl;
-        //                    CurrentView = view;
-        //                }
-        //            }));
-        //    }
-        //}
-        public void ShowStatusMessage(string message)
-        {
-            StatusText = message;
-            IsVisible = true;
-        }
 
-        
-        public RelayCommand AnimationCompletedCommand
+        private void OnStatusChanged()
         {
-            get
-            {
-                return animationCompletedCommand ??= new RelayCommand((obj) =>
-                {
-                    IsVisible = false;
-                    MessageBox.Show("1");
-                });
-            }
+            OnPropertyChanged(nameof(StatusText));
+            OnPropertyChanged(nameof(StatusOpacity));
         }
     }
 }

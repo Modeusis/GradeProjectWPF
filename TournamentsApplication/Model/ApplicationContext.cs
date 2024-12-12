@@ -5,6 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System;
+using System.Drawing;
+using System.IO;
+using TournamentsApplication.Utility;
 
 namespace TournamentsApplication.Model
 {
@@ -24,6 +29,7 @@ namespace TournamentsApplication.Model
 
         public ApplicationContext()
         {
+            //Database.EnsureDeleted();
             Database.EnsureCreated();
 
             Users.Load();
@@ -47,6 +53,29 @@ namespace TournamentsApplication.Model
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>()
+                .HasKey(c => c.UserId);
+            modelBuilder.Entity<Player>()
+                .HasKey(c => c.PlayerId);
+            modelBuilder.Entity<Match>()
+                .HasKey(c => c.MatchId);
+            modelBuilder.Entity<Team>()
+                .HasKey(c => c.TeamId);
+            modelBuilder.Entity<Tournament>()
+                .HasKey(c => c.TournamentId);
+            modelBuilder.Entity<TournamentComment>()
+                .HasKey(c => c.CommentId);
+            modelBuilder.Entity<TournamentTeam>()
+                .HasKey(c => c.TournamentTeamId);
+            modelBuilder.Entity<Discipline>()
+                .HasKey(c => c.DisciplineId);
+            modelBuilder.Entity<FavTeam>()
+                .HasKey(c => c.FavTeamId);
+            modelBuilder.Entity<FavPlayer>()
+                .HasKey(c => c.FavPlayerId);
+            modelBuilder.Entity<FavTournament>()
+                .HasKey(c => c.FavTournamentId);
+
+            modelBuilder.Entity<User>()
                 .HasMany(f => f.Comments)
                 .WithOne(a => a.User)
                 .HasForeignKey(a => a.Author);
@@ -62,10 +91,6 @@ namespace TournamentsApplication.Model
                 .HasMany(a => a.FavTeams)
                 .WithOne(f => f.User)
                 .HasForeignKey(f => f.UserId);
-            modelBuilder.Entity<Tournament>()
-                .HasMany(f => f.TournamentComments)
-                .WithOne(a => a.Tournament)
-                .HasForeignKey(a => a.TournamentId);
             modelBuilder.Entity<Tournament>()
                 .HasMany(a => a.TournamentTeams)
                 .WithOne(f => f.Tournament)
@@ -94,14 +119,14 @@ namespace TournamentsApplication.Model
                 .HasMany(a => a.TournamentTeams)
                 .WithOne(f => f.Team)
                 .HasForeignKey(f => f.TeamId);
-            modelBuilder.Entity<Team>()
-                .HasMany(a => a.Matches)
-                .WithOne(f => f.FirstTeam)
-                .HasForeignKey(f => f.FirstParticipantId);
-            modelBuilder.Entity<Team>()
-                .HasMany(a => a.Matches)
-                .WithOne(f => f.SecondTeam)
-                .HasForeignKey(f => f.SecondParticipantId);
+            modelBuilder.Entity<Match>()
+                .HasOne(m => m.FirstTeam)
+                .WithMany()
+                .HasForeignKey(m => m.FirstParticipantId);
+            modelBuilder.Entity<Match>()
+                .HasOne(m => m.SecondTeam)
+                .WithMany()
+                .HasForeignKey(m => m.SecondParticipantId);
             modelBuilder.Entity<Team>()
                 .HasMany(a => a.FavTeams)
                 .WithOne(f => f.Team)
@@ -110,6 +135,12 @@ namespace TournamentsApplication.Model
                 .HasMany(a => a.FavPlayers)
                 .WithOne(f => f.Player)
                 .HasForeignKey(f => f.PlayerId);
+
+            modelBuilder.Entity<User>()
+                .HasData(
+                    new User() { UserId = 1, Username = "Modeus", Description = "Creator of this App", Login = "Modeus", Password = PasswordHasher.HashPassword("123456"), IsLogined=false, IsAdmin = true, CreatedAt = DateTime.Now.ToUniversalTime()},
+                    new User() { UserId = 2, Username = "ModeusGuest", Description = "Guest of this App", Login = "ModeusGuest", Password = PasswordHasher.HashPassword("1111"), IsLogined=false, IsAdmin = false, CreatedAt = DateTime.Now.ToUniversalTime()}
+                );
         }
     }
 }

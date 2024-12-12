@@ -11,14 +11,14 @@ namespace TournamentsApplication.Model
     {
         private int user_id;
         private string username;
-        private byte[] logo;
-        private byte[] headerImg;
+        private byte[]? logo;
+        private byte[]? headerImg;
         private string? description;
         private string login;
         private string password;
         private bool islogined;
         private bool isadmin;
-        private DateTime last_login;
+        private DateTime? last_login;
         private DateTime created_at;
         private DateTime? updated_at;
 
@@ -31,12 +31,12 @@ namespace TournamentsApplication.Model
             get { return username; }
             set { username = value; OnPropertyChanged(nameof(Username)); }
         }
-        public byte[] Logo
+        public byte[]? Logo
         {
             get { return logo; }
             set { logo = value; OnPropertyChanged(nameof(Logo)); }
         }
-        public byte[] HeaderImg
+        public byte[]? HeaderImg
         {
             get { return headerImg; }
             set { headerImg = value; OnPropertyChanged(nameof(HeaderImg)); }
@@ -56,7 +56,17 @@ namespace TournamentsApplication.Model
             get { return password; }
             set { password = value; OnPropertyChanged(nameof(Password)); }
         }
-        public DateTime LastLogin
+        public bool IsAdmin
+        {
+            get { return isadmin; }
+            set { isadmin = value; OnPropertyChanged(nameof(IsAdmin)); }
+        }
+        public bool IsLogined
+        {
+            get { return islogined; }
+            set { islogined = value; OnPropertyChanged(nameof(IsLogined)); }
+        }
+        public DateTime? LastLogin
         {
             get { return last_login; }
             set { last_login = value; OnPropertyChanged(nameof(LastLogin)); }
@@ -64,7 +74,7 @@ namespace TournamentsApplication.Model
         public DateTime CreatedAt
         {
             get { return created_at; }
-            set { CreatedAt = value; OnPropertyChanged(nameof(CreatedAt)); }
+            set { created_at = value; OnPropertyChanged(nameof(CreatedAt)); }
         }
         public DateTime? UpdatedAt
         {

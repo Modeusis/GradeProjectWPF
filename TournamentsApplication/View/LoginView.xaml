@@ -4,8 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TournamentsApplication.View"
+             xmlns:u="clr-namespace:TournamentsApplication.Utility"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="800">
+             d:DesignHeight="540" d:DesignWidth="960">
     <Grid>
         <Grid>
                <Grid>
@@ -50,11 +52,15 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <TextBlock Style="{StaticResource H2TextBlock}" Grid.Row="0" Text="Login"/>
-                            <TextBox Style="{StaticResource H2TextBox}" Grid.Row="0" Grid.Column="1"/>
+                            <TextBox Style="{StaticResource H2TextBox}" Text="{Binding Login}" Grid.Row="0" Grid.Column="1"/>
                             <TextBlock Style="{StaticResource H2TextBlock}" Grid.Row="1" Text="Password"/>
-                            <TextBox Style="{StaticResource H2TextBox}" Grid.Row="1" Grid.Column="1"/>
-                        </Grid>
-                    <Button Content="Sign in" Style="{StaticResource HeadButton}" Grid.Row="5" Grid.Column="1"/>
+                            <PasswordBox Style="{StaticResource H2PasswordBox}" Grid.Row="1" Grid.Column="1">
+                            <i:Interaction.Behaviors>
+                                <u:PasswordBehavior Password="{Binding Password}"/>
+                            </i:Interaction.Behaviors>
+                            </PasswordBox>
+                    </Grid>
+                    <Button Content="Sign in" Style="{StaticResource HeadButton}" Command="{Binding LogInCommand}" Grid.Row="5" Grid.Column="1"/>
                 </Grid>
                 </Grid>
             </Grid>

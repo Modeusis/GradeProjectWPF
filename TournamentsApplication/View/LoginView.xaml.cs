@@ -22,7 +22,7 @@ namespace TournamentsApplication.View
         {
             InitializeComponent();
 
-            DataContext = new ViewModel.LoginVM();
+            DataContext = new LoginVM();
         }
     }
 }

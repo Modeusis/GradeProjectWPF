@@ -9,9 +9,14 @@ namespace TournamentsApplication.Model
 {
     internal class TournamentTeam : ViewModelBase
     {
+        private int tournamentTeamId;
         private int tournament_id;
         private int team_id;
-
+        public int TournamentTeamId
+        {
+            get { return tournamentTeamId; }
+            set { tournamentTeamId = value; OnPropertyChanged(nameof(TournamentTeamId)); }
+        }
         public int TournamentId
         {
             get { return tournament_id; }
