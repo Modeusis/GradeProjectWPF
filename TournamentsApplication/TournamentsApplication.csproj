@@ -12,10 +12,22 @@
     <None Remove="Resources\Fonts\NunitoFont.ttf" />
     <None Remove="Resources\Images\backgroundCS2.png" />
     <None Remove="Resources\Images\close.png" />
+    <None Remove="Resources\Images\expand.png" />
+    <None Remove="Resources\Images\group.png" />
     <None Remove="Resources\Images\Icon.ico" />
+    <None Remove="Resources\Images\iconBlack.png" />
     <None Remove="Resources\Images\IconWhite.png" />
     <None Remove="Resources\Images\minus.png" />
     <None Remove="Resources\Images\s1mpleGraff.jpg" />
+    <None Remove="Resources\Images\star.png" />
+    <None Remove="Resources\Images\trophy.png" />
+    <None Remove="Resources\Images\user.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Images\expand.png" />
+    <Resource Include="Resources\Images\group.png" />
+    <Resource Include="Resources\Images\trophy.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,6 +49,8 @@
     <Resource Include="Resources\Fonts\NunitoFont.ttf">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Resources\Images\star.png" />
+    <Resource Include="Resources\Images\user.png" />
   </ItemGroup>
 
 </Project>

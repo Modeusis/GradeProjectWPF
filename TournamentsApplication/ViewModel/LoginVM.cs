@@ -10,7 +10,7 @@ using System.Windows.Controls;
 using System.Diagnostics;
 using TournamentsApplication.Model;
 using TournamentsApplication.View;
-using TournamentsApplication.VIew;
+using TournamentsApplication.View;
 
 namespace TournamentsApplication.ViewModel
 {
@@ -46,34 +46,59 @@ namespace TournamentsApplication.ViewModel
                     (logInCommand = new RelayCommand((obj) =>
                     {
                         try
-                        {
+                        { 
                             User? tmpUser;
-                            if (uow.Users.GetAll().Where(a => a.Login == Login).Count() == 1)
+                            if (uow.Users.GetAll().Where(a => a.Login == Login).Count() != 1)
                             {
-                                tmpUser = uow.Users.GetAll().Where(a => a.Login == Login).FirstOrDefault();
-                                if (PasswordHasher.VerifyPassword(Password, tmpUser.Password))
-                                {
-                                    UserService.Instance.CurrentUser = tmpUser;
-                                    NavigationService.Instance.SwitchCurrentView(new HomePageView());
-                                    StatusService.Instance.SetStatusMessage($"Welcome back, {tmpUser.Username}");
-                                }
-                                else
-                                {
-                                    throw new Exception("Invalid password!");
-                                }
+                                throw new Exception("Invalid Login.");
                             }
-                            else
+                            tmpUser = uow.Users.GetAll().Where(a => a.Login == Login).FirstOrDefault();
+                            if (!PasswordHasher.VerifyPassword(Password, tmpUser.Password))
                             {
-                                throw new Exception("Invalid Login! Try again");
+                                throw new Exception("Invalid password.");
                             }
+                            tmpUser.IsLogined = true;
+                            tmpUser.LastLogin = DateTime.Now.ToUniversalTime();
+                            uow.Users.Update(tmpUser);
+                            UserService.Instance.CurrentUser = tmpUser;
+                            NavigationService.Instance.SwitchCurrentView(new HomePageView());
+                            StatusService.Instance.SetStatusMessage($"Welcome back, {tmpUser.Username}");
+                            uow.Save();
                         }
                         catch (Exception e)
                         {
                             StatusService.Instance.SetStatusMessage(e.Message);
+                            uow.Dispose();
                         }
                     }));
             }
         }
+        private RelayCommand? changeViewCommand;
+        public RelayCommand ChangeViewCommand
+        {
+            get
+            {
+                return changeViewCommand ??
+                    (changeViewCommand = new RelayCommand((obj) =>
+                    {
+                        NavigationService.Instance.SwitchCurrentView(new RegistrationView());
+                    }));
+            }
+        }
+        private RelayCommand? guestContinueCommand;
+
+        public RelayCommand? GuestContinueCommand
+        {
+            get 
+            {
+                return guestContinueCommand ?? (guestContinueCommand = new RelayCommand((obj) =>
+                {
+                    NavigationService.Instance.SwitchCurrentView(new HomePageView());
+                    StatusService.Instance.SetStatusMessage("Complete authorization to unlock all features");
+                }));
+            }
+        }
+
         public LoginVM()
         {
             uow = new UnitOfWork(new ApplicationContext());

@@ -22,18 +22,13 @@ namespace TournamentsApplication.Utility
             return _dbSet.Find(id);
         }
 
-        public IEnumerable<T> GetAll(Func<T, object> orderBy = null, Func<T, bool> searchBy = null, Func<T, bool> searchBy2 = null)
+        public IEnumerable<T> GetAll(Func<T, object> orderBy = null, Func<T, bool> searchBy = null)
         {
             IQueryable<T> query = _dbSet;
 
             if (searchBy != null)
             {
                 query = query.Where(searchBy).AsQueryable();
-            }
-
-            if (searchBy2 != null)
-            {
-                query = query.Where(searchBy2).AsQueryable();
             }
 
             if (orderBy != null)
@@ -51,7 +46,22 @@ namespace TournamentsApplication.Utility
 
         public void Update(T entity)
         {
-            _dbSet.Update(entity);
+            var keyProperty = _context.Model.FindEntityType(typeof(T))
+                .FindPrimaryKey().Properties.FirstOrDefault();
+            if (keyProperty != null)
+            {
+                var keyValue = keyProperty.PropertyInfo.GetValue(entity);
+                var trackedEntity = _dbSet.Find(keyValue);
+
+                if (trackedEntity != null)
+                {
+                    _context.Entry(trackedEntity).CurrentValues.SetValues(entity);
+                }
+                else
+                {
+                    _dbSet.Update(entity);
+                }
+            }
         }
 
         public void Delete(T entity)

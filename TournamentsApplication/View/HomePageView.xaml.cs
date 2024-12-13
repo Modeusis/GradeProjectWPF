@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TournamentsApplication.ViewModel;
 
-namespace TournamentsApplication.VIew
+namespace TournamentsApplication.View
 {
     /// <summary>
     /// Логика взаимодействия для HomePageView.xaml

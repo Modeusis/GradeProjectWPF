@@ -7,7 +7,7 @@
              xmlns:u="clr-namespace:TournamentsApplication.Utility"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
-             d:DesignHeight="540" d:DesignWidth="960">
+             d:DesignHeight="540" d:DesignWidth="800">
     <Grid>
         <Grid>
             <Grid>
@@ -21,8 +21,8 @@
                         <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
 
                             <GradientStop Color="#001d1e33" Offset="0"/>
-                            <GradientStop Color="#1d1e33" Offset="0.4"/>
-                            <GradientStop Color="#1d1e33" Offset="1"/>
+                            <GradientStop Color="#121212" Offset="0.4"/>
+                            <GradientStop Color="#121212" Offset="1"/>
                         </LinearGradientBrush>
                     </Rectangle.Fill>
                 </Rectangle>
@@ -74,6 +74,9 @@
                         </PasswordBox>
                     </Grid>
                     <Button Content="Start it" Style="{StaticResource HeadButton}" Command="{Binding SignUpCommand}" Grid.Row="7" Grid.Column="1"/>
+                    <Button Style="{StaticResource ContentButtonStyle}" Command="{Binding ChangeViewCommand}" HorizontalAlignment="Center" Cursor="Hand" Grid.Row="8" Grid.Column="1">
+                        <TextBlock Style="{StaticResource SmallTextBlock}" Text="{Binding CurrentText}"/>
+                    </Button>
                 </Grid>
             </Grid>
         </Grid>

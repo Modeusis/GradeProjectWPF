@@ -28,24 +28,30 @@
         <Setter Property="FontFamily" Value="pack://application:,,,/Resources/Fonts/NunitoFont.ttf#Nunito"/>
         <Setter Property="TextDecorations" Value="Underline"/>
     </Style>
+    <Style TargetType="TextBlock" x:Key="ToGuestTextBlock">
+        <Setter Property="Foreground" Value="#FF5F1F"/>
+        <Setter Property="Margin" Value="5, 0, 0, 0"/>
+        <Setter Property="FontFamily" Value="pack://application:,,,/Resources/Fonts/NunitoFont.ttf#Nunito"/>
+        <Setter Property="TextDecorations" Value="Underline"/>
+    </Style>
     <Style TargetType="TextBlock" x:Key="ErrorTextBlock">
         <Setter Property="Margin" Value="10"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="FontWeight" Value="Bold"/>
-        <Setter Property="Foreground" Value="#5c60a3"/>
+        <Setter Property="Foreground" Value="#fffafa"/>
         <Setter Property="FontFamily" Value="pack://application:,,,/Resources/Fonts/NunitoFont.ttf#Nunito"/>
     </Style>
     
     <!--Borders-->
     <Style x:Key="FadeOutBorderStyle" TargetType="Border">
-        <Setter Property="Background" Value="#252641" />
-        <Setter Property="BorderBrush" Value="#5c60a3" />
-        <Setter Property="BorderThickness" Value="3" />
-        <Setter Property="CornerRadius" Value="10" />
-        <Setter Property="Margin" Value="10, 5, 0, 0"/>
-        <Setter Property="Width" Value="200"/>
+        <Setter Property="Background" Value="#1D1D1D" />
+        <Setter Property="BorderBrush" Value="#2E2E2E" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="CornerRadius" Value="5" />
+        <Setter Property="Margin" Value="10, 10, 0, 0"/>
+        <Setter Property="MinWidth" Value="200"/>
         <Setter Property="Height" Value="50"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
@@ -61,13 +67,13 @@
         <Setter Property="Margin" Value="5, 0, 0, 0"/>
         <Setter Property="FontFamily" Value="pack://application:,,,/Resources/Fonts/NunitoFont.ttf#Nunito"/>
         <Setter Property="FontSize" Value="16"/>
-        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Foreground" Value="#fffafa"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="TextBox">
-                    <Border x:Name="border" CornerRadius="20" BorderThickness="0" BorderBrush="Transparent">
+                    <Border x:Name="border" CornerRadius="10" BorderThickness="0" BorderBrush="Transparent">
                         <Border.Background>
-                            <SolidColorBrush x:Name="BGcolor" Color="#252641"/>
+                            <SolidColorBrush x:Name="BGcolor" Color="#1D1D1D"/>
                         </Border.Background>
                         <ScrollViewer x:Name="PART_ContentHost" Background="Transparent"/>
                     </Border>
@@ -77,8 +83,8 @@
                                 <Storyboard>
                                     <ColorAnimation Storyboard.TargetName="BGcolor"
                                             Storyboard.TargetProperty="Color"
-                                            From="#252641"
-                                            To="#5c60a3"
+                                            From="#1D1D1D"
+                                            To="#2E2E2E"
                                             Duration="0:0:0.3" />
                                 </Storyboard>
                             </BeginStoryboard>
@@ -88,14 +94,14 @@
                                 <Storyboard>
                                     <ColorAnimation Storyboard.TargetName="BGcolor"
                                             Storyboard.TargetProperty="Color"
-                                            From="#5c60a3"
-                                            To="#252641"
+                                            From="#2E2E2E"
+                                            To="#1D1D1D"
                                             Duration="0:0:0.3" />
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
                         <Trigger Property="IsFocused" Value="True">
-                            <Setter TargetName="border" Property="BorderBrush" Value="#5c60a3"/>
+                            <Setter TargetName="border" Property="BorderBrush" Value="#2E2E2E"/>
                             <Setter TargetName="border" Property="BorderThickness" Value="2"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
@@ -114,13 +120,13 @@
         <Setter Property="Margin" Value="5, 0, 0, 0"/>
         <Setter Property="FontFamily" Value="pack://application:,,,/Resources/Fonts/NunitoFont.ttf#Nunito"/>
         <Setter Property="FontSize" Value="16"/>
-        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Foreground" Value="#fffafa"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="PasswordBox">
-                    <Border x:Name="border" CornerRadius="20" BorderThickness="0" BorderBrush="Transparent">
+                    <Border x:Name="border" CornerRadius="10" BorderThickness="0" BorderBrush="Transparent">
                         <Border.Background>
-                            <SolidColorBrush x:Name="BGcolor" Color="#252641"/>
+                            <SolidColorBrush x:Name="BGcolor" Color="#1D1D1D"/>
                         </Border.Background>
                         <ScrollViewer x:Name="PART_ContentHost" Background="Transparent"/>
                     </Border>
@@ -130,8 +136,8 @@
                                 <Storyboard>
                                     <ColorAnimation Storyboard.TargetName="BGcolor"
                                         Storyboard.TargetProperty="Color"
-                                        From="#252641"
-                                        To="#5c60a3"
+                                        From="#1D1D1D"
+                                        To="#2E2E2E"
                                         Duration="0:0:0.3" />
                                 </Storyboard>
                             </BeginStoryboard>
@@ -141,14 +147,14 @@
                                 <Storyboard>
                                     <ColorAnimation Storyboard.TargetName="BGcolor"
                                         Storyboard.TargetProperty="Color"
-                                        From="#5c60a3"
-                                        To="#252641"
+                                        From="#2E2E2E"
+                                        To="#1D1D1D"
                                         Duration="0:0:0.3" />
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
                         <Trigger Property="IsFocused" Value="True">
-                            <Setter TargetName="border" Property="BorderBrush" Value="#5c60a3"/>
+                            <Setter TargetName="border" Property="BorderBrush" Value="#2E2E2E"/>
                             <Setter TargetName="border" Property="BorderThickness" Value="2"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
@@ -156,7 +162,6 @@
             </Setter.Value>
         </Setter>
     </Style>
-
     <!--Buttons-->
     <Style x:Key="HeadButton" TargetType="Button">
         <Setter Property="Height" Value="40"/>
@@ -169,37 +174,34 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border x:Name="border" CornerRadius="10" BorderThickness="0" BorderBrush="Transparent">
+                    <Border x:Name="border" CornerRadius="5" BorderThickness="0" BorderBrush="Transparent">
                         <Border.Background>
-                            <SolidColorBrush x:Name="BGcolor" Color="#252641"/>
+                            <SolidColorBrush x:Name="BGcolor" Color="#ff2500"/>
                         </Border.Background>
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                     <ControlTemplate.Triggers>
                         <EventTrigger RoutedEvent="Border.MouseEnter"
-                          SourceName="border">
-
+                      SourceName="border">
                             <BeginStoryboard>
                                 <Storyboard>
                                     <ColorAnimation Storyboard.TargetName="BGcolor"
-                                        Storyboard.TargetProperty="Color"
-                                        From="#252641"
-                                        To="#5c60a3"
-                                        Duration="0:0:0.3" />
+                                    Storyboard.TargetProperty="Color"
+                                    From="#ff2500"
+                                    To="#FF5F1F"
+                                    Duration="0:0:0.2" />
                                 </Storyboard>
                             </BeginStoryboard>
 
                         </EventTrigger>
-                        <EventTrigger RoutedEvent="Border.MouseLeave"
-                          SourceName="border">
-
+                        <EventTrigger RoutedEvent="Border.MouseLeave" SourceName="border">
                             <BeginStoryboard>
                                 <Storyboard>
                                     <ColorAnimation Storyboard.TargetName="BGcolor"
-                            Storyboard.TargetProperty="Color"
-                            From="#5c60a3"
-                            To="#252641"
-                            Duration="0:0:0.3" />
+                                    Storyboard.TargetProperty="Color"
+                                    From="#FF5F1F"
+                                    To="#ff2500"
+                                    Duration="0:0:0.2" />
                                 </Storyboard>
                             </BeginStoryboard>
 
@@ -231,36 +233,85 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border x:Name="border" CornerRadius="0" BorderThickness="0" BorderBrush="Transparent">
-                        <Border.Background>
-                            <SolidColorBrush x:Name="BGcolor" Color="#1d1e33"/>
-                        </Border.Background>
+                    <Grid x:Name="button">
+                        <Border x:Name="border" Opacity="0" CornerRadius="0,0,0,0" BorderThickness="0" BorderBrush="Transparent">
+                            <Border.Background>
+                                <SolidColorBrush Color="#fff"/>
+                            </Border.Background>
+                        </Border>
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
+                    </Grid>
+
                     <ControlTemplate.Triggers>
-                        <EventTrigger RoutedEvent="Border.MouseEnter" SourceName="border">
+                        <EventTrigger RoutedEvent="Button.MouseEnter" SourceName="button">
                             <BeginStoryboard>
                                 <Storyboard>
-                                    <ColorAnimation Storyboard.TargetName="BGcolor"
-                                    Storyboard.TargetProperty="Color"
-                                    From="#1d1e33"
-                                    To="#5c60a3"
-                                    Duration="0:0:0.3" />
+                                    <DoubleAnimation Storyboard.TargetName="border"
+                                    Storyboard.TargetProperty="Opacity"
+                                    From="0"
+                                    To="0.5"
+                                    Duration="0:0:0.1" />
                                 </Storyboard>
                             </BeginStoryboard>
 
                         </EventTrigger>
-                        <EventTrigger RoutedEvent="Border.MouseLeave" SourceName="border">
+                        <EventTrigger RoutedEvent="Button.MouseLeave" SourceName="button">
                             <BeginStoryboard>
                                 <Storyboard>
-                                    <ColorAnimation Storyboard.TargetName="BGcolor"
-                                    Storyboard.TargetProperty="Color"
-                                    From="#5c60a3"
-                                    To="#1d1e33"
-                                    Duration="0:0:0.3" />
+                                    <DoubleAnimation Storyboard.TargetName="border"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     From="0.5"
+                                                     To="0"
+                                                     Duration="0:0:0.1" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="CloseButtonStyle" TargetType="Button">
+        <Setter Property="Width" Value="50"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid x:Name="button">
+                        <Border x:Name="border" Opacity="0" CornerRadius="0,5,0,0" BorderThickness="0" BorderBrush="Transparent">
+                            <Border.Background>
+                                <SolidColorBrush Color="#DE3163"/>
+                            </Border.Background>
+                        </Border>
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <EventTrigger RoutedEvent="Button.MouseEnter" SourceName="button">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetName="border"
+                                Storyboard.TargetProperty="Opacity"
+                                From="0"
+                                To="1"
+                                Duration="0:0:0.1" />
                                 </Storyboard>
                             </BeginStoryboard>
 
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="Button.MouseLeave" SourceName="button">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetName="border"
+                                                 Storyboard.TargetProperty="Opacity"
+                                                 From="1"
+                                                 To="0"
+                                                 Duration="0:0:0.1" />
+                                </Storyboard>
+                            </BeginStoryboard>
                         </EventTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -273,7 +324,7 @@
         <Setter Property="Height" Value="20"/>
     </Style>
     <Style x:Key="IconImageStyle" TargetType="Image">
-        <Setter Property="Width" Value="30"/>
-        <Setter Property="Height" Value="30"/>
+        <Setter Property="Width" Value="40"/>
+        <Setter Property="Height" Value="40"/>
     </Style>
 </ResourceDictionary>

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using TournamentsApplication.Utility;
 using TournamentsApplication.Model;
-using TournamentsApplication.VIew;
 using System.Windows.Controls;
+using TournamentsApplication.View;
 
 namespace TournamentsApplication.ViewModel
 {
@@ -15,6 +15,7 @@ namespace TournamentsApplication.ViewModel
     {
         private UnitOfWork uow;
         public UserControl? CurrentView => NavigationService.Instance.CurrentView;
+        public string? CurrentText => NavigationService.Instance.CurrentText;
         public User? CurrentUser => UserService.Instance.CurrentUser;
         public double StatusOpacity => StatusService.Instance.StatusOpacity;
         public string StatusText => StatusService.Instance.StatusText;
@@ -87,30 +88,54 @@ namespace TournamentsApplication.ViewModel
                     {
                         try
                         {
-                            User? tmpUser;
-                            if (uow.Users.GetAll().Where(a => a.Login == Login).Count() == 0)
+                            if (string.IsNullOrEmpty(Login) || string.IsNullOrEmpty(Username) || string.IsNullOrEmpty(Password) || string.IsNullOrEmpty(PasswordConfirm))
                             {
-
-                                if (Password == PasswordConfirm)
-                                {
-                                    tmpUser = new User() { Login = Login, Username = Username, Password = PasswordHasher.HashPassword(Password),
-                                        IsLogined = false, IsAdmin = false, CreatedAt = DateTime.Now.ToUniversalTime() };
-                                    uow.Users.Add(tmpUser);
-                                    UserService.Instance.CurrentUser = tmpUser;
-                                    NavigationService.Instance.SwitchCurrentView(new HomePageView());
-                                    StatusService.Instance.SetStatusMessage($"Welcome, {tmpUser.Username}");
-                                    uow.Save();
-                                }
+                                throw new Exception("Fill in all fields");
                             }
-                            else
+                            if (uow.Users.GetAll().Where(a => a.Login == Login).Count() != 0)
                             {
                                 throw new Exception("This login already exists");
                             }
+                            if (Login.Length < 4)
+                            {
+                                throw new Exception("At least 4 characters for login");
+                            }
+                            
+                            PasswordHasher.ValidatePassword(Password, PasswordConfirm);
+                            User? tmpUser;
+                            tmpUser = new User()
+                            {
+                                Login = Login,
+                                Username = Username,
+                                Password = PasswordHasher.HashPassword(Password),
+                                IsLogined = true,
+                                IsAdmin = false,
+                                LastLogin = DateTime.Now.ToUniversalTime(),
+                                CreatedAt = DateTime.Now.ToUniversalTime()
+                            };
+                            uow.Users.Add(tmpUser);
+                            UserService.Instance.CurrentUser = tmpUser;
+                            NavigationService.Instance.SwitchCurrentView(new HomePageView());
+                            StatusService.Instance.SetStatusMessage($"Welcome, {tmpUser.Username}");
+                            uow.Save();
                         }
                         catch (Exception e)
                         {
                             StatusService.Instance.SetStatusMessage(e.Message);
+                            uow.Dispose();
                         }
+                    }));
+            }
+        }
+        private RelayCommand? changeViewCommand;
+        public RelayCommand ChangeViewCommand
+        {
+            get
+            {
+                return changeViewCommand ??
+                    (changeViewCommand = new RelayCommand((obj) =>
+                    {
+                        NavigationService.Instance.SwitchCurrentView(new LoginView());
                     }));
             }
         }
