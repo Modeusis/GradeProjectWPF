@@ -20,18 +20,10 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Border Background="#1D1D1D" Grid.ColumnSpan="2" CornerRadius="10, 10, 0 ,0" BorderThickness="0">
-                <Grid Grid.ColumnSpan="2" HorizontalAlignment="Center">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Image Style="{StaticResource HeaderImageStyle}" Source="pack://application:,,,/Resources/Images/HeaderIcon.png"/>
-                    <StackPanel Grid.Column="1" Orientation="Horizontal">
-                        <TextBlock Foreground="#ffa500" FontSize="32" Style="{StaticResource AppNameTextBlock}" Text="S"/>
-                        <TextBlock Style="{StaticResource AppNameTextBlock}" Text="coutify"/>
-                    </StackPanel>
-                    
-                </Grid>
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                    <TextBlock Foreground="#ffa500" FontSize="32" Style="{StaticResource AppNameTextBlock}" Text="S"/>
+                    <TextBlock Style="{StaticResource AppNameTextBlock}" Text="coutify"/>
+                </StackPanel>
                 <i:Interaction.Behaviors>
                     <u:DragWindowBehavior/>
                 </i:Interaction.Behaviors>

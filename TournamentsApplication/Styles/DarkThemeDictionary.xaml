@@ -263,22 +263,19 @@
                                 Background="#FFFFFF" 
                                 Opacity="0" 
                                 CornerRadius="5" />
-                            <ContentPresenter Grid.Column="1" 
+                            <ContentPresenter x:Name="Content" Opacity="0.6" Grid.Column="1" 
                                           HorizontalAlignment="Center" 
                                           VerticalAlignment="Center" />
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="backgroundBorder" Property="Opacity" Value="0.3" />
-                        </Trigger>
-                        <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="backgroundBorder" Property="Opacity" Value="0.6" />
+                            <Setter TargetName="Content" Property="Opacity" Value="0.8" />
                         </Trigger>
                         <Trigger Property="IsChecked" Value="True">
                             <Setter TargetName="Indicator" Property="Visibility" Value="Visible" />
                             <Setter TargetName="Indicator" Property="Opacity" Value="1" />
-                            <Setter TargetName="backgroundBorder" Property="Opacity" Value="0.1" />
+                            <Setter TargetName="Content" Property="Opacity" Value="1" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Trigger.EnterActions>
@@ -301,6 +298,9 @@
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.ExitActions>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="backgroundBorder" Property="Opacity" Value="0.6" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
