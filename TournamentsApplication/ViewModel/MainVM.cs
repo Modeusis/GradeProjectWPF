@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Media.Animation;
 using TournamentsApplication.Utility;
 using TournamentsApplication.View;
+using TournamentsApplication.Model;
 
 namespace TournamentsApplication.ViewModel
 {
@@ -15,8 +16,9 @@ namespace TournamentsApplication.ViewModel
     {
         public string StatusText => StatusService.Instance.StatusText;
         public double StatusOpacity => StatusService.Instance.StatusOpacity;
-        private UserControl currentView;
-        private string currentText;
+        public UserControl? CurrentView => NavigationService.Instance.CurrentView;
+        public string? CurrentText => NavigationService.Instance.CurrentText;
+        public User? CurrentUser => UserService.Instance.CurrentUser;
         RelayCommand? closeWindowCommand;
         RelayCommand? minimizeWindowCommand;
         RelayCommand? changeViewCommand;
@@ -45,25 +47,15 @@ namespace TournamentsApplication.ViewModel
                     }));
             }
         }
-        public UserControl CurrentView
-        {
-            get { return currentView; }
-            set { currentView = value; OnPropertyChanged(); }
-        }
-        public string CurrentText
-        {
-            get { return currentText; }
-            set { currentText = value; OnPropertyChanged(); }
-        }
 
         public MainVM()
         {
-            CurrentView = new LoginView();
-            CurrentText = "I dont have an account";
-
-            
 
             StatusService.Instance.StatusChanged += OnStatusChanged;
+            NavigationService.Instance.NavigationChanged += OnViewChanged;
+            UserService.Instance.UserChanged += OnUserChanged;
+
+            NavigationService.Instance.SwitchCurrentView(new LoginView());
         }
 
         public RelayCommand ChangeViewCommand
@@ -73,18 +65,19 @@ namespace TournamentsApplication.ViewModel
                 return changeViewCommand ??
                     (changeViewCommand = new RelayCommand((obj) =>
                     {
-                        if (CurrentView.GetType() == typeof(LoginView))
+                        if (CurrentView?.GetType() == typeof(LoginView))
                         {
-                            CurrentView = new RegistrationView();
-                            CurrentText = "I already have an account";
-                            StatusService.Instance.SetStatusMessage(CurrentText);
+                            NavigationService.Instance.SwitchCurrentView(new RegistrationView());
+                        }
+                        else if (CurrentView?.GetType() == typeof(RegistrationView))
+                        {
+                            NavigationService.Instance.SwitchCurrentView(new LoginView());
                         }
                         else
                         {
-                            CurrentView = new LoginView();
-                            CurrentText = "I dont have an account";
-                        }
-                            
+                            NavigationService.Instance.SwitchCurrentView(new LoginView());
+                            UserService.Instance.LogOut();
+                        }    
                     }));
             }
         }
@@ -93,6 +86,15 @@ namespace TournamentsApplication.ViewModel
         {
             OnPropertyChanged(nameof(StatusText));
             OnPropertyChanged(nameof(StatusOpacity));
+        }
+        private void OnViewChanged()
+        {
+            OnPropertyChanged(nameof(CurrentView));
+            OnPropertyChanged(nameof(CurrentText));
+        }
+        private void OnUserChanged()
+        {
+            OnPropertyChanged(nameof(CurrentUser));
         }
     }
 }

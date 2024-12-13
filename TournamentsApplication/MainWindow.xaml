@@ -7,6 +7,7 @@
         xmlns:local="clr-namespace:TournamentsApplication"
         xmlns:u="clr-namespace:TournamentsApplication.Utility"
         xmlns:v="clr-namespace:TournamentsApplication.View"
+        Icon="pack://application:,,,/Resources/Images/Icon.ico"
         mc:Ignorable="d"
         WindowStyle="None"
         AllowsTransparency="True"
@@ -15,25 +16,31 @@
         Title="MainWindow" Height="560" Width="940">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <ContentControl Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Content="{Binding CurrentView}"/>
         <Border Grid.Row="1" Opacity="0" Style="{StaticResource FadeOutBorderStyle}">
-            <TextBlock Style="{StaticResource ErrorTextBlock}" Text="{Binding StatusText}"/>
-            <i:Interaction.Behaviors>
-                <u:FadeOutBehavior StatusOpacity="{Binding StatusOpacity}"/>
-            </i:Interaction.Behaviors>
+             <TextBlock Style="{StaticResource ErrorTextBlock}" Text="{Binding StatusText}"/>
+             <i:Interaction.Behaviors>
+                 <u:FadeOutBehavior StatusOpacity="{Binding StatusOpacity}"/>
+             </i:Interaction.Behaviors>
         </Border>
+
 
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Style="{StaticResource ContentButtonStyle}" Command="{Binding ChangeViewCommand}" CommandParameter="{x:Type v:RegistrationView}" Margin="10,0,0,0" HorizontalAlignment="Left" Grid.Column="0" Cursor="">
-                <TextBlock Style="{StaticResource SmallTextBlock}" Text="{Binding CurrentText}"/>
-            </Button>
+            <StackPanel Orientation="Horizontal" Cursor="">
+                <Button Style="{StaticResource ContentButtonStyle}">
+                    <Image Source="pack://application:,,,/Resources/Images/Icon.ico"/>
+                </Button>
+                <Button Style="{StaticResource ContentButtonStyle}" Command="{Binding ChangeViewCommand}" CommandParameter="{x:Type v:RegistrationView}" Margin="10,0,0,0" HorizontalAlignment="Left" Grid.Column="0" Cursor="">
+                    <TextBlock Style="{StaticResource SmallTextBlock}" Text="{Binding CurrentText}"/>
+                </Button>
+            </StackPanel>
             <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Stretch" Cursor="">
                 <Button Style="{StaticResource TabButtonStyle}" Command="{Binding MinimizeWindowCommand}">
                     <Image Style="{StaticResource TabImageStyle}" Source="./Resources/Images/minus.png" Margin="0,14,0,0"/>

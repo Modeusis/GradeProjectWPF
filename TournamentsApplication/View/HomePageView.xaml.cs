@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TournamentsApplication.ViewModel;
 
 namespace TournamentsApplication.VIew
 {
@@ -23,6 +24,8 @@ namespace TournamentsApplication.VIew
         public HomePageView()
         {
             InitializeComponent();
+
+            DataContext = new HomeVM();
         }
     }
 }
