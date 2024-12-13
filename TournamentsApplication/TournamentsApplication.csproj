@@ -10,13 +10,19 @@
 
   <ItemGroup>
     <None Remove="Resources\Fonts\NunitoFont.ttf" />
+    <None Remove="Resources\Fonts\NunitoItalic.ttf" />
     <None Remove="Resources\Images\backgroundCS2.png" />
     <None Remove="Resources\Images\close.png" />
     <None Remove="Resources\Images\expand.png" />
     <None Remove="Resources\Images\group.png" />
+    <None Remove="Resources\Images\HeaderIcon.png" />
     <None Remove="Resources\Images\Icon.ico" />
+    <None Remove="Resources\Images\Icon1%281%29.png" />
+    <None Remove="Resources\Images\Icon1.png" />
     <None Remove="Resources\Images\iconBlack.png" />
+    <None Remove="Resources\Images\IconFigma.png" />
     <None Remove="Resources\Images\IconWhite.png" />
+    <None Remove="Resources\Images\MainIcon.png" />
     <None Remove="Resources\Images\minus.png" />
     <None Remove="Resources\Images\s1mpleGraff.jpg" />
     <None Remove="Resources\Images\star.png" />
@@ -25,8 +31,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\Fonts\NunitoItalic.ttf" />
     <Resource Include="Resources\Images\expand.png" />
     <Resource Include="Resources\Images\group.png" />
+    <Resource Include="Resources\Images\HeaderIcon.png" />
+    <Resource Include="Resources\Images\IconFigma.png" />
+    <Resource Include="Resources\Images\MainIcon.png" />
     <Resource Include="Resources\Images\trophy.png" />
   </ItemGroup>
 

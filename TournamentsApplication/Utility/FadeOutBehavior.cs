@@ -47,15 +47,15 @@ namespace TournamentsApplication.Utility
 
             var moveAnimation = new DoubleAnimation
             {
-                From = -150,
-                To = 0,
+                From = 0,
+                To = 210,
                 Duration = TimeSpan.FromSeconds(0.25),
             };
 
             var moveOutAnimation = new DoubleAnimation
             {
-                From = 0,
-                To = -100,
+                From = 210,
+                To = 0,
                 Duration = TimeSpan.FromSeconds(0.5),
                 BeginTime = TimeSpan.FromSeconds(4),
             };

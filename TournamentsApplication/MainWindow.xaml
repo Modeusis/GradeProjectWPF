@@ -25,7 +25,7 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <ContentControl Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Content="{Binding CurrentView}"/>
-                <Border Grid.Row="1" Opacity="0" Style="{StaticResource FadeOutBorderStyle}">
+                <Border Grid.Row="1" Opacity="0" Style="{StaticResource FadeOutBorderStyle}" Margin="-200,0,0,0">
                     <TextBlock Style="{StaticResource ErrorTextBlock}" Text="{Binding StatusText}"/>
                     <i:Interaction.Behaviors>
                         <u:FadeOutBehavior StatusOpacity="{Binding StatusOpacity}"/>

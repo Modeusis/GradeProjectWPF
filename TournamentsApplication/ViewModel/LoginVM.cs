@@ -94,7 +94,6 @@ namespace TournamentsApplication.ViewModel
                 return guestContinueCommand ?? (guestContinueCommand = new RelayCommand((obj) =>
                 {
                     NavigationService.Instance.SwitchCurrentView(new HomePageView());
-                    StatusService.Instance.SetStatusMessage("Complete authorization to unlock all features");
                 }));
             }
         }

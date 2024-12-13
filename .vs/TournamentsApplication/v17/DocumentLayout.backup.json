@@ -3,100 +3,40 @@
   "WorkspaceRootPath": "C:\\programms\\GitProject\\GradeProjectWPF\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|c:\\programms\\gitproject\\gradeprojectwpf\\tournamentsapplication\\utility\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|solutionrelative:tournamentsapplication\\utility\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|c:\\programms\\gitproject\\gradeprojectwpf\\tournamentsapplication\\viewmodel\\mainvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|solutionrelative:tournamentsapplication\\viewmodel\\mainvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|c:\\programms\\gitproject\\gradeprojectwpf\\tournamentsapplication\\viewmodel\\loginvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|solutionrelative:tournamentsapplication\\viewmodel\\loginvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|c:\\programms\\gitproject\\gradeprojectwpf\\tournamentsapplication\\styles\\darkthemedictionary.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|solutionrelative:tournamentsapplication\\styles\\darkthemedictionary.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|c:\\programms\\gitproject\\gradeprojectwpf\\tournamentsapplication\\view\\loginview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|solutionrelative:tournamentsapplication\\view\\loginview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|c:\\programms\\gitproject\\gradeprojectwpf\\tournamentsapplication\\view\\homepageview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|solutionrelative:tournamentsapplication\\view\\homepageview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|c:\\programms\\gitproject\\gradeprojectwpf\\tournamentsapplication\\viewmodel\\homevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|solutionrelative:tournamentsapplication\\viewmodel\\homevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|c:\\programms\\gitproject\\gradeprojectwpf\\tournamentsapplication\\viewmodel\\registrationvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|solutionrelative:tournamentsapplication\\viewmodel\\registrationvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|c:\\programms\\gitproject\\gradeprojectwpf\\tournamentsapplication\\view\\loginview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|solutionrelative:tournamentsapplication\\view\\loginview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|c:\\programms\\gitproject\\gradeprojectwpf\\tournamentsapplication\\utility\\passwordbehavior.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|solutionrelative:tournamentsapplication\\utility\\passwordbehavior.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|c:\\programms\\gitproject\\gradeprojectwpf\\tournamentsapplication\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|solutionrelative:tournamentsapplication\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|c:\\programms\\gitproject\\gradeprojectwpf\\tournamentsapplication\\styles\\darkthemedictionary.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|solutionrelative:tournamentsapplication\\styles\\darkthemedictionary.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|c:\\programms\\gitproject\\gradeprojectwpf\\tournamentsapplication\\utility\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|solutionrelative:tournamentsapplication\\utility\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|c:\\programms\\gitproject\\gradeprojectwpf\\tournamentsapplication\\utility\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|solutionrelative:tournamentsapplication\\utility\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|c:\\programms\\gitproject\\gradeprojectwpf\\tournamentsapplication\\utility\\navigationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|solutionrelative:tournamentsapplication\\utility\\navigationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|c:\\programms\\gitproject\\gradeprojectwpf\\tournamentsapplication\\view\\homepageview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|solutionrelative:tournamentsapplication\\view\\homepageview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|c:\\programms\\gitproject\\gradeprojectwpf\\tournamentsapplication\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|solutionrelative:tournamentsapplication\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|c:\\programms\\gitproject\\gradeprojectwpf\\tournamentsapplication\\utility\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|solutionrelative:tournamentsapplication\\utility\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|c:\\programms\\gitproject\\gradeprojectwpf\\tournamentsapplication\\view\\homepageview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|solutionrelative:tournamentsapplication\\view\\homepageview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|c:\\programms\\gitproject\\gradeprojectwpf\\tournamentsapplication\\utility\\fadeoutbehavior.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|solutionrelative:tournamentsapplication\\utility\\fadeoutbehavior.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|c:\\programms\\gitproject\\gradeprojectwpf\\tournamentsapplication\\utility\\dragwindowbehavior.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|solutionrelative:tournamentsapplication\\utility\\dragwindowbehavior.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|c:\\programms\\gitproject\\gradeprojectwpf\\tournamentsapplication\\viewmodel\\mainvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|solutionrelative:tournamentsapplication\\viewmodel\\mainvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|c:\\programms\\gitproject\\gradeprojectwpf\\tournamentsapplication\\view\\registrationview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|solutionrelative:tournamentsapplication\\view\\registrationview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|c:\\programms\\gitproject\\gradeprojectwpf\\tournamentsapplication\\view\\loginview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|solutionrelative:tournamentsapplication\\view\\loginview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|c:\\programms\\gitproject\\gradeprojectwpf\\tournamentsapplication\\view\\registrationview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|solutionrelative:tournamentsapplication\\view\\registrationview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|c:\\programms\\gitproject\\gradeprojectwpf\\tournamentsapplication\\viewmodel\\loginvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|solutionrelative:tournamentsapplication\\viewmodel\\loginvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|c:\\programms\\gitproject\\gradeprojectwpf\\tournamentsapplication\\tournamentsapplication.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|solutionrelative:tournamentsapplication\\tournamentsapplication.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|c:\\programms\\gitproject\\gradeprojectwpf\\tournamentsapplication\\tournamentsapplication.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
-      "RelativeMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|solutionrelative:tournamentsapplication\\tournamentsapplication.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|c:\\programms\\gitproject\\gradeprojectwpf\\tournamentsapplication\\model\\team.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|solutionrelative:tournamentsapplication\\model\\team.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|c:\\programms\\gitproject\\gradeprojectwpf\\tournamentsapplication\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{6739AC64-BFD6-4AC9-8DCE-88171CD87DDA}|TournamentsApplication\\TournamentsApplication.csproj|solutionrelative:tournamentsapplication\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -106,140 +46,58 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UserService.cs",
-              "DocumentMoniker": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\Utility\\UserService.cs",
-              "RelativeDocumentMoniker": "TournamentsApplication\\Utility\\UserService.cs",
-              "ToolTip": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\Utility\\UserService.cs",
-              "RelativeToolTip": "TournamentsApplication\\Utility\\UserService.cs",
-              "ViewState": "AgIAABQAAAAAAAAAAAAQwDEAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-13T07:13:36.616Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "DarkThemeDictionary.xaml",
-              "DocumentMoniker": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\Styles\\DarkThemeDictionary.xaml",
-              "RelativeDocumentMoniker": "TournamentsApplication\\Styles\\DarkThemeDictionary.xaml",
-              "ToolTip": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\Styles\\DarkThemeDictionary.xaml",
-              "RelativeToolTip": "TournamentsApplication\\Styles\\DarkThemeDictionary.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-12-11T10:17:12.522Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "HomePageView.xaml",
               "DocumentMoniker": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\View\\HomePageView.xaml",
               "RelativeDocumentMoniker": "TournamentsApplication\\View\\HomePageView.xaml",
               "ToolTip": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\View\\HomePageView.xaml",
               "RelativeToolTip": "TournamentsApplication\\View\\HomePageView.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-12-13T06:48:58.6Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "LoginView.xaml",
-              "DocumentMoniker": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\View\\LoginView.xaml",
-              "RelativeDocumentMoniker": "TournamentsApplication\\View\\LoginView.xaml",
-              "ToolTip": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\View\\LoginView.xaml",
-              "RelativeToolTip": "TournamentsApplication\\View\\LoginView.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-12-12T15:27:06.777Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "RegistrationView.xaml",
-              "DocumentMoniker": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\View\\RegistrationView.xaml",
-              "RelativeDocumentMoniker": "TournamentsApplication\\View\\RegistrationView.xaml",
-              "ToolTip": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\View\\RegistrationView.xaml",
-              "RelativeToolTip": "TournamentsApplication\\View\\RegistrationView.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-12-13T07:48:01.947Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "MainWindow.xaml",
-              "DocumentMoniker": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\MainWindow.xaml",
-              "RelativeDocumentMoniker": "TournamentsApplication\\MainWindow.xaml",
-              "ToolTip": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\MainWindow.xaml",
-              "RelativeToolTip": "TournamentsApplication\\MainWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-12-07T08:47:27.569Z",
+              "WhenOpened": "2024-12-13T20:16:46.836Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "LoginVM.cs",
-              "DocumentMoniker": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\ViewModel\\LoginVM.cs",
-              "RelativeDocumentMoniker": "TournamentsApplication\\ViewModel\\LoginVM.cs",
-              "ToolTip": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\ViewModel\\LoginVM.cs",
-              "RelativeToolTip": "TournamentsApplication\\ViewModel\\LoginVM.cs",
-              "ViewState": "AgIAADgAAAAAAAAAAAAAwGAAAABqAAAAAAAAAA==",
+              "Title": "HomeVM.cs",
+              "DocumentMoniker": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\ViewModel\\HomeVM.cs",
+              "RelativeDocumentMoniker": "TournamentsApplication\\ViewModel\\HomeVM.cs",
+              "ToolTip": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\ViewModel\\HomeVM.cs",
+              "RelativeToolTip": "TournamentsApplication\\ViewModel\\HomeVM.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-13T12:07:04.192Z",
+              "WhenOpened": "2024-12-13T20:16:54.157Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "MainVM.cs",
-              "DocumentMoniker": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\ViewModel\\MainVM.cs",
-              "RelativeDocumentMoniker": "TournamentsApplication\\ViewModel\\MainVM.cs",
-              "ToolTip": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\ViewModel\\MainVM.cs",
-              "RelativeToolTip": "TournamentsApplication\\ViewModel\\MainVM.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAmwD8AAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-13T12:07:02.985Z",
+              "Title": "LoginView.xaml",
+              "DocumentMoniker": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\View\\LoginView.xaml",
+              "RelativeDocumentMoniker": "TournamentsApplication\\View\\LoginView.xaml",
+              "ToolTip": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\View\\LoginView.xaml",
+              "RelativeToolTip": "TournamentsApplication\\View\\LoginView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-12-13T20:31:18.187Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "RegistrationVM.cs",
-              "DocumentMoniker": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\ViewModel\\RegistrationVM.cs",
-              "RelativeDocumentMoniker": "TournamentsApplication\\ViewModel\\RegistrationVM.cs",
-              "ToolTip": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\ViewModel\\RegistrationVM.cs",
-              "RelativeToolTip": "TournamentsApplication\\ViewModel\\RegistrationVM.cs",
-              "ViewState": "AgIAAFMAAAAAAAAAAADwv3sAAABPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-13T07:41:35.829Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "HomeVM.cs",
-              "DocumentMoniker": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\ViewModel\\HomeVM.cs",
-              "RelativeDocumentMoniker": "TournamentsApplication\\ViewModel\\HomeVM.cs",
-              "ToolTip": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\ViewModel\\HomeVM.cs",
-              "RelativeToolTip": "TournamentsApplication\\ViewModel\\HomeVM.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-13T08:49:08.071Z",
+              "DocumentIndex": 0,
+              "Title": "DarkThemeDictionary.xaml",
+              "DocumentMoniker": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\Styles\\DarkThemeDictionary.xaml",
+              "RelativeDocumentMoniker": "TournamentsApplication\\Styles\\DarkThemeDictionary.xaml",
+              "ToolTip": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\Styles\\DarkThemeDictionary.xaml",
+              "RelativeToolTip": "TournamentsApplication\\Styles\\DarkThemeDictionary.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-12-13T20:32:18.776Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
@@ -249,183 +107,66 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "PasswordBehavior.cs",
-              "DocumentMoniker": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\Utility\\PasswordBehavior.cs",
-              "RelativeDocumentMoniker": "TournamentsApplication\\Utility\\PasswordBehavior.cs",
-              "ToolTip": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\Utility\\PasswordBehavior.cs",
-              "RelativeToolTip": "TournamentsApplication\\Utility\\PasswordBehavior.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAACIAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-13T17:26:33.14Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "UnitOfWork.cs",
-              "DocumentMoniker": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\Utility\\UnitOfWork.cs",
-              "RelativeDocumentMoniker": "TournamentsApplication\\Utility\\UnitOfWork.cs",
-              "ToolTip": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\Utility\\UnitOfWork.cs",
-              "RelativeToolTip": "TournamentsApplication\\Utility\\UnitOfWork.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAA5wCcAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-13T17:08:28.31Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\MainWindow.xaml.cs",
-              "RelativeDocumentMoniker": "TournamentsApplication\\MainWindow.xaml.cs",
-              "ToolTip": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\MainWindow.xaml.cs",
-              "RelativeToolTip": "TournamentsApplication\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-13T16:49:56.619Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "NavigationService.cs",
-              "DocumentMoniker": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\Utility\\NavigationService.cs",
-              "RelativeDocumentMoniker": "TournamentsApplication\\Utility\\NavigationService.cs",
-              "ToolTip": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\Utility\\NavigationService.cs",
-              "RelativeToolTip": "TournamentsApplication\\Utility\\NavigationService.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAgwEMAAABpAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-13T12:09:54.66Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "LoginView.xaml.cs",
-              "DocumentMoniker": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\View\\LoginView.xaml.cs",
-              "RelativeDocumentMoniker": "TournamentsApplication\\View\\LoginView.xaml.cs",
-              "ToolTip": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\View\\LoginView.xaml.cs",
-              "RelativeToolTip": "TournamentsApplication\\View\\LoginView.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-13T14:05:32.124Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Repository.cs",
-              "DocumentMoniker": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\Utility\\Repository.cs",
-              "RelativeDocumentMoniker": "TournamentsApplication\\Utility\\Repository.cs",
-              "ToolTip": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\Utility\\Repository.cs",
-              "RelativeToolTip": "TournamentsApplication\\Utility\\Repository.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAAAwEAAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-13T16:15:19.858Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "HomePageView.xaml.cs",
-              "DocumentMoniker": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\View\\HomePageView.xaml.cs",
-              "RelativeDocumentMoniker": "TournamentsApplication\\View\\HomePageView.xaml.cs",
-              "ToolTip": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\View\\HomePageView.xaml.cs",
-              "RelativeToolTip": "TournamentsApplication\\View\\HomePageView.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-13T14:17:07.665Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 4,
               "Title": "FadeOutBehavior.cs",
               "DocumentMoniker": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\Utility\\FadeOutBehavior.cs",
               "RelativeDocumentMoniker": "TournamentsApplication\\Utility\\FadeOutBehavior.cs",
               "ToolTip": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\Utility\\FadeOutBehavior.cs",
               "RelativeToolTip": "TournamentsApplication\\Utility\\FadeOutBehavior.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAuwAYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABgAAAAAAAAAAAAowDkAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-12T16:33:39.747Z",
+              "WhenOpened": "2024-12-13T21:31:12.92Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "DragWindowBehavior.cs",
-              "DocumentMoniker": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\Utility\\DragWindowBehavior.cs",
-              "RelativeDocumentMoniker": "TournamentsApplication\\Utility\\DragWindowBehavior.cs",
-              "ToolTip": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\Utility\\DragWindowBehavior.cs",
-              "RelativeToolTip": "TournamentsApplication\\Utility\\DragWindowBehavior.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAoAAAAAAAAAA==",
+              "DocumentIndex": 7,
+              "Title": "LoginVM.cs",
+              "DocumentMoniker": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\ViewModel\\LoginVM.cs",
+              "RelativeDocumentMoniker": "TournamentsApplication\\ViewModel\\LoginVM.cs",
+              "ToolTip": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\ViewModel\\LoginVM.cs",
+              "RelativeToolTip": "TournamentsApplication\\ViewModel\\LoginVM.cs",
+              "ViewState": "AgIAAE8AAAAAAAAAAAAYwF8AAABVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-13T15:35:05.901Z",
+              "WhenOpened": "2024-12-13T21:27:11.252Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "IRepository.cs",
-              "DocumentMoniker": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\Utility\\IRepository.cs",
-              "RelativeDocumentMoniker": "TournamentsApplication\\Utility\\IRepository.cs",
-              "ToolTip": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\Utility\\IRepository.cs",
-              "RelativeToolTip": "TournamentsApplication\\Utility\\IRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAABUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-13T16:14:53.69Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "RegistrationView.xaml.cs",
-              "DocumentMoniker": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\View\\RegistrationView.xaml.cs",
-              "RelativeDocumentMoniker": "TournamentsApplication\\View\\RegistrationView.xaml.cs",
-              "ToolTip": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\View\\RegistrationView.xaml.cs",
-              "RelativeToolTip": "TournamentsApplication\\View\\RegistrationView.xaml.cs",
+              "DocumentIndex": 6,
+              "Title": "LoginView.xaml.cs",
+              "DocumentMoniker": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\View\\LoginView.xaml.cs",
+              "RelativeDocumentMoniker": "TournamentsApplication\\View\\LoginView.xaml.cs",
+              "ToolTip": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\View\\LoginView.xaml.cs",
+              "RelativeToolTip": "TournamentsApplication\\View\\LoginView.xaml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-13T15:25:12.815Z",
+              "WhenOpened": "2024-12-13T21:27:07.209Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "TournamentsApplication",
-              "DocumentMoniker": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\TournamentsApplication.csproj",
-              "RelativeDocumentMoniker": "TournamentsApplication\\TournamentsApplication.csproj",
-              "ToolTip": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\TournamentsApplication.csproj",
-              "RelativeToolTip": "TournamentsApplication\\TournamentsApplication.csproj",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-12-13T09:21:42.507Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "TournamentsApplication.csproj",
-              "DocumentMoniker": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\TournamentsApplication.csproj",
-              "RelativeDocumentMoniker": "TournamentsApplication\\TournamentsApplication.csproj",
-              "ToolTip": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\TournamentsApplication.csproj",
-              "RelativeToolTip": "TournamentsApplication\\TournamentsApplication.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-12-13T09:21:30.775Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "Team.cs",
-              "DocumentMoniker": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\Model\\Team.cs",
-              "RelativeDocumentMoniker": "TournamentsApplication\\Model\\Team.cs",
-              "ToolTip": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\Model\\Team.cs",
-              "RelativeToolTip": "TournamentsApplication\\Model\\Team.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "MainVM.cs",
+              "DocumentMoniker": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\ViewModel\\MainVM.cs",
+              "RelativeDocumentMoniker": "TournamentsApplication\\ViewModel\\MainVM.cs",
+              "ToolTip": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\ViewModel\\MainVM.cs",
+              "RelativeToolTip": "TournamentsApplication\\ViewModel\\MainVM.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAADwvzcAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-12T20:25:47.543Z",
+              "WhenOpened": "2024-12-13T21:11:57.631Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "TournamentsApplication\\MainWindow.xaml",
+              "ToolTip": "C:\\programms\\GitProject\\GradeProjectWPF\\TournamentsApplication\\MainWindow.xaml",
+              "RelativeToolTip": "TournamentsApplication\\MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-12-13T20:30:53.044Z",
               "EditorCaption": ""
             }
           ]
