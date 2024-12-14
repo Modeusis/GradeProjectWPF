@@ -60,7 +60,7 @@ namespace TournamentsApplication.ViewModel
                             tmpUser.IsLogined = true;
                             tmpUser.LastLogin = DateTime.Now.ToUniversalTime();
                             uow.Users.Update(tmpUser);
-                            UserService.Instance.CurrentUser = tmpUser;
+                            UserService.Instance.UpdateCurrentUser(tmpUser);
                             NavigationService.Instance.SwitchCurrentView(new HomePageView());
                             StatusService.Instance.SetStatusMessage($"Welcome back, {tmpUser.Username}");
                             uow.Save();

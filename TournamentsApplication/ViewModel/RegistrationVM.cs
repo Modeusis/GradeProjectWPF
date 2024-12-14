@@ -8,6 +8,7 @@ using TournamentsApplication.Utility;
 using TournamentsApplication.Model;
 using System.Windows.Controls;
 using TournamentsApplication.View;
+using System.Windows.Media.Imaging;
 
 namespace TournamentsApplication.ViewModel
 {
@@ -110,6 +111,7 @@ namespace TournamentsApplication.ViewModel
                                 Password = PasswordHasher.HashPassword(Password),
                                 IsLogined = true,
                                 IsAdmin = false,
+                                Logo = ImageConverter.ImageToByteArray(new BitmapImage(new Uri("pack://application:,,,/Resources/Images/myImage.png"))),
                                 LastLogin = DateTime.Now.ToUniversalTime(),
                                 CreatedAt = DateTime.Now.ToUniversalTime()
                             };

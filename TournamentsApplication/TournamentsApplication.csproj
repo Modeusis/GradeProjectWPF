@@ -13,6 +13,7 @@
     <None Remove="Resources\Fonts\NunitoItalic.ttf" />
     <None Remove="Resources\Images\backgroundCS2.png" />
     <None Remove="Resources\Images\close.png" />
+    <None Remove="Resources\Images\code.png" />
     <None Remove="Resources\Images\expand.png" />
     <None Remove="Resources\Images\group.png" />
     <None Remove="Resources\Images\HeaderIcon.png" />
@@ -22,21 +23,25 @@
     <None Remove="Resources\Images\iconBlack.png" />
     <None Remove="Resources\Images\IconFigma.png" />
     <None Remove="Resources\Images\IconWhite.png" />
+    <None Remove="Resources\Images\logout.png" />
     <None Remove="Resources\Images\MainIcon.png" />
     <None Remove="Resources\Images\minus.png" />
     <None Remove="Resources\Images\s1mpleGraff.jpg" />
+    <None Remove="Resources\Images\StandardUserImage.png" />
     <None Remove="Resources\Images\star.png" />
     <None Remove="Resources\Images\trophy.png" />
     <None Remove="Resources\Images\user.png" />
+    <None Remove="Resources\Images\UserHeaderImage.jpg" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Resources\Fonts\NunitoItalic.ttf" />
+    <Resource Include="Resources\Images\code.png" />
     <Resource Include="Resources\Images\expand.png" />
     <Resource Include="Resources\Images\group.png" />
-    <Resource Include="Resources\Images\HeaderIcon.png" />
     <Resource Include="Resources\Images\IconFigma.png" />
-    <Resource Include="Resources\Images\MainIcon.png" />
+    <Resource Include="Resources\Images\logout.png" />
+    <Resource Include="Resources\Images\StandardUserImage.png" />
     <Resource Include="Resources\Images\trophy.png" />
   </ItemGroup>
 
@@ -44,7 +49,6 @@
     <Resource Include="Resources\Images\backgroundCS2.png" />
     <Resource Include="Resources\Images\close.png" />
     <Resource Include="Resources\Images\Icon.ico" />
-    <Resource Include="Resources\Images\IconWhite.png" />
     <Resource Include="Resources\Images\minus.png" />
     <Resource Include="Resources\Images\s1mpleGraff.jpg" />
   </ItemGroup>
@@ -61,6 +65,7 @@
     </Resource>
     <Resource Include="Resources\Images\star.png" />
     <Resource Include="Resources\Images\user.png" />
+    <Resource Include="Resources\Images\UserHeaderImage.jpg" />
   </ItemGroup>
 
 </Project>

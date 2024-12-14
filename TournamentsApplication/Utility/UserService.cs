@@ -14,39 +14,43 @@ namespace TournamentsApplication.Utility
         public static UserService Instance => _instance ?? (_instance = new UserService());
 
         private User? currentUser;
-        private bool logined;
+        private bool login;
 
         public event Action UserChanged;
+        private UnitOfWork uow;
 
         public User? CurrentUser
         {
             get { return currentUser; }
             set { currentUser = value; }
         }
-        public bool Logined
+        public bool Login
         {
-            get { return logined; }
-            set { logined = value; }
+            get { return login; }
+            set { login = value; }
         }
         private UserService()
         {
             CurrentUser = null;
-            Logined = false;
+            Login = false;
         }
         public void UpdateCurrentUser(User user)
         {
             CurrentUser = user;
-            Logined = CurrentUser.IsLogined;
+            Login = CurrentUser.IsLogined;
             UserChanged?.Invoke();
         }
         public void LogOut()
         {
-            CurrentUser.IsLogined = false;
-            Logined= false;
-        }
-        public void ClearUser()
-        {
-            CurrentUser = null;
+            if (CurrentUser != null) 
+            {
+                uow = new UnitOfWork(new ApplicationContext());
+                CurrentUser.IsLogined = false;
+                Login = false;
+                uow.Users.Update(CurrentUser);
+                uow.Save();
+                CurrentUser = null;
+            }
         }
     }
 }

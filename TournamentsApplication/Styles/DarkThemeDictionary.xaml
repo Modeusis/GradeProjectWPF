@@ -231,6 +231,95 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <Style x:Key="IconContentButtonStyle" TargetType="Button">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Margin" Value="10"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="RenderTransform">
+            <Setter.Value>
+                <ScaleTransform x:Name="scaleTransform" ScaleX="1" ScaleY="1"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid Width="50">
+                        <Border x:Name="border" Background="#ff2500" Opacity="0" CornerRadius="5" />
+                        <ContentPresenter x:Name="Icon" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="border"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0.2"
+                                                         Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="border"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0"
+                                                         Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="UserIconButtonStyle" TargetType="Button">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Margin" Value="10"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Border x:Name="border" Background="#fffafa" Opacity="0" CornerRadius="25" />
+                        <ContentPresenter x:Name="Icon" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="border"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     To="0.2"
+                                                     Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="border"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     To="0"
+                                                     Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
     <Style x:Key="NavMenuButtonStyle"
    TargetType="RadioButton">
         <Setter Property="HorizontalAlignment" Value="Stretch" />
@@ -355,6 +444,60 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <Style x:Key="LogoutButtonStyle" TargetType="Button">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Margin" Value="10,0,0,0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid x:Name="button"  HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Border x:Name="border" Opacity="0" CornerRadius="5" BorderThickness="0" BorderBrush="Transparent">
+                            <Border.Background>
+                                <SolidColorBrush Color="#fff"/>
+                            </Border.Background>
+                        </Border>
+                        <ContentPresenter x:Name="Content" Opacity="0.6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="border"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0.3"
+                                                         Duration="0:0:0.05"/>
+                                        <DoubleAnimation Storyboard.TargetName="Content"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="1"
+                                                         Duration="0:0:0.05"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="border"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0"
+                                                         Duration="0:0:0.05"/>
+                                        <DoubleAnimation Storyboard.TargetName="Content"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0.6"
+                                                         Duration="0:0:0.05"/>
+
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
     <Style x:Key="CloseButtonStyle" TargetType="Button">
         <Setter Property="Width" Value="50"/>
         <Setter Property="Background" Value="Transparent"/>
@@ -406,10 +549,17 @@
     <Style x:Key="TabImageStyle" TargetType="Image">
         <Setter Property="Width" Value="20"/>
         <Setter Property="Height" Value="20"/>
+        <Setter Property="Margin" Value="5"/>
     </Style>
     <Style x:Key="IconImageStyle" TargetType="Image">
         <Setter Property="Width" Value="40"/>
         <Setter Property="Height" Value="40"/>
+        <Setter Property="Margin" Value="5"/>
+    </Style>
+    <Style x:Key="UserIconImageStyle" TargetType="Image">
+        <Setter Property="Width" Value="40"/>
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="Margin" Value="5"/>
     </Style>
     <Style x:Key="HeaderImageStyle" TargetType="Image">
         <Setter Property="Margin" Value="5"/>

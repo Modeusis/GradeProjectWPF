@@ -21,6 +21,7 @@ namespace TournamentsApplication.ViewModel
         public string? CurrentText => NavigationService.Instance.CurrentText;
         public SolidColorBrush? WindowBorderColor => NavigationService.Instance.CurrentWindowBrush;
         public User? CurrentUser => UserService.Instance.CurrentUser;
+        public bool? Login => UserService.Instance.Login;
         RelayCommand? closeWindowCommand;
         RelayCommand? minimizeWindowCommand;
         public RelayCommand CloseWindowCommand
@@ -57,9 +58,6 @@ namespace TournamentsApplication.ViewModel
                 if (CurrentUser != null)
                 {
                     UserService.Instance.LogOut();
-                    uow.Users.Update(CurrentUser);
-                    uow.Save();
-                    UserService.Instance.ClearUser();
                 }
             });
             StatusService.Instance.StatusChanged += OnStatusChanged;
@@ -83,6 +81,7 @@ namespace TournamentsApplication.ViewModel
         private void OnUserChanged()
         {
             OnPropertyChanged(nameof(CurrentUser));
+            OnPropertyChanged(nameof(Login));
         }
     }
 }
