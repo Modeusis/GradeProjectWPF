@@ -1,7 +1,18 @@
 ﻿
-FD:\University\GradeProject\TournamentsApplication\TournamentsApplication\App.xaml;;
-FD:\University\GradeProject\TournamentsApplication\TournamentsApplication\MainWindow.xaml;;
-FD:\University\GradeProject\TournamentsApplication\TournamentsApplication\VIew\HomePageView.xaml;;
-FD:\University\GradeProject\TournamentsApplication\TournamentsApplication\VIew\LoginView.xaml;;
-FD:\University\GradeProject\TournamentsApplication\TournamentsApplication\VIew\RegistrationView.xaml;;
+FC:\programms\GitProject\GradeProjectWPF\TournamentsApplication\App.xaml;;
+FC:\programms\GitProject\GradeProjectWPF\TournamentsApplication\MainWindow.xaml;;
+FC:\programms\GitProject\GradeProjectWPF\TournamentsApplication\View\AdminPanelView.xaml;;
+FC:\programms\GitProject\GradeProjectWPF\TournamentsApplication\View\HomePageView.xaml;;
+FC:\programms\GitProject\GradeProjectWPF\TournamentsApplication\View\LoginView.xaml;;
+FC:\programms\GitProject\GradeProjectWPF\TournamentsApplication\View\MainContentView.xaml;;
+FC:\programms\GitProject\GradeProjectWPF\TournamentsApplication\View\MatchesView.xaml;;
+FC:\programms\GitProject\GradeProjectWPF\TournamentsApplication\View\MatchPageView.xaml;;
+FC:\programms\GitProject\GradeProjectWPF\TournamentsApplication\View\PlayerPageView.xaml;;
+FC:\programms\GitProject\GradeProjectWPF\TournamentsApplication\View\PlayersView.xaml;;
+FC:\programms\GitProject\GradeProjectWPF\TournamentsApplication\View\RegistrationView.xaml;;
+FC:\programms\GitProject\GradeProjectWPF\TournamentsApplication\View\TeamPageView.xaml;;
+FC:\programms\GitProject\GradeProjectWPF\TournamentsApplication\View\TeamsView.xaml;;
+FC:\programms\GitProject\GradeProjectWPF\TournamentsApplication\View\TournamentPageView.xaml;;
+FC:\programms\GitProject\GradeProjectWPF\TournamentsApplication\View\TournamentsView.xaml;;
+FC:\programms\GitProject\GradeProjectWPF\TournamentsApplication\View\UserPageView.xaml;;
 

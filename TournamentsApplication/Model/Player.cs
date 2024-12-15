@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,10 +12,13 @@ namespace TournamentsApplication.Model
     {
         private int player_id;
         private string player_name;
+        private string player_real_name;
+        private string position;
+        private DateTime birthDayDate;
         private byte[] player_img;
         private int? cur_team_id;
         private DateTime created_at;
-        private DateTime updated_at;
+        private DateTime? updated_at;
 
         public int PlayerId
         {
@@ -26,10 +30,25 @@ namespace TournamentsApplication.Model
             get { return player_name; }
             set { player_name = value; OnPropertyChanged(nameof(PlayerName)); }
         }
+        public string PlayerRealName
+        {
+            get { return player_real_name; }
+            set { player_real_name = value; OnPropertyChanged(nameof(PlayerRealName)); }
+        }
+        public string Position
+        {
+            get { return position; }
+            set { position = value; OnPropertyChanged(nameof(Position)); }
+        }
         public byte[] PlayerImg
         {
             get { return player_img; }
             set { player_img = value; OnPropertyChanged(nameof(PlayerImg)); }
+        }
+        public DateTime BirthDayDate
+        {
+            get { return birthDayDate; }
+            set { birthDayDate = value; OnPropertyChanged(nameof(BirthDayDate)); }
         }
         public int? CurTeamId
         {
@@ -41,7 +60,7 @@ namespace TournamentsApplication.Model
             get { return created_at; }
             set { created_at = value; OnPropertyChanged(nameof(CreatedAt)); }
         }
-        public DateTime UpdatedAt
+        public DateTime? UpdatedAt
         {
             get { return updated_at; }
             set { updated_at = value; OnPropertyChanged(nameof(UpdatedAt)); }
@@ -49,6 +68,6 @@ namespace TournamentsApplication.Model
 
         public Team Team { get; set; }
 
-        public ICollection<FavPlayer> FavPlayers { get; set; }
+        public ICollection<User> Users { get; set; }
     }
 }

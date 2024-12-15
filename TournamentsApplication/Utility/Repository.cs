@@ -66,7 +66,26 @@ namespace TournamentsApplication.Utility
 
         public void Delete(T entity)
         {
-            _dbSet.Remove(entity);
+            var keyProperty = _context.Model.FindEntityType(typeof(T))
+                .FindPrimaryKey().Properties.FirstOrDefault();
+
+            if (keyProperty != null)
+            {
+                var keyValue = keyProperty.PropertyInfo.GetValue(entity);
+                var trackedEntity = _dbSet.Find(keyValue);
+
+                if (trackedEntity != null)
+                {
+                    // Если сущность отслеживается, удаляем её
+                    _dbSet.Remove(trackedEntity);
+                }
+                else
+                {
+                    // Если не отслеживается, прикрепляем и удаляем
+                    _dbSet.Attach(entity);
+                    _dbSet.Remove(entity);
+                }
+            }
         }
     }
 }

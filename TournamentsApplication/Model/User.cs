@@ -10,6 +10,9 @@ namespace TournamentsApplication.Model
     internal class User : ViewModelBase
     {
         private int user_id;
+        private int? favTeamId;
+        private int? favPlayerId;
+        private int? favTournamentId;
         private string username;
         private byte[]? logo;
         private byte[]? headerImg;
@@ -25,6 +28,21 @@ namespace TournamentsApplication.Model
         public int UserId {
             get { return user_id; }
             set { user_id = value; OnPropertyChanged(nameof(UserId)); }
+        }
+        public int? FavTeamId
+        {
+            get { return favTeamId; }
+            set { favTeamId = value; OnPropertyChanged(nameof(FavTeamId)); }
+        }
+        public int? FavPlayerId
+        {
+            get { return favPlayerId; }
+            set { favPlayerId = value; OnPropertyChanged(nameof(FavPlayerId)); }
+        }
+        public int? FavTournamentId
+        {
+            get { return favTournamentId; }
+            set { favTournamentId = value; OnPropertyChanged(nameof(FavTournamentId)); }
         }
         public string Username
         {
@@ -84,8 +102,8 @@ namespace TournamentsApplication.Model
 
         public ICollection<TournamentComment> Comments { get; set; }
 
-        public ICollection<FavPlayer> FavPlayers{get; set;}
-        public ICollection<FavTournament> FavTournaments {get; set;}
-        public ICollection<FavTeam> FavTeams {get; set;}
+        public Tournament Tournament {get; set;}
+        public Team Team { get; set; }
+        public Player Player { get; set; }
     }
 }

@@ -10,6 +10,7 @@ using System;
 using System.Drawing;
 using System.IO;
 using TournamentsApplication.Utility;
+using System.Windows.Media.Imaging;
 
 namespace TournamentsApplication.Model
 {
@@ -23,9 +24,6 @@ namespace TournamentsApplication.Model
         public DbSet<TournamentComment> TournamentComments { get; set; } = null!;
         public DbSet<TournamentTeam> TournamentTeams { get; set; } = null!;
         public DbSet<Discipline> Disciplines { get; set; } = null!;
-        public DbSet<FavTeam> FavTeams { get; set; } = null!;
-        public DbSet<FavPlayer> FavPlayers { get; set; } = null!;
-        public DbSet<FavTournament> FavTournaments { get; set; } = null!;
 
         public ApplicationContext()
         {
@@ -40,9 +38,6 @@ namespace TournamentsApplication.Model
             TournamentComments.Load();
             TournamentTeams.Load();
             Disciplines.Load();
-            FavTournaments.Load();
-            FavPlayers.Load();
-            FavTeams.Load();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -67,30 +62,16 @@ namespace TournamentsApplication.Model
             modelBuilder.Entity<TournamentTeam>()
                 .HasKey(c => c.TournamentTeamId);
             modelBuilder.Entity<Discipline>()
-                .HasKey(c => c.DisciplineId);
-            modelBuilder.Entity<FavTeam>()
-                .HasKey(c => c.FavTeamId);
-            modelBuilder.Entity<FavPlayer>()
-                .HasKey(c => c.FavPlayerId);
-            modelBuilder.Entity<FavTournament>()
-                .HasKey(c => c.FavTournamentId);
+                .HasKey(c => c.DisciplineId);;;
 
             modelBuilder.Entity<User>()
                 .HasMany(f => f.Comments)
                 .WithOne(a => a.User)
                 .HasForeignKey(a => a.Author);
-            modelBuilder.Entity<User>()
-                .HasMany(a => a.FavPlayers)
-                .WithOne(f => f.User)
-                .HasForeignKey(f => f.UserId);
-            modelBuilder.Entity<User>()
-                .HasMany(a => a.FavTournaments)
-                .WithOne(f => f.User)
-                .HasForeignKey(f => f.UserId);
-            modelBuilder.Entity<User>()
-                .HasMany(a => a.FavTeams)
-                .WithOne(f => f.User)
-                .HasForeignKey(f => f.UserId);
+            modelBuilder.Entity<Team>()
+                .HasMany(a => a.Users)
+                .WithOne(f => f.Team)
+                .HasForeignKey(f => f.FavTeamId);
             modelBuilder.Entity<Tournament>()
                 .HasMany(a => a.TournamentTeams)
                 .WithOne(f => f.Tournament)
@@ -104,9 +85,9 @@ namespace TournamentsApplication.Model
                 .WithOne(f => f.Tournament)
                 .HasForeignKey(f => f.TournamentId);
             modelBuilder.Entity<Tournament>()
-                .HasMany(a => a.FavTournaments)
+                .HasMany(a => a.Users)
                 .WithOne(f => f.Tournament)
-                .HasForeignKey(f => f.TournamentId);
+                .HasForeignKey(f => f.FavTournamentId);
             modelBuilder.Entity<Discipline>()
                 .HasMany(a => a.Tournaments)
                 .WithOne(f => f.Discipline)
@@ -127,20 +108,77 @@ namespace TournamentsApplication.Model
                 .HasOne(m => m.SecondTeam)
                 .WithMany()
                 .HasForeignKey(m => m.SecondParticipantId);
-            modelBuilder.Entity<Team>()
-                .HasMany(a => a.FavTeams)
-                .WithOne(f => f.Team)
-                .HasForeignKey(f => f.TeamId);
             modelBuilder.Entity<Player>()
-                .HasMany(a => a.FavPlayers)
+                .HasMany(a => a.Users)
                 .WithOne(f => f.Player)
-                .HasForeignKey(f => f.PlayerId);
-
+                .HasForeignKey(f => f.FavPlayerId);
             modelBuilder.Entity<User>()
                 .HasData(
-                    new User() { UserId = 1, Username = "Modeus", Description = "Creator of this App", Login = "Modeus", Password = PasswordHasher.HashPassword("123456"), IsLogined=false, IsAdmin = true, CreatedAt = DateTime.Now.ToUniversalTime()},
-                    new User() { UserId = 2, Username = "ModeusGuest", Description = "Guest of this App", Login = "ModeusGuest", Password = PasswordHasher.HashPassword("1111"), IsLogined=false, IsAdmin = false, CreatedAt = DateTime.Now.ToUniversalTime()}
+                    new User() { UserId = 1, Username = "Modeus", FavTeamId = 1, FavPlayerId = 26, FavTournamentId = 1, Description = "Creator of this App", Login = "1", Password = PasswordHasher.HashPassword("1"), IsLogined=false, IsAdmin = true, Logo = ImageConverter.StandardUserIcon, HeaderImg = ImageConverter.StandardHeaderIcon, CreatedAt = DateTime.UtcNow},
+                    new User() { UserId = 2, Username = "ModeusGuest", FavPlayerId = 15, FavTournamentId = 1, Description = "Guest of this App", Login = "2", Password = PasswordHasher.HashPassword("2"), IsLogined=false, IsAdmin = false, Logo = ImageConverter.StandardUserIcon, HeaderImg = ImageConverter.StandardHeaderIcon, CreatedAt = DateTime.UtcNow}
                 );
+            modelBuilder.Entity<Discipline>()
+                .HasData(
+                    new Discipline() { DisciplineId = 1, DisciplineName = "CS2", Description = "One of the most popular tactical shooter in the world", CreatedAt = DateTime.Parse("27.09.2023").ToUniversalTime() }
+                );
+            modelBuilder.Entity<Team>().HasData(
+                new Team { TeamId = 1, WorldRanking = 2, TeamName = "Natus Vincere", TeamLogo = ImageConverter.LoadImageAsByteArray("pack://application:,,,/Resources/Images/Teams/Natus Vincere.png"), CreatedAt = DateTime.UtcNow, UpdatedAt = null },
+                new Team { TeamId = 2, WorldRanking = 1, TeamName = "G2", TeamLogo = ImageConverter.LoadImageAsByteArray("pack://application:,,,/Resources/Images/Teams/G2.png"), CreatedAt = DateTime.UtcNow, UpdatedAt = null },
+                new Team { TeamId = 3, WorldRanking = 3, TeamName = "Team Spirit", TeamLogo = ImageConverter.LoadImageAsByteArray("pack://application:,,,/Resources/Images/Teams/Spirit.png"), CreatedAt = DateTime.UtcNow, UpdatedAt = null },
+                new Team { TeamId = 4, WorldRanking = 4, TeamName = "Vitality", TeamLogo = ImageConverter.LoadImageAsByteArray("pack://application:,,,/Resources/Images/Teams/Vitality.png"), CreatedAt = DateTime.UtcNow, UpdatedAt = null },
+                new Team { TeamId = 5, WorldRanking = 5, TeamName = "MOUZ", TeamLogo = ImageConverter.LoadImageAsByteArray("pack://application:,,,/Resources/Images/Teams/MOUZ.png"), CreatedAt = DateTime.UtcNow, UpdatedAt = null },
+                new Team { TeamId = 6, WorldRanking = 6, TeamName = "Falcons", TeamLogo = ImageConverter.LoadImageAsByteArray("pack://application:,,,/Resources/Images/Teams/Falcons.png"), CreatedAt = DateTime.UtcNow, UpdatedAt = null }
+            );
+
+            modelBuilder.Entity<Player>().HasData(
+                new Player { PlayerId = 1, PlayerName = "jL", PlayerRealName = "Justinas Lekavicius", Position = "Rifler", BirthDayDate = new DateTime(1998, 4, 10).ToUniversalTime(), PlayerImg = ImageConverter.LoadImageAsByteArray("pack://application:,,,/Resources/Images/Players/jL.png"), CurTeamId = 1, CreatedAt = DateTime.UtcNow, UpdatedAt = null },
+                new Player { PlayerId = 2, PlayerName = "b1t", PlayerRealName = "Valerii Vakhovskyi", Position = "Rifler", BirthDayDate = new DateTime(2003, 1, 5).ToUniversalTime(), PlayerImg = ImageConverter.LoadImageAsByteArray("pack://application:,,,/Resources/Images/Players/b1t.png"), CurTeamId = 1, CreatedAt = DateTime.UtcNow, UpdatedAt = null },
+                new Player { PlayerId = 3, PlayerName = "w0nderful", PlayerRealName = "Aleksandr Skrypin", Position = "AWPer", BirthDayDate = new DateTime(2004, 7, 26).ToUniversalTime(), PlayerImg = ImageConverter.LoadImageAsByteArray("pack://application:,,,/Resources/Images/Players/w0nderful.png"), CurTeamId = 1, CreatedAt = DateTime.UtcNow, UpdatedAt = null },
+                new Player { PlayerId = 4, PlayerName = "iM", PlayerRealName = "Mihai Ivan", Position = "Rifler", BirthDayDate = new DateTime(1999, 2, 3).ToUniversalTime(), PlayerImg = ImageConverter.LoadImageAsByteArray("pack://application:,,,/Resources/Images/Players/iM.png"), CurTeamId = 1, CreatedAt = DateTime.UtcNow, UpdatedAt = null },
+                new Player { PlayerId = 5, PlayerName = "Aleksib", PlayerRealName = "Aleksi Virolainen", Position = "In-Game Leader", BirthDayDate = new DateTime(1997, 3, 30).ToUniversalTime(), PlayerImg = ImageConverter.LoadImageAsByteArray("pack://application:,,,/Resources/Images/Players/Aleksib.png"), CurTeamId = 1, CreatedAt = DateTime.UtcNow, UpdatedAt = null },
+
+                new Player { PlayerId = 6, PlayerName = "NiKo", PlayerRealName = "Nikola Kovac", Position = "Rifler", BirthDayDate = new DateTime(1997, 2, 16).ToUniversalTime(), PlayerImg = ImageConverter.LoadImageAsByteArray("pack://application:,,,/Resources/Images/Players/NiKo.png"), CurTeamId = 2, CreatedAt = DateTime.UtcNow, UpdatedAt = null },
+                new Player { PlayerId = 7, PlayerName = "huNter-", PlayerRealName = "Nemanja Kovac", Position = "Rifler", BirthDayDate = new DateTime(1995, 1, 9).ToUniversalTime(), PlayerImg = ImageConverter.LoadImageAsByteArray("pack://application:,,,/Resources/Images/Players/huNter-.png"), CurTeamId = 2, CreatedAt = DateTime.UtcNow, UpdatedAt = null },
+                new Player { PlayerId = 8, PlayerName = "m0NESY", PlayerRealName = "Ilya Osipov", Position = "AWPer", BirthDayDate = new DateTime(2005, 5, 1).ToUniversalTime(), PlayerImg = ImageConverter.LoadImageAsByteArray("pack://application:,,,/Resources/Images/Players/m0NESY.png"), CurTeamId = 2, CreatedAt = DateTime.UtcNow, UpdatedAt = null },
+                new Player { PlayerId = 9, PlayerName = "malbsMd", PlayerRealName = "Mario Samayoa", Position = "Rifler", BirthDayDate = new DateTime(2001, 10, 24).ToUniversalTime(), PlayerImg = ImageConverter.LoadImageAsByteArray("pack://application:,,,/Resources/Images/Players/malbsMd.png"), CurTeamId = 2, CreatedAt = DateTime.UtcNow, UpdatedAt = null },
+                new Player { PlayerId = 10, PlayerName = "Snax", PlayerRealName = "Janusz Pogorzelski", Position = "Lurker", BirthDayDate = new DateTime(1993, 7, 5).ToUniversalTime(), PlayerImg = ImageConverter.LoadImageAsByteArray("pack://application:,,,/Resources/Images/Players/Snax.png"), CurTeamId = 2, CreatedAt = DateTime.UtcNow, UpdatedAt = null },
+
+                new Player { PlayerId = 11, PlayerName = "chopper", PlayerRealName = "Leonid Vishnyakov", Position = "In-Game Leader", BirthDayDate = new DateTime(1997, 2, 18).ToUniversalTime(), PlayerImg = ImageConverter.LoadImageAsByteArray("pack://application:,,,/Resources/Images/Players/chopper.png"), CurTeamId = 3, CreatedAt = DateTime.UtcNow, UpdatedAt = null },
+                new Player { PlayerId = 12, PlayerName = "sh1ro", PlayerRealName = "Dmitry Sokolov", Position = "AWPer", BirthDayDate = new DateTime(2001, 6, 15).ToUniversalTime(), PlayerImg = ImageConverter.LoadImageAsByteArray("pack://application:,,,/Resources/Images/Players/sh1ro.png"), CurTeamId = 3, CreatedAt = DateTime.UtcNow, UpdatedAt = null },
+                new Player { PlayerId = 13, PlayerName = "magixx", PlayerRealName = "Boris Vorobiev", Position = "Rifler", BirthDayDate = new DateTime(2003, 5, 10).ToUniversalTime(), PlayerImg = ImageConverter.LoadImageAsByteArray("pack://application:,,,/Resources/Images/Players/magixx.png"), CurTeamId = 3, CreatedAt = DateTime.UtcNow, UpdatedAt = null },
+                new Player { PlayerId = 14, PlayerName = "zont1x", PlayerRealName = "Aleksandr Zhdanov", Position = "Support", BirthDayDate = new DateTime(2004, 3, 25).ToUniversalTime(), PlayerImg = ImageConverter.LoadImageAsByteArray("pack://application:,,,/Resources/Images/Players/zont1x.png"), CurTeamId = 3, CreatedAt = DateTime.UtcNow, UpdatedAt = null },
+                new Player { PlayerId = 15, PlayerName = "donk", PlayerRealName = "Danil Kryshkovets", Position = "Entry Fragger", BirthDayDate = new DateTime(2006, 7, 12).ToUniversalTime(), PlayerImg = ImageConverter.LoadImageAsByteArray("pack://application:,,,/Resources/Images/Players/donk.png"), CurTeamId = 3, CreatedAt = DateTime.UtcNow, UpdatedAt = null },
+
+                new Player { PlayerId = 16, PlayerName = "ZywOo", PlayerRealName = "Mathieu Herbaut", Position = "AWPer", BirthDayDate = new DateTime(2000, 11, 9).ToUniversalTime(), PlayerImg = ImageConverter.LoadImageAsByteArray("pack://application:,,,/Resources/Images/Players/ZywOo.png"), CurTeamId = 4, CreatedAt = DateTime.UtcNow, UpdatedAt = null },
+                new Player { PlayerId = 17, PlayerName = "mezii", PlayerRealName = "William Merriman", Position = "Rifler", BirthDayDate = new DateTime(1999, 7, 22).ToUniversalTime(), PlayerImg = ImageConverter.LoadImageAsByteArray("pack://application:,,,/Resources/Images/Players/mezii.png"), CurTeamId = 4, CreatedAt = DateTime.UtcNow, UpdatedAt = null },
+                new Player { PlayerId = 18, PlayerName = "Spinx", PlayerRealName = "Lotan Giladi", Position = "Rifler", BirthDayDate = new DateTime(2000, 8, 22).ToUniversalTime(), PlayerImg = ImageConverter.LoadImageAsByteArray("pack://application:,,,/Resources/Images/Players/Spinx.png"), CurTeamId = 4, CreatedAt = DateTime.UtcNow, UpdatedAt = null },
+                new Player { PlayerId = 19, PlayerName = "apEX", PlayerRealName = "Dan Madesclaire", Position = "In-Game Leader", BirthDayDate = new DateTime(1993, 2, 22).ToUniversalTime(), PlayerImg = ImageConverter.LoadImageAsByteArray("pack://application:,,,/Resources/Images/Players/apEX.png"), CurTeamId = 4, CreatedAt = DateTime.UtcNow, UpdatedAt = null },
+                new Player { PlayerId = 20, PlayerName = "flameZ", PlayerRealName = "Shahar Shushan", Position = "Entry Fragger", BirthDayDate = new DateTime(2003, 8, 5).ToUniversalTime(), PlayerImg = ImageConverter.LoadImageAsByteArray("pack://application:,,,/Resources/Images/Players/flameZ.png"), CurTeamId = 4, CreatedAt = DateTime.UtcNow, UpdatedAt = null },
+
+                new Player { PlayerId = 21, PlayerName = "Brollan", PlayerRealName = "Ludvig Brolin", Position = "Rifler", BirthDayDate = new DateTime(2002, 6, 17).ToUniversalTime(), PlayerImg = ImageConverter.LoadImageAsByteArray("pack://application:,,,/Resources/Images/Players/Brollan.png"), CurTeamId = 5, CreatedAt = DateTime.UtcNow, UpdatedAt = null },
+                new Player { PlayerId = 22, PlayerName = "xertioN", PlayerRealName = "Dorian Berman", Position = "Rifler", BirthDayDate = new DateTime(2003, 3, 1).ToUniversalTime(), PlayerImg = ImageConverter.LoadImageAsByteArray("pack://application:,,,/Resources/Images/Players/xertioN.png"), CurTeamId = 5, CreatedAt = DateTime.UtcNow, UpdatedAt = null },
+                new Player { PlayerId = 23, PlayerName = "torzsi", PlayerRealName = "Ádám Torzsás", Position = "AWPer", BirthDayDate = new DateTime(2002, 10, 18).ToUniversalTime(), PlayerImg = ImageConverter.LoadImageAsByteArray("pack://application:,,,/Resources/Images/Players/torzsi.png"), CurTeamId = 5, CreatedAt = DateTime.UtcNow, UpdatedAt = null },
+                new Player { PlayerId = 24, PlayerName = "siuhy", PlayerRealName = "Kamil Szkaradek", Position = "In-Game Leader", BirthDayDate = new DateTime(2002, 11, 5).ToUniversalTime(), PlayerImg = ImageConverter.LoadImageAsByteArray("pack://application:,,,/Resources/Images/Players/siuhy.png"), CurTeamId = 5, CreatedAt = DateTime.UtcNow, UpdatedAt = null },
+                new Player { PlayerId = 25, PlayerName = "Jimpphat", PlayerRealName = "Jimi Salo", Position = "Rifler", BirthDayDate = new DateTime(2005, 6, 3).ToUniversalTime(), PlayerImg = ImageConverter.LoadImageAsByteArray("pack://application:,,,/Resources/Images/Players/Jimpphat.png"), CurTeamId = 5, CreatedAt = DateTime.UtcNow, UpdatedAt = null },
+
+                new Player { PlayerId = 26, PlayerName = "s1mple", PlayerRealName = "Oleksandr Kostyliev", Position = "AWPer", BirthDayDate = new DateTime(1997, 10, 2).ToUniversalTime(), PlayerImg = ImageConverter.LoadImageAsByteArray("pack://application:,,,/Resources/Images/Players/s1mple.png"), CurTeamId = 6, CreatedAt = DateTime.UtcNow, UpdatedAt = null }
+            );
+            modelBuilder.Entity<Tournament>().HasData(
+                new Tournament
+                {
+                    TournamentId = 1,
+                    TournamentName = "PGL RMR Winter Cup",
+                    DisciplineId = 1,
+                    Img = ImageConverter.LoadImageAsByteArray("pack://application:,,,/Resources/Images/Tournaments/pglRMR.png"),
+                    CreatedAt = DateTime.UtcNow,
+                });
+
+            modelBuilder.Entity<TournamentTeam>().HasData(
+                new TournamentTeam { TournamentTeamId = 1, TournamentId = 1, TeamId = 1 },
+                new TournamentTeam { TournamentTeamId = 2, TournamentId = 1, TeamId = 2 }, 
+                new TournamentTeam { TournamentTeamId = 3, TournamentId = 1, TeamId = 3 }, 
+                new TournamentTeam { TournamentTeamId = 4, TournamentId = 1, TeamId = 4 } 
+            );
         }
     }
 }

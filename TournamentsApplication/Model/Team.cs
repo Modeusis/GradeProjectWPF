@@ -11,9 +11,10 @@ namespace TournamentsApplication.Model
     {
         private int team_id;
         private string team_name;
+        private int worldRanking;
         private byte[] team_logo;
         private DateTime created_at;
-        private DateTime updated_at;
+        private DateTime? updated_at;
 
         public int TeamId
         {
@@ -30,12 +31,17 @@ namespace TournamentsApplication.Model
             get { return team_logo; }
             set { team_logo = value; OnPropertyChanged(nameof(TeamLogo)); }
         }
+        public int WorldRanking
+        {
+            get { return worldRanking; }
+            set { worldRanking = value; OnPropertyChanged(nameof(WorldRanking)); }
+        }
         public DateTime CreatedAt
         {
             get { return created_at; }
             set { created_at = value; OnPropertyChanged(nameof(CreatedAt)); }
         }
-        public DateTime UpdatedAt
+        public DateTime? UpdatedAt
         {
             get { return updated_at; }
             set { updated_at = value; OnPropertyChanged(nameof(UpdatedAt)); }
@@ -43,6 +49,6 @@ namespace TournamentsApplication.Model
         public ICollection<Player> Players { get; set; }
         public ICollection<TournamentTeam> TournamentTeams { get; set; }
         public ICollection<Match> Matches { get; set; }
-        public ICollection<FavTeam> FavTeams { get; set; }
+        public ICollection<User> Users { get; set; }
     }
 }

@@ -7,13 +7,46 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="View\AdminPanelView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="VIew\HomePageView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="View\LoginView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\MainContentView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\MatchesView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\MatchPageView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\PlayerPageView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\PlayersView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\RegistrationView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\TeamPageView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\TeamsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\TournamentPageView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\TournamentsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\UserPageView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -24,13 +57,46 @@
     <Page Update="Styles\DarkThemeDictionary.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="View\AdminPanelView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="VIew\HomePageView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\LoginView.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="View\MainContentView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\MatchesView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\MatchPageView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\PlayerPageView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\PlayersView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="View\RegistrationView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\TeamPageView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\TeamsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\TournamentPageView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\TournamentsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\UserPageView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

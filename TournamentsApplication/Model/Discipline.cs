@@ -11,9 +11,9 @@ namespace TournamentsApplication.Model
     {
         private int discipline_id;
         private string discipline_name;
-        private string description;
+        private string discription;
         private DateTime created_at;
-        private DateTime updated_at;
+        private DateTime? updated_at;
 
         public int DisciplineId
         {
@@ -27,15 +27,15 @@ namespace TournamentsApplication.Model
         }
         public string Description
         {
-            get { return description; }
-            set { description = value; OnPropertyChanged(nameof(Description)); }
+            get { return discription; }
+            set { discription = value; OnPropertyChanged(nameof(Description)); }
         }
         public DateTime CreatedAt
         {
             get { return created_at; }
             set { created_at = value; OnPropertyChanged(nameof(CreatedAt)); }
         }
-        public DateTime UpdatedAt
+        public DateTime? UpdatedAt
         {
             get { return updated_at; }
             set { updated_at = value; OnPropertyChanged(nameof(UpdatedAt)); }

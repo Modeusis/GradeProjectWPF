@@ -111,12 +111,13 @@ namespace TournamentsApplication.ViewModel
                                 Password = PasswordHasher.HashPassword(Password),
                                 IsLogined = true,
                                 IsAdmin = false,
-                                Logo = ImageConverter.ImageToByteArray(new BitmapImage(new Uri("pack://application:,,,/Resources/Images/myImage.png"))),
+                                Logo = ImageConverter.StandardUserIcon,
+                                HeaderImg = ImageConverter.StandardHeaderIcon,
                                 LastLogin = DateTime.Now.ToUniversalTime(),
                                 CreatedAt = DateTime.Now.ToUniversalTime()
                             };
                             uow.Users.Add(tmpUser);
-                            UserService.Instance.CurrentUser = tmpUser;
+                            UserService.Instance.UpdateCurrentUser(tmpUser);
                             NavigationService.Instance.SwitchCurrentView(new HomePageView());
                             StatusService.Instance.SetStatusMessage($"Welcome, {tmpUser.Username}");
                             uow.Save();

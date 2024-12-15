@@ -1,0 +1,207 @@
+﻿<UserControl x:Class="TournamentsApplication.View.UserPageView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TournamentsApplication.View"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:u="clr-namespace:TournamentsApplication.Utility"
+             mc:Ignorable="d" 
+             d:DesignHeight="750" d:DesignWidth="1060">
+    <UserControl.Resources>
+        <u:BoolToVisibilityConverter x:Key="Converter"/>
+        <u:VisibilityReverseConverter x:Key="ReverseConverter"/>
+        <u:TEConverter x:Key="TEConv"/>
+        <u:ImageConverter x:Key="IMGConv"/>
+    </UserControl.Resources>
+    <Grid Margin="150, 20,150,0" >
+        <Grid Visibility="{Binding IsChangingProfile, Converter={StaticResource ReverseConverter}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="250"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="300"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <Border Grid.ColumnSpan="3" Grid.RowSpan="3" Margin="8" CornerRadius="20" BorderThickness="3" BorderBrush="#121212"/>
+                <Rectangle Grid.ColumnSpan="3" Grid.RowSpan="3" Margin="10" RadiusX="20" RadiusY="20">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="{Binding CurrentUserHeader, Converter={StaticResource IMGConv}}" Stretch="UniformToFill" />
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Ellipse Grid.Column="1" Grid.Row="1">
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource="{Binding CurrentUserLogo, Converter={StaticResource IMGConv}}" Stretch="UniformToFill" />
+                    </Ellipse.Fill>
+                </Ellipse>
+                <StackPanel Grid.Column="2" Grid.Row="1" VerticalAlignment="Center">
+                    <TextBlock Style="{StaticResource UsernameTextBlock}" Text="{Binding Username}"/>
+                    <TextBlock Style="{StaticResource UserRoleTextBlock}" Text="Admin" Visibility="{Binding IsAdmin, Converter={StaticResource Converter}}"/>
+                </StackPanel>
+                <Button Style="{StaticResource EditProfileButtonStyle}" Command="{Binding EditProfileCommand}" Grid.Column="2" Grid.Row="0" Grid.RowSpan="3">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Style="{StaticResource NavMenuImageStyle}" Margin="10,5,5,5" Source="pack://application:,,,/Resources/Images/edit.png"/>
+                        <TextBlock Style="{StaticResource H3TextBlock}" Margin="10,0,10,0" Text="Edit Profile"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
+            <StackPanel Grid.Row="2">
+                <StackPanel Height="40" HorizontalAlignment="Center" Visibility="{Binding IsFavTeamExists, Converter={StaticResource Converter}}"
+                            Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock Style="{StaticResource FavTextBlock}" Text="Favorite team is "/>
+                    <TextBlock Margin="10" FontWeight="Bold" Style="{StaticResource FavTextBlock}" Text="{Binding TeamName}"/>
+                    <Image Margin="10,0,0,0" Width="40" Stretch="Uniform" Source="{Binding TeamIcon}"/>
+                </StackPanel>
+                <Grid Height="Auto" Margin="10,0,0,0" Visibility="{Binding IsFavTeamExists, Converter={StaticResource Converter}}" Grid.Row="3" Grid.ColumnSpan="2">
+                    <ListBox Style="{StaticResource TeamPlayersListBox}" ItemsSource="{Binding TeamPlayers}" Grid.Column="1"
+                             ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Stretch"/>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <Image Style="{StaticResource PlayerIconImageStyle}" Source="{Binding PlayerImg, Converter={StaticResource IMGConv}}"/>
+                                    <TextBlock Style="{StaticResource PlayerNameTextBlock}" Text="{Binding PlayerName}"/>
+                                    <StackPanel.InputBindings>
+                                        <MouseBinding Gesture="LeftDoubleClick" 
+                                                      Command="{Binding DataContext.ItemClickCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" 
+                                                      CommandParameter="{Binding}" />
+                                    </StackPanel.InputBindings>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+                <StackPanel Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Visibility="{Binding IsFavTournamentExists, Converter={StaticResource Converter}}">
+                    <TextBlock Style="{StaticResource FavTextBlock}" Text="Featured tournament: "/>
+                    <Button Style="{StaticResource ContentButtonStyle}">
+                        <TextBlock FontWeight="Bold" TextDecorations="Underline" Style="{StaticResource FavTextBlock}" Text="{Binding TournamentName}"/>
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Visibility="{Binding IsFavPlayerExists, Converter={StaticResource Converter}}" Grid.Column="1" Grid.Row="2">
+                <StackPanel Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource FavTextBlock}" Text="Favorite player"/>
+                </StackPanel>
+                <Button Style="{StaticResource BigPlayerCardButton}">
+                    <StackPanel>
+                        <Image Style="{StaticResource BigPlayerCardImage}" Source="{Binding PlayerIcon}"/>
+                        <StackPanel HorizontalAlignment="Center" Height="30" Orientation="Horizontal">
+                            <TextBlock Style="{StaticResource BigPlayerNameTextBlock}" Text="{Binding PlayerName}"/>
+                            <TextBlock Style="{StaticResource BigPlayerPositionTextBlock}" Text="{Binding PlayerPosition}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+        </Grid>
+        <Grid Visibility="{Binding IsChangingProfile, Converter={StaticResource Converter}}">
+            <Border Background="#121212" CornerRadius="20,20,0,0"/>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="250"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+                    <Rectangle Grid.ColumnSpan="3" Grid.RowSpan="3" Margin="10" RadiusX="20" RadiusY="20">
+                        <Rectangle.Fill>
+                            <ImageBrush ImageSource="{Binding TmpUserHeader, Converter={StaticResource IMGConv}}" Stretch="UniformToFill" />
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Ellipse Grid.Column="1" Grid.Row="1">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="{Binding TmpUserLogo, Converter={StaticResource IMGConv}}" Stretch="UniformToFill" />
+                        </Ellipse.Fill>
+                    </Ellipse>
+                </Grid>
+                <StackPanel Margin="20, 5" HorizontalAlignment="Left" Grid.Row="1" Orientation="Horizontal">
+                    <Button Style="{StaticResource HeadButton}" Command="{Binding SelectLogoCommand}" Content="Select logo"/>
+                    <Button Margin="10,0,0,0" Style="{StaticResource HeaderEditButton}" Command="{Binding SelectHeaderCommand}" Content="Select header"/>
+                </StackPanel>
+                <Grid Grid.Row="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="300"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="150"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="1" Grid.ColumnSpan="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="200"/>
+                            <ColumnDefinition Width="280"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{StaticResource H2TextBlock}"  Grid.Row="0" Text="Login"/>
+                        <TextBox Style="{StaticResource H2TextBox}" Text="{Binding NewLogin}" Grid.Column="1" Grid.Row="0"/>
+                        <TextBlock Style="{StaticResource H3TextBlock}" Text="{Binding Login}" Grid.Column="2" Grid.Row="0"/>
+                        <TextBlock Style="{StaticResource H2TextBlock}" Grid.Row="1" Text="Username"/>
+                        <TextBox Style="{StaticResource H2TextBox}" Text="{Binding NewUsername}" Grid.Column="1" Grid.Row="1"/>
+                        <TextBlock Style="{StaticResource H3TextBlock}" Text="{Binding Username}" Grid.Column="2" Grid.Row="1"/>
+                        <TextBlock Style="{StaticResource H2TextBlock}" Grid.Row="2" Text="Current password"/>
+                        <PasswordBox Style="{StaticResource H2PasswordBox}" Grid.Column="1" Grid.Row="2">
+                            <i:Interaction.Behaviors>
+                                <u:PasswordBehavior Password="{Binding Password}"/>
+                            </i:Interaction.Behaviors>
+                        </PasswordBox>
+                        <TextBlock Style="{StaticResource H2TextBlock}" Grid.Row="3" Text="New password"/>
+                        <PasswordBox Style="{StaticResource H2PasswordBox}" Grid.Column="1" Grid.Row="3">
+                            <i:Interaction.Behaviors>
+                                <u:PasswordBehavior Password="{Binding NewPassword}"/>
+                            </i:Interaction.Behaviors>
+                        </PasswordBox >
+                        <TextBlock Style="{StaticResource H3TextBlock}" Grid.Row="4" Text="Confirm new password"/>
+                        <PasswordBox Style="{StaticResource H2PasswordBox}" Grid.Column="1" Grid.Row="4">
+                            <i:Interaction.Behaviors>
+                                <u:PasswordBehavior Password="{Binding ConfirmNewPassword}"/>
+                            </i:Interaction.Behaviors>
+                        </PasswordBox>
+                    </Grid>
+                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
+                        <Button Grid.Column="1" Grid.Row="1" Style="{StaticResource HeadButton}" Command="{Binding UpdateProfileCommand}" Content="Save changes"/>
+                        <Button Margin="10,0,0,0" Grid.Column="1" Grid.Row="1" Style="{StaticResource HeaderEditButton}" Command="{Binding DismissChangesCommand}" Content="Dismiss"/>
+                    </StackPanel>
+                    <Button Visibility="{Binding IsAdmin, Converter={StaticResource ReverseConverter}}" Height="40" Grid.Column="2"
+                            Grid.Row="1" Style="{StaticResource IconDeleteButtonStyle}" Command="{Binding DeleteProfileCommand}">
+                        <Image Style="{StaticResource DeleteIconImageStyle}" Source="pack://application:,,,/Resources/Images/delete.png"/>
+                    </Button>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

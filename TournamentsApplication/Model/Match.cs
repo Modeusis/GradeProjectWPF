@@ -18,7 +18,7 @@ namespace TournamentsApplication.Model
         private string result;
         private int? winner_id;
         private DateTime created_at;
-        private DateTime updated_at;
+        private DateTime? updated_at;
 
         public int MatchId
         {
@@ -65,7 +65,7 @@ namespace TournamentsApplication.Model
             get { return created_at; }
             set { created_at = value; OnPropertyChanged(nameof(CreatedAt)); }
         }
-        public DateTime UpdatedAt
+        public DateTime? UpdatedAt
         {
             get { return updated_at; }
             set { updated_at = value; OnPropertyChanged(nameof(UpdatedAt)); }

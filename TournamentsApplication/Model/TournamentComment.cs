@@ -16,7 +16,7 @@ namespace TournamentsApplication.Model
         private int comment_level;
         private int parent_comment_id;
         private DateTime created_at;
-        private DateTime updated_at;
+        private DateTime? updated_at;
 
         public int CommentId
         {
@@ -53,7 +53,7 @@ namespace TournamentsApplication.Model
             get { return created_at; }
             set { created_at = value; OnPropertyChanged(nameof(CreatedAt)); }
         }
-        public DateTime UpdatedAt
+        public DateTime? UpdatedAt
         {
             get { return updated_at; }
             set { updated_at = value; OnPropertyChanged(nameof(UpdatedAt)); }

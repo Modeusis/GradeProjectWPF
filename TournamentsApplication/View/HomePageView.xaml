@@ -9,7 +9,10 @@
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="1280">
     <UserControl.Resources>
-        <u:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+        <u:BoolToVisibilityConverter x:Key="Converter"/>
+        <u:VisibilityReverseConverter x:Key="ReverseConverter"/>
+        <u:TEConverter x:Key="TEConv"/>
+        <u:ImageConverter x:Key="IMGConv"/>
     </UserControl.Resources>
     <Grid>
         <Border Background="#121212" CornerRadius="10"/>
@@ -24,41 +27,67 @@
             </Grid.RowDefinitions>
             <Border Background="#1D1D1D" Grid.ColumnSpan="2" CornerRadius="10, 10, 0 ,0" BorderThickness="0" Cursor="">
                 <Grid>
-                    <Button Visibility="{Binding Login, Converter={StaticResource BoolToVisibilityConverter}}" Command="{Binding LogaoutCommand}" HorizontalAlignment="Left" Style="{StaticResource LogoutButtonStyle}">
+                    <Button Visibility="{Binding Login, Converter={StaticResource ReverseConverter}}" Command="{Binding LogInCommand}" HorizontalAlignment="Left" Style="{StaticResource LogoutButtonStyle}">
+                        <Image Style="{StaticResource TabImageStyle}" Source="pack://application:,,,/Resources/Images/login.png"/>
+                    </Button>
+                    <Button Visibility="{Binding Login, Converter={StaticResource Converter}}" Command="{Binding LogOutCommand}" HorizontalAlignment="Left" Style="{StaticResource LogoutButtonStyle}">
                         <Image Style="{StaticResource TabImageStyle}" Source="pack://application:,,,/Resources/Images/logout.png"/>
                     </Button>
                     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                        <TextBlock Foreground="#ffa500" FontSize="32" Style="{StaticResource AppNameTextBlock}" Text="S"/>
+                        <TextBlock Foreground="#ffd500" FontSize="32" Style="{StaticResource AppNameTextBlock}" Text="S"/>
                         <TextBlock Style="{StaticResource AppNameTextBlock}" Text="coutify"/>
                     </StackPanel>
                 </Grid>
-                
                 <i:Interaction.Behaviors>
                     <u:DragWindowBehavior/>
                 </i:Interaction.Behaviors>
             </Border>
+            <Border Grid.Column="1" Grid.Row="1" Margin="10,10,10,0" CornerRadius="50,50,0,0" Background="#060606">
+                <ContentControl Width="1160"  Content="{Binding CurrentContentView}"/>
+            </Border>
             <StackPanel Grid.Row="1" Cursor="">
-                <Button Margin="0,10,0,0" Style="{StaticResource IconContentButtonStyle}">
+                <Button Margin="0,20, 0, 10" Command="{Binding ToMainPageCommand}"  Style="{StaticResource IconContentButtonStyle}">
                     <Image Style="{StaticResource IconImageStyle}" Source="pack://application:,,,/Resources/Images/IconFigma.png"/>
                 </Button>
-
-                <Button Margin="0, 20" Visibility="{Binding Login, Converter={StaticResource BoolToVisibilityConverter}}" Style="{StaticResource UserIconButtonStyle}">
-                    <Image Style="{StaticResource UserIconImageStyle}" Source="pack://application:,,,/Resources/Images/StandardUserImage.png"/>
+                <!--Добавить зависимость от пользователя-->
+                <Button Margin="0, 10, 0, 20" Command="{Binding ToUserPageCommand}" Visibility="{Binding Login, Converter={StaticResource Converter}}" Style="{StaticResource UserIconButtonStyle}">
+                    <Ellipse Style="{StaticResource UserIconEllipseStyle}">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="{Binding CurrentUserLogo, Converter={StaticResource IMGConv}}" Stretch="UniformToFill" />
+                        </Ellipse.Fill>
+                    </Ellipse>
                 </Button>
 
-                <RadioButton IsChecked="True" Style="{StaticResource NavMenuButtonStyle}" Cursor="Hand">
+                <!--<RadioButton Style="{StaticResource NavMenuButtonStyle}" Command="{Binding SwitchContentCommand}" CommandParameter="{x:Type local:MainContentView}" Cursor="Hand">
                     <Image Style="{StaticResource NavMenuImageStyle}" Source="pack://application:,,,/Resources/Images/star.png"/>
-                </RadioButton>
-                <RadioButton Style="{StaticResource NavMenuButtonStyle}" Cursor="Hand">
+                </RadioButton>-->
+                <RadioButton Style="{StaticResource NavMenuButtonStyle}" 
+                             Command="{Binding SwitchContentCommand}"
+                             CommandParameter="{x:Type local:TournamentsView}"
+                             IsChecked="{Binding SelectedContentType, Converter={StaticResource TEConv}, ConverterParameter={x:Type local:TournamentsView}}"
+                             Cursor="Hand">
                     <Image Style="{StaticResource NavMenuImageStyle}" Source="pack://application:,,,/Resources/Images/trophy.png"/>
                 </RadioButton>
-                <RadioButton Style="{StaticResource NavMenuButtonStyle}" Cursor="Hand">
+                <RadioButton Style="{StaticResource NavMenuButtonStyle}"
+                             Command="{Binding SwitchContentCommand}"
+                             CommandParameter="{x:Type local:TeamsView}"
+                             IsChecked="{Binding SelectedContentType, Converter={StaticResource TEConv}, ConverterParameter={x:Type local:TeamsView}}"
+                             Cursor="Hand">
                     <Image Style="{StaticResource NavMenuImageStyle}" Source="pack://application:,,,/Resources/Images/group.png"/>
                 </RadioButton>
-                <RadioButton Style="{StaticResource NavMenuButtonStyle}" Cursor="Hand">
+                <RadioButton Style="{StaticResource NavMenuButtonStyle}"
+                             Command="{Binding SwitchContentCommand}"
+                             CommandParameter="{x:Type local:PlayersView}"
+                             IsChecked="{Binding SelectedContentType, Converter={StaticResource TEConv}, ConverterParameter={x:Type local:PlayersView}}"
+                             Cursor="Hand">
                     <Image Style="{StaticResource NavMenuImageStyle}" Source="pack://application:,,,/Resources/Images/user.png"/>
                 </RadioButton>
-                <RadioButton Visibility="{Binding Login, Converter={StaticResource BoolToVisibilityConverter}}" Style="{StaticResource NavMenuButtonStyle}" Cursor="Hand">
+                <RadioButton Visibility="{Binding Admin, Converter={StaticResource Converter}}"
+                             Command="{Binding SwitchContentCommand}"
+                             CommandParameter="{x:Type local:AdminPanelView}"
+                             Style="{StaticResource NavMenuButtonStyle}"
+                             IsChecked="{Binding SelectedContentType, Converter={StaticResource TEConv}, ConverterParameter={x:Type local:AdminPanelView}}"
+                             Cursor="Hand">
                     <Image Style="{StaticResource NavMenuImageStyle}" Source="pack://application:,,,/Resources/Images/code.png"/>
                 </RadioButton>
             </StackPanel>

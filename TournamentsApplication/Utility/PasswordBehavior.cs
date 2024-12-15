@@ -11,7 +11,9 @@ namespace TournamentsApplication.Utility
                 "Password",
                 typeof(string),
                 typeof(PasswordBehavior),
-                new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+                new FrameworkPropertyMetadata(string.Empty,
+                    FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
+                    OnPasswordPropertyChanged));
 
         public string Password
         {
@@ -31,9 +33,19 @@ namespace TournamentsApplication.Utility
 
         private void OnPasswordChanged(object sender, RoutedEventArgs e)
         {
-            Password = AssociatedObject.Password;
+            if (AssociatedObject.Password != Password)
+            {
+                Password = AssociatedObject.Password;
+            }
+        }
+
+        private static void OnPasswordPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var behavior = (PasswordBehavior)d;
+            if (behavior.AssociatedObject != null && behavior.AssociatedObject.Password != (string)e.NewValue)
+            {
+                behavior.AssociatedObject.Password = (string)e.NewValue;
+            }
         }
     }
 }
-
-

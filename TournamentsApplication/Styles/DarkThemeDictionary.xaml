@@ -29,7 +29,7 @@
         <Setter Property="TextDecorations" Value="Underline"/>
     </Style>
     <Style TargetType="TextBlock" x:Key="ToGuestTextBlock">
-        <Setter Property="Foreground" Value="#FF5F1F"/>
+        <Setter Property="Foreground" Value="#ff5500"/>
         <Setter Property="Margin" Value="5, 0, 0, 0"/>
         <Setter Property="FontFamily" Value="pack://application:,,,/Resources/Fonts/NunitoFont.ttf#Nunito"/>
         <Setter Property="TextDecorations" Value="Underline"/>
@@ -50,7 +50,52 @@
         <Setter Property="Foreground" Value="#fffafa"/>
         <Setter Property="FontFamily" Value="pack://application:,,,/Resources/Fonts/NunitoFont.ttf#Nunito"/>
     </Style>
-    
+    <Style TargetType="TextBlock" x:Key="UsernameTextBlock">
+        <Setter Property="Foreground" Value="#fffafa"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Margin" Value="20,0,0,0"/>
+        <Setter Property="FontSize" Value="32"/>
+        <Setter Property="FontFamily" Value="pack://application:,,,/Resources/Fonts/NunitoFont.ttf#Nunito"/>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="UserRoleTextBlock">
+        <Setter Property="Foreground" Value="#fffafa"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="Margin" Value="20,5,0,0"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="FontFamily" Value="pack://application:,,,/Resources/Fonts/NunitoFont.ttf#Nunito"/>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="PlayerNameTextBlock">
+        <Setter Property="Foreground" Value="#fffafa"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="10,0,0,0"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontFamily" Value="pack://application:,,,/Resources/Fonts/NunitoFont.ttf#Nunito"/>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="FavTextBlock">
+        <Setter Property="Foreground" Value="#fffafa"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="FontFamily" Value="pack://application:,,,/Resources/Fonts/NunitoFont.ttf#Nunito"/>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="BigPlayerNameTextBlock">
+        <Setter Property="Foreground" Value="#fffafa"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="FontFamily" Value="pack://application:,,,/Resources/Fonts/NunitoFont.ttf#Nunito"/>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="BigPlayerPositionTextBlock">
+        <Setter Property="Foreground" Value="#fffafa"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="30,0,0,0"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontWeight" Value="Thin"/>
+        <Setter Property="Opacity" Value="0.6"/>
+        <Setter Property="FontFamily" Value="pack://application:,,,/Resources/Fonts/NunitoItalic.ttf#Nunito"/>
+    </Style>
     <!--Borders-->
     <Style x:Key="FadeOutBorderStyle" TargetType="Border">
         <Setter Property="Background" Value="#1D1D1D" />
@@ -183,7 +228,7 @@
                 <ControlTemplate TargetType="Button">
                     <Border x:Name="border" CornerRadius="5" BorderThickness="0" BorderBrush="Transparent">
                         <Border.Background>
-                            <SolidColorBrush x:Name="BGcolor" Color="#ff2500"/>
+                            <SolidColorBrush x:Name="BGcolor" Color="#ff5500"/>
                         </Border.Background>
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
@@ -194,8 +239,8 @@
                                 <Storyboard>
                                     <ColorAnimation Storyboard.TargetName="BGcolor"
                                     Storyboard.TargetProperty="Color"
-                                    From="#ff2500"
-                                    To="#FF5F1F"
+                                    From="#ff5500"
+                                    To="#ff6d33"
                                     Duration="0:0:0.2" />
                                 </Storyboard>
                             </BeginStoryboard>
@@ -206,8 +251,8 @@
                                 <Storyboard>
                                     <ColorAnimation Storyboard.TargetName="BGcolor"
                                     Storyboard.TargetProperty="Color"
-                                    From="#FF5F1F"
-                                    To="#ff2500"
+                                    From="#ff6d33"
+                                    To="#ff5500"
                                     Duration="0:0:0.2" />
                                 </Storyboard>
                             </BeginStoryboard>
@@ -218,10 +263,55 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <Style x:Key="HeaderEditButton" TargetType="Button">
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="Width" Value="120"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="FontFamily" Value="pack://application:,,,/Resources/Fonts/NunitoFont.ttf#Nunito"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="border" CornerRadius="5" BorderThickness="2" BorderBrush="#383838">
+                        <Border.Background>
+                            <SolidColorBrush x:Name="BGcolor" Color="#1d1d1d"/>
+                        </Border.Background>
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="BGcolor"
+                                                    Storyboard.TargetProperty="Color"
+                                                    To="#383838"
+                                                    Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="BGcolor"
+                                                    Storyboard.TargetProperty="Color"
+                                                    To="#1d1d1d"
+                                                    Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style x:Key="ContentButtonStyle" TargetType="Button">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="Padding" Value="0"/>
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -231,10 +321,53 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <Style x:Key="EditProfileButtonStyle" TargetType="Button">
+        <Setter Property="VerticalAlignment" Value="Bottom"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="Margin" Value="0,0,20,20"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="border" CornerRadius="5" BorderThickness="0" BorderBrush="Transparent">
+                        <Border.Background>
+                            <SolidColorBrush x:Name="BGcolor" Color="#121212"/>
+                        </Border.Background>
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <EventTrigger RoutedEvent="Border.MouseEnter"
+                  SourceName="border">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation Storyboard.TargetName="BGcolor"
+                                Storyboard.TargetProperty="Color"
+                                From="#121212"
+                                To="#383838"
+                                Duration="0:0:0.2" />
+                                </Storyboard>
+                            </BeginStoryboard>
+
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="Border.MouseLeave" SourceName="border">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation Storyboard.TargetName="BGcolor"
+                                Storyboard.TargetProperty="Color"
+                                From="#383838"
+                                To="#121212"
+                                Duration="0:0:0.2" />
+                                </Storyboard>
+                            </BeginStoryboard>
+
+                        </EventTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
     <Style x:Key="IconContentButtonStyle" TargetType="Button">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="Padding" Value="0"/>
         <Setter Property="Margin" Value="10"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="Cursor" Value="Hand"/>
@@ -247,7 +380,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Grid Width="50">
-                        <Border x:Name="border" Background="#ff2500" Opacity="0" CornerRadius="5" />
+                        <Border x:Name="border" Background="#ff6d33" Opacity="0" CornerRadius="5" />
                         <ContentPresenter x:Name="Icon" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Grid>
                     <ControlTemplate.Triggers>
@@ -278,11 +411,57 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <Style x:Key="IconDeleteButtonStyle" TargetType="Button">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Margin" Value="10"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="RenderTransform">
+            <Setter.Value>
+                <ScaleTransform x:Name="scaleTransform" ScaleX="1" ScaleY="1"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid Width="40">
+                        <Border x:Name="border" Background="#DE3163" Opacity="0.1" CornerRadius="5" />
+                        <ContentPresenter x:Name="Icon" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="border"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     To="0.3"
+                                                     Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="border"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     To="0.1"
+                                                     Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
     <Style x:Key="UserIconButtonStyle" TargetType="Button">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Padding" Value="0"/>
-        <Setter Property="Margin" Value="10"/>
+        <Setter Property="Margin" Value="0,0,0,10"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Template">
@@ -320,6 +499,7 @@
             </Setter.Value>
         </Setter>
     </Style>
+    
     <Style x:Key="NavMenuButtonStyle"
    TargetType="RadioButton">
         <Setter Property="HorizontalAlignment" Value="Stretch" />
@@ -351,7 +531,7 @@
                                 VerticalAlignment="Center" 
                                 Background="#FFFFFF" 
                                 Opacity="0" 
-                                CornerRadius="5" />
+                                CornerRadius="10" />
                             <ContentPresenter x:Name="Content" Opacity="0.6" Grid.Column="1" 
                                           HorizontalAlignment="Center" 
                                           VerticalAlignment="Center" />
@@ -372,7 +552,7 @@
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="backgroundBorder"
                                  Storyboard.TargetProperty="Opacity"
-                                 To="0.3"
+                                 To="0.1"
                                  Duration="0:0:0.2" />
                                     </Storyboard>
                                 </BeginStoryboard>
@@ -396,7 +576,48 @@
             </Setter.Value>
         </Setter>
     </Style>
-
+    <Style x:Key="BigPlayerCardButton" TargetType="Button">
+        <Setter Property="Margin" Value="20"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid Margin="10,0">
+                        <Border x:Name="border" Background="#2e2e2e"
+                        BorderBrush="#383838"
+                        Opacity="0.3"
+                        BorderThickness="3"
+                        CornerRadius="10"/>
+                        <ContentPresenter HorizontalAlignment="Center" 
+                                          
+                              VerticalAlignment="Center" 
+                              Margin="10, 10" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="border" 
+                                            Storyboard.TargetProperty="Opacity"
+                                            To="1.0" Duration="0:0:0.1" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="border" 
+                                            Storyboard.TargetProperty="Opacity"
+                                            To="0.3" Duration="0:0:0.1" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
     <Style x:Key="TabButtonStyle" TargetType="Button">
         <Setter Property="Width" Value="50"/>
         <Setter Property="Background" Value="Transparent"/>
@@ -556,6 +777,11 @@
         <Setter Property="Height" Value="40"/>
         <Setter Property="Margin" Value="5"/>
     </Style>
+    <Style x:Key="DeleteIconImageStyle" TargetType="Image">
+        <Setter Property="Width" Value="30"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Margin" Value="5"/>
+    </Style>
     <Style x:Key="UserIconImageStyle" TargetType="Image">
         <Setter Property="Width" Value="40"/>
         <Setter Property="Height" Value="40"/>
@@ -570,6 +796,70 @@
         <Setter Property="Stretch" Value="Uniform"/>
         <Setter Property="Width" Value="30"/>
         <Setter Property="Height" Value="30"/>
-        <Setter Property="Margin" Value="10"/>
+        <Setter Property="Margin" Value="5"/>
     </Style>
+    <Style x:Key="PlayerIconImageStyle" TargetType="Image">
+        <Setter Property="Width" Value="100"/>
+        <Setter Property="Height" Value="100"/>
+        <Setter Property="Margin" Value="5"/>
+    </Style>
+    <Style x:Key="BigPlayerCardImage" TargetType="Image">
+        <Setter Property="Height" Value="250"/>
+        <Setter Property="Margin" Value="5"/>
+    </Style>
+    <!--Figures(Ellipse, Rectangle)-->
+    <Style x:Key="UserIconEllipseStyle" TargetType="Ellipse">
+        <Setter Property="Width" Value="40"/>
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="Margin" Value="5"/>
+    </Style>
+    <!--ListBoxStyles-->
+    <Style TargetType="ListBox" x:Key="TeamPlayersListBox">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+    </Style>
+    <Style TargetType="ListBoxItem">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListBoxItem">
+                    <Grid Margin="10">
+                        <Border x:Name="border" Background="#2e2e2e"
+                                BorderBrush="#383838"
+                                Opacity="0.3"
+                                BorderThickness="2"
+                                CornerRadius="5"/>
+                        <ContentPresenter HorizontalAlignment="Center" 
+                                      VerticalAlignment="Center" 
+                                      Margin="10, 5" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="border" 
+                                                    Storyboard.TargetProperty="Opacity"
+                                                    To="1.0" Duration="0:0:0.1" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="border" 
+                                                    Storyboard.TargetProperty="Opacity"
+                                                    To="0.3" Duration="0:0:0.1" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>

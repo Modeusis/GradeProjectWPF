@@ -16,7 +16,7 @@ namespace TournamentsApplication.Model
         private DateTime? start_date;
         private DateTime? end_date;
         private DateTime created_at;
-        private DateTime updated_at;
+        private DateTime? updated_at;
 
         public int TournamentId
         {
@@ -53,7 +53,7 @@ namespace TournamentsApplication.Model
             get { return created_at; }
             set { created_at = value; OnPropertyChanged(nameof(CreatedAt)); }
         }
-        public DateTime UpdatedAt
+        public DateTime? UpdatedAt
         {
             get { return updated_at; }
             set { updated_at = value; OnPropertyChanged(nameof(UpdatedAt)); }
@@ -62,6 +62,6 @@ namespace TournamentsApplication.Model
         public Discipline Discipline { get; set; }
         public ICollection<TournamentTeam> TournamentTeams { get; set; }
         public ICollection<TournamentComment> TournamentComments { get; set; }
-        public ICollection<FavTournament> FavTournaments { get; set; }
+        public ICollection<User> Users { get; set; }
     }
 }

@@ -15,6 +15,7 @@ namespace TournamentsApplication.Utility
 
         private User? currentUser;
         private bool login;
+        private bool admin;
 
         public event Action UserChanged;
         private UnitOfWork uow;
@@ -29,15 +30,22 @@ namespace TournamentsApplication.Utility
             get { return login; }
             set { login = value; }
         }
+        public bool Admin
+        {
+            get { return admin; }
+            set { admin = value; }
+        }
         private UserService()
         {
             CurrentUser = null;
             Login = false;
+            Admin = false;
         }
         public void UpdateCurrentUser(User user)
         {
             CurrentUser = user;
             Login = CurrentUser.IsLogined;
+            Admin = CurrentUser.IsAdmin;
             UserChanged?.Invoke();
         }
         public void LogOut()
@@ -47,7 +55,21 @@ namespace TournamentsApplication.Utility
                 uow = new UnitOfWork(new ApplicationContext());
                 CurrentUser.IsLogined = false;
                 Login = false;
+                Admin = false;
                 uow.Users.Update(CurrentUser);
+                uow.Save();
+                CurrentUser = null;
+            }
+        }
+        public void DeleteCurrentUser()
+        {
+            if (CurrentUser != null)
+            {
+                uow = new UnitOfWork(new ApplicationContext());
+                CurrentUser.IsLogined = false;
+                Login = false;
+                Admin = false;
+                uow.Users.Delete(CurrentUser);
                 uow.Save();
                 CurrentUser = null;
             }
