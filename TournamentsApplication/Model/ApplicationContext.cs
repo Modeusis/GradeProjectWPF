@@ -62,7 +62,7 @@ namespace TournamentsApplication.Model
             modelBuilder.Entity<TournamentTeam>()
                 .HasKey(c => c.TournamentTeamId);
             modelBuilder.Entity<Discipline>()
-                .HasKey(c => c.DisciplineId);;;
+                .HasKey(c => c.DisciplineId);
 
             modelBuilder.Entity<User>()
                 .HasMany(f => f.Comments)

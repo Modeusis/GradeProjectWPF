@@ -17,6 +17,7 @@ namespace TournamentsApplication.Utility
         private bool login;
         private bool admin;
 
+
         public event Action UserChanged;
         private UnitOfWork uow;
 
@@ -46,6 +47,11 @@ namespace TournamentsApplication.Utility
             CurrentUser = user;
             Login = CurrentUser.IsLogined;
             Admin = CurrentUser.IsAdmin;
+            UserChanged?.Invoke();
+        }
+        public void RenewCurrentUser(User user)
+        {
+            CurrentUser = user;
             UserChanged?.Invoke();
         }
         public void LogOut()

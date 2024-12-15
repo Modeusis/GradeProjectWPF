@@ -8,7 +8,7 @@ using TournamentsApplication.Utility;
 
 namespace TournamentsApplication.Model
 {
-    internal class Player : ViewModelBase
+    public class Player : ViewModelBase
     {
         private int player_id;
         private string player_name;

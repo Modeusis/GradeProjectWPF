@@ -113,6 +113,7 @@ namespace TournamentsApplication.ViewModel
             OnPropertyChanged(nameof(CurrentUser));
             OnPropertyChanged(nameof(Login));
             OnPropertyChanged(nameof(Admin));
+            OnPropertyChanged(nameof(CurrentUserLogo));
         }
         private void OnViewChanged()
         {

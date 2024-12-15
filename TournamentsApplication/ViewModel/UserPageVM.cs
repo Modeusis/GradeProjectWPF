@@ -123,7 +123,7 @@ namespace TournamentsApplication.ViewModel
                     {
                         if (obj is Player plr)
                         {
-                            MessageBox.Show(plr.PlayerName);
+                            ContentNavigationService.Instance.SwitchCurrentContentView(new PlayerPageView(plr)); ;
                         }
                         
                     }));
@@ -211,6 +211,7 @@ namespace TournamentsApplication.ViewModel
                             }
                             tmpUser.UpdatedAt = DateTime.UtcNow;
                             uow.Users.Update(tmpUser);
+                            UserService.Instance.RenewCurrentUser(tmpUser);
                             ContentNavigationService.Instance.SwitchCurrentContentView(new UserPageView());
                             StatusService.Instance.SetStatusMessage($"Account has been changed: {whatSavedMessage}");
                             uow.Save();
@@ -390,6 +391,10 @@ namespace TournamentsApplication.ViewModel
                 TeamIcon = team.TeamLogo;
                 TeamName = team.TeamName;
             }
+            else
+            {
+                TeamName = "-";
+            }
             if (CurrentUser.Player is Player player)
             {
                 FavPlayer = player;
@@ -409,6 +414,7 @@ namespace TournamentsApplication.ViewModel
         {
             OnPropertyChanged(nameof(CurrentUser));
             OnPropertyChanged(nameof(IsAdmin));
+            OnPropertyChanged(nameof(CurrentUserLogo));
         }
         public void OnCurrentViewChanged()
         {

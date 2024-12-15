@@ -4,9 +4,107 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TournamentsApplication.View"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:u="clr-namespace:TournamentsApplication.Utility"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+             d:DesignHeight="750" d:DesignWidth="1060">
+    <UserControl.Resources>
+        <u:BoolToVisibilityConverter x:Key="Converter"/>
+        <u:VisibilityReverseConverter x:Key="ReverseConverter"/>
+        <u:TEConverter x:Key="TEConv"/>
+        <u:ImageConverter x:Key="IMGConv"/>
+    </UserControl.Resources>
+    <Grid Margin="150, 20">
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="400"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Rectangle Grid.ColumnSpan="2" RadiusX="20" RadiusY="20">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="pack://application:,,,/Resources/Images/playersBack.jpg" Stretch="UniformToFill" />
+            </Rectangle.Fill>
+        </Rectangle>
+        <Grid Grid.Row="0" Margin="20">
+            <Border BorderBrush="#383838" BorderThickness="1" Opacity="0.5" CornerRadius="10">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#1d1d1d" Offset="0.2" />
+                        <GradientStop Color="#ff5500" Offset="0.8" />
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            <Image Style="{StaticResource PlayerPageImage}" Source="{Binding ShowedPlayerImg, Converter={StaticResource IMGConv}}"/>
+        </Grid>
+        <Grid Grid.Column="1" Grid.Row="0" Margin="0,50,20,50">
             
+            <Border Grid.ColumnSpan="2" Grid.RowSpan="5" CornerRadius="10" Opacity="0.8" Background="#1D1D1D" BorderThickness="0"/>
+            <Grid Margin="20,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.ColumnSpan="2" BorderBrush="#383838" BorderThickness="0,0,0,3"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,10" Grid.ColumnSpan="2">
+                    <TextBlock Style="{StaticResource H2TextBlock}"  Text="Nickname: "/>
+                    <TextBlock Margin="20,0,0,0" Style="{StaticResource H2TextBlock}"  Text="{Binding ShowedPlayerName}"/>
+                    <TextBlock Margin="20,0,0,0" Style="{StaticResource H2TextBlock}"  Text="Name: "/>
+                    <TextBlock Margin="20,0,0,0" Style="{StaticResource H2TextBlock}"  Text="{Binding ShowedPlayerRealName}"/>
+                </StackPanel>
+                <TextBlock Margin="10,0,0,0" Grid.Row="1" Style="{StaticResource H2TextBlock}" Text="Position"/>
+                <TextBlock Margin="10,0,0,0" Grid.Row="1" Grid.Column="1" Style="{StaticResource H2TextBlock}" Text="{Binding ShowedPlayerPosition}"/>
+                <TextBlock Margin="10,0,0,0" Grid.Row="2" Style="{StaticResource H2TextBlock}" Text="Team"/>
+                <Button Style="{StaticResource NoButtonStyle}" Command="{Binding ToTeamPageCommand}" Grid.Row="2" Grid.Column="1" Cursor="Hand">
+                    <TextBlock Margin="10,0,0,0" HorizontalAlignment="Left" Style="{StaticResource H2TextBlock}" Text="{Binding TeamName}"/>
+                </Button>
+                <TextBlock Margin="10,0,0,0" Grid.Row="3" Style="{StaticResource H2TextBlock}" Text="Age"/>
+                <TextBlock Margin="10,0,0,0" Grid.Row="3" Grid.Column="1" Style="{StaticResource H2TextBlock}" Text="{Binding ShowedPlayerAge}"/>
+                <TextBlock Margin="10,0,0,0" Grid.Row="4" Style="{StaticResource H2TextBlock}" Text="Average KD"/>
+                <TextBlock Margin="10,0,0,0" Grid.Row="4" Grid.Column="1" Style="{StaticResource H2TextBlock}" Text="-"/>
+            </Grid>
+        </Grid>
+
+        <Button Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" Command="{Binding ToTeamPageCommand}" Style="{StaticResource ContentButtonStyle}" Cursor="Hand">
+            <StackPanel  Visibility="{Binding IsHaveCurrentTeam, Converter={StaticResource Converter}}"
+                         Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBlock Margin="10"  VerticalAlignment="Center" FontWeight="Bold" Style="{StaticResource FavTextBlock}" Text="{Binding TeamName}"/>
+                <Image  Margin="10,5,10,5" Width="40" Stretch="Uniform" Source="{Binding TeamIcon}"/>
+            </StackPanel>
+        </Button>
+        <Grid Height="Auto" Margin="10,0,0,0" Visibility="{Binding IsHaveCurrentTeam, Converter={StaticResource Converter}}" Grid.Row="4" Grid.ColumnSpan="2">
+            <ListBox Style="{StaticResource TeamPlayersListBox}" HorizontalAlignment="Center" ItemsSource="{Binding TeamPlayers}" Grid.Column="1"
+             ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Stretch"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical" Cursor="Hand">
+                            <Image Style="{StaticResource PlayerIconImageStyle}" Source="{Binding PlayerImg, Converter={StaticResource IMGConv}}"/>
+                            <TextBlock Style="{StaticResource PlayerNameTextBlock}" Text="{Binding PlayerName}"/>
+                            <StackPanel.InputBindings>
+                                <MouseBinding Gesture="LeftDoubleClick" 
+                                      Command="{Binding DataContext.ItemClickCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" 
+                                      CommandParameter="{Binding}" />
+                            </StackPanel.InputBindings>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
     </Grid>
 </UserControl>

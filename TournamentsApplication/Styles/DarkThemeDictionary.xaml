@@ -321,6 +321,18 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <Style x:Key="NoButtonStyle" TargetType="Button">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <ContentPresenter/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
     <Style x:Key="EditProfileButtonStyle" TargetType="Button">
         <Setter Property="VerticalAlignment" Value="Bottom"/>
         <Setter Property="HorizontalAlignment" Value="Right"/>
@@ -805,6 +817,14 @@
     </Style>
     <Style x:Key="BigPlayerCardImage" TargetType="Image">
         <Setter Property="Height" Value="250"/>
+        <Setter Property="Margin" Value="5"/>
+    </Style>
+    <Style x:Key="SmallPlayerCardImage" TargetType="Image">
+        <Setter Property="Height" Value="50"/>
+        <Setter Property="Width" Value="50"/>
+        <Setter Property="Margin" Value="5"/>
+    </Style>
+    <Style x:Key="PlayerPageImage" TargetType="Image">
         <Setter Property="Margin" Value="5"/>
     </Style>
     <!--Figures(Ellipse, Rectangle)-->
