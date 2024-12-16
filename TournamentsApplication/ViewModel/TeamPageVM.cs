@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using TournamentsApplication.Model;
 using TournamentsApplication.Utility;
+using TournamentsApplication.View;
 
 namespace TournamentsApplication.ViewModel
 {
@@ -18,9 +19,25 @@ namespace TournamentsApplication.ViewModel
         private string teamName;
         private int worldRanking;
         private byte[]? teamLogo;
-        private bool isHereTeamPlayers = false;
-        private bool isHereTeamTournaments = false;
-        private bool isHereTeamMatches = false;
+        private bool isHaveTeamPlayers = false;
+        private bool isHaveTeamTournaments = false;
+        private bool isHaveTeamMatches = false;
+        private RelayCommand? itemClickCommand;
+        public RelayCommand? ItemClickCommand
+        {
+            get
+            {
+                return itemClickCommand ??
+                    (itemClickCommand = new RelayCommand((obj) =>
+                    {
+                        if (obj is Player plr)
+                        {
+                            ContentNavigationService.Instance.SwitchCurrentContentView(new PlayerPageView(plr));
+                        }
+
+                    }));
+            }
+        }
         public Team Team
         {
             get { return team; }
@@ -41,24 +58,26 @@ namespace TournamentsApplication.ViewModel
             get { return teamLogo; }
             set { teamLogo = value; OnPropertyChanged(); }
         }
-        public bool IsHereTeamPlayers
+        public bool IsHaveTeamPlayers
         {
-            get { return isHereTeamPlayers; }
-            set { isHereTeamPlayers = value; OnPropertyChanged(); }
+            get { return isHaveTeamPlayers; }
+            set { isHaveTeamPlayers = value; OnPropertyChanged(); }
         }
-        public bool IsHereTeamTournaments
+        public bool IsHaveTeamTournaments
         {
-            get { return isHereTeamTournaments; }
-            set { isHereTeamTournaments = value; OnPropertyChanged(); }
+            get { return isHaveTeamTournaments; }
+            set { isHaveTeamTournaments = value; OnPropertyChanged(); }
         }
-        public bool IsHereTeamMatches
+        public bool IsHaveTeamMatches
         {
-            get { return isHereTeamMatches; }
-            set { isHereTeamMatches = value; OnPropertyChanged(); }
+            get { return isHaveTeamMatches; }
+            set { isHaveTeamMatches = value; OnPropertyChanged(); }
         }
-        private ObservableCollection<Tournament> TeamTournaments { get; set; }
-        private ObservableCollection<Match> TeamMatches { get; set; }
-        private ObservableCollection<Player> TeamPlayers { get; set; }
+        public ObservableCollection<Tournament> TeamTournaments { get; set; }
+        public ObservableCollection<Match> TeamMatches { get; set; }
+        public ObservableCollection<Player> TeamPlayers { get; set; }
+
+
         public TeamPageVM(Team team)
         {
             uow = new UnitOfWork(new ApplicationContext());
@@ -67,19 +86,19 @@ namespace TournamentsApplication.ViewModel
             TeamName = Team.TeamName;
             TeamLogo = Team.TeamLogo;
             WorldRanking = Team.WorldRanking;
-            if (Team.Players.Count > 0)
+            if (team.Players != null)
             {
-                IsHereTeamPlayers = true;
+                IsHaveTeamPlayers = true;
                 TeamPlayers = new ObservableCollection<Player>(team.Players);
             }
-            if (Team.Matches.Count > 0)
+            if (team.Matches != null)
             {
-                IsHereTeamMatches = true;
+                IsHaveTeamMatches = true;
                 TeamMatches = new ObservableCollection<Match>(team.Matches);
             }
-            if (Team.TournamentTeams.Where(a => a.TeamId == Team.TeamId).Count() > 0)
+            if (team.TournamentTeams.Where(a => a.TeamId == Team.TeamId) != null)
             {
-                IsHereTeamTournaments = true;
+                IsHaveTeamTournaments = true;
                 var TournamentsWithTeam = uow.Tournaments.GetAll().Where(a => a.TournamentTeams.Any(b => b.Team == team));
                 TeamTournaments = new ObservableCollection<Tournament>(TournamentsWithTeam);
             }

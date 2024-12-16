@@ -96,6 +96,22 @@
         <Setter Property="Opacity" Value="0.6"/>
         <Setter Property="FontFamily" Value="pack://application:,,,/Resources/Fonts/NunitoItalic.ttf#Nunito"/>
     </Style>
+    <Style TargetType="TextBlock" x:Key="PlayerTeamPgHeaderBlock">
+        <Setter Property="Foreground" Value="#fffafa"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="FontFamily" Value="pack://application:,,,/Resources/Fonts/NunitoFont.ttf#Nunito"/>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="PlayerTeamPgStandardBlock">
+        <Setter Property="Foreground" Value="#fffafa"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="Thin"/>
+        <Setter Property="Opacity" Value="0.6"/>
+        <Setter Property="FontFamily" Value="pack://application:,,,/Resources/Fonts/NunitoItalic.ttf#Nunito"/>
+    </Style>
     <!--Borders-->
     <Style x:Key="FadeOutBorderStyle" TargetType="Border">
         <Setter Property="Background" Value="#1D1D1D" />
@@ -819,6 +835,9 @@
         <Setter Property="Height" Value="250"/>
         <Setter Property="Margin" Value="5"/>
     </Style>
+    <Style x:Key="PlayerTeamPgImage" TargetType="Image">
+        <Setter Property="Height" Value="200"/>
+    </Style>
     <Style x:Key="SmallPlayerCardImage" TargetType="Image">
         <Setter Property="Height" Value="50"/>
         <Setter Property="Width" Value="50"/>
@@ -841,7 +860,7 @@
         <Setter Property="Margin" Value="0"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
     </Style>
-    <Style TargetType="ListBoxItem">
+    <Style TargetType="ListBoxItem" x:Key="TeamListBox">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ListBoxItem">

@@ -84,7 +84,7 @@
             </StackPanel>
         </Button>
         <Grid Height="Auto" Margin="10,0,0,0" Visibility="{Binding IsHaveCurrentTeam, Converter={StaticResource Converter}}" Grid.Row="4" Grid.ColumnSpan="2">
-            <ListBox Style="{StaticResource TeamPlayersListBox}" HorizontalAlignment="Center" ItemsSource="{Binding TeamPlayers}" Grid.Column="1"
+            <ListBox ItemContainerStyle="{StaticResource TeamListBox}" Style="{StaticResource TeamPlayersListBox}" HorizontalAlignment="Center" ItemsSource="{Binding TeamPlayers}" Grid.Column="1"
              ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>

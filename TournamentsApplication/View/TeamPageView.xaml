@@ -4,9 +4,70 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TournamentsApplication.View"
+             xmlns:u="clr-namespace:TournamentsApplication.Utility"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+             d:DesignHeight="750" d:DesignWidth="1060">
+    <UserControl.Resources>
+        <u:BoolToVisibilityConverter x:Key="Converter"/>
+        <u:VisibilityReverseConverter x:Key="ReverseConverter"/>
+        <u:TEConverter x:Key="TEConv"/>
+        <u:ImageConverter x:Key="IMGConv"/>
+    </UserControl.Resources>
+    <Grid Margin="50, 10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="300"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="100"/>
+        </Grid.ColumnDefinitions>
+        <Rectangle Grid.Row="0" Grid.RowSpan="2" Opacity="0.8"  Grid.ColumnSpan="4" RadiusX="20" RadiusY="20">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="pack://application:,,,/Resources/Images/teamBack.jpg" Stretch="UniformToFill" />
+            </Rectangle.Fill>
+        </Rectangle>
+        <StackPanel Grid.Column="1"  Visibility="{Binding IsHaveTeamPlayers, Converter={StaticResource Converter}}"
+             Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Margin="10"  VerticalAlignment="Center" FontWeight="Bold" Style="{StaticResource FavTextBlock}" Text="{Binding TeamName}"/>
+            <Image  Margin="10,5,10,5" Width="40" Stretch="Uniform" Source="{Binding TeamLogo}"/>
+        </StackPanel>
+        
+        <Grid Grid.Column="1" Grid.Row="1" Margin="0, 0, 0, 20">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Height="Auto" Visibility="{Binding IsHaveTeamPlayers, Converter={StaticResource Converter}}" Grid.Row="1">
+                <ListBox Style="{StaticResource TeamPlayersListBox}" HorizontalAlignment="Center" ItemsSource="{Binding TeamPlayers}"
+                         ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Stretch"/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical" Cursor="Hand" Height="280">
+                                <Image Style="{StaticResource PlayerTeamPgImage}" Source="{Binding PlayerImg, Converter={StaticResource IMGConv}}"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Style="{StaticResource PlayerTeamPgHeaderBlock}" Text="{Binding PlayerName}"/>
+                                    <TextBlock Style="{StaticResource PlayerTeamPgStandardBlock}" Text="{Binding Position}"/>
+                                </StackPanel>
+                                <StackPanel.InputBindings>
+                                    <MouseBinding Gesture="LeftDoubleClick" 
+                                                  Command="{Binding DataContext.ItemClickCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" 
+                                                  CommandParameter="{Binding}" />
+                                </StackPanel.InputBindings>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+        </Grid>
+
     </Grid>
 </UserControl>

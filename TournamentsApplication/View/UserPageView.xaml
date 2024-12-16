@@ -79,7 +79,7 @@
                     <Image Margin="10,0,0,0" Width="40" Stretch="Uniform" Source="{Binding TeamIcon}"/>
                 </StackPanel>
                 <Grid Height="Auto" Margin="10,0,0,0" Visibility="{Binding IsFavTeamExists, Converter={StaticResource Converter}}" Grid.Row="3" Grid.ColumnSpan="2">
-                    <ListBox HorizontalAlignment="Center" Style="{StaticResource TeamPlayersListBox}" ItemsSource="{Binding TeamPlayers}" Grid.Column="1"
+                    <ListBox ItemContainerStyle="{StaticResource TeamListBox}" HorizontalAlignment="Center" Style="{StaticResource TeamPlayersListBox}" ItemsSource="{Binding TeamPlayers}" Grid.Column="1"
                              ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>

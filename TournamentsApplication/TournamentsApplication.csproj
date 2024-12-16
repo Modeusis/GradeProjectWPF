@@ -60,6 +60,7 @@
     <None Remove="Resources\Images\s1mpleGraff.jpg" />
     <None Remove="Resources\Images\StandardUserImage.png" />
     <None Remove="Resources\Images\star.png" />
+    <None Remove="Resources\Images\teamback.jpg" />
     <None Remove="Resources\Images\Teams\Falcons.png" />
     <None Remove="Resources\Images\Teams\G2.png" />
     <None Remove="Resources\Images\Teams\MOUZ.png" />
@@ -111,6 +112,7 @@
     <Resource Include="Resources\Images\Players\zont1x.png" />
     <Resource Include="Resources\Images\Players\ZywOo.png" />
     <Resource Include="Resources\Images\StandardUserImage.png" />
+    <Resource Include="Resources\Images\teamback.jpg" />
     <Resource Include="Resources\Images\Teams\Falcons.png" />
     <Resource Include="Resources\Images\Teams\G2.png" />
     <Resource Include="Resources\Images\Teams\MOUZ.png" />
