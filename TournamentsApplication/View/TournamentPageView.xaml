@@ -14,203 +14,292 @@
         <u:TEConverter x:Key="TEConv"/>
         <u:ImageConverter x:Key="IMGConv"/>
     </UserControl.Resources>
-    <Grid Margin="50, 20">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="240"/>
-            <RowDefinition/>
-            <RowDefinition Height="60"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20"/>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="20"/>
-        </Grid.ColumnDefinitions>
-        <Rectangle Grid.Row="0" Opacity="0.8"  Grid.ColumnSpan="4" RadiusX="20" RadiusY="20">
-            <Rectangle.Fill>
-                <ImageBrush ImageSource="{Binding TournamentIcon}" Stretch="UniformToFill" />
-            </Rectangle.Fill>
-        </Rectangle>
-        <Grid Grid.Column="1">
+    <Grid>
+        <!--<Grid Margin="50, 20" Visibility="Collapsed">-->
+        <Grid Margin="50, 20" Visibility="{Binding IsChanging, Converter={StaticResource ReverseConverter}}">
             <Grid.RowDefinitions>
-                <RowDefinition Height="70"/>
+                <RowDefinition Height="240"/>
                 <RowDefinition/>
+                <RowDefinition Height="60"/>
             </Grid.RowDefinitions>
-            <Button Command="{Binding ChangeFavoriteCommand}" Grid.ColumnSpan="4" Margin="0,10,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Visibility="{Binding IsLogin, Converter={StaticResource Converter}}" Grid.Row="0" Grid.RowSpan="2" Style="{StaticResource ContentButtonStyle}">
-                <Image Width="20" Height="20" Source="{Binding FavoriteIcon}"/>
-            </Button>
-            <Border HorizontalAlignment="Center" VerticalAlignment="Center" Background="#121212" BorderBrush="#383838" BorderThickness="1" CornerRadius="5">
-                <TextBlock Margin="5" Style="{StaticResource FavTextBlock}" Text="{Binding TournamentName}"/>
-            </Border>
-            <Grid Height="Auto" Margin="20,5,20,5" Grid.Row="1">
-                <ListBox ItemContainerStyle="{StaticResource TeamListBox}" HorizontalAlignment="Center" Style="{StaticResource TeamPlayersListBox}" ItemsSource="{Binding Teams}" Grid.Column="1"
-             ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                    <ListBox.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Stretch"/>
-                        </ItemsPanelTemplate>
-                    </ListBox.ItemsPanel>
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Vertical" Cursor="Hand">
-                                <Image Margin="10" Width="50" Height="50" Source="{Binding TeamLogo, Converter={StaticResource IMGConv}}"/>
-                                <StackPanel.InputBindings>
-                                    <MouseBinding Gesture="LeftDoubleClick" 
-                                      Command="{Binding DataContext.ToTeamPageCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" 
-                                      CommandParameter="{Binding}" />
-                                </StackPanel.InputBindings>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-            </Grid>
-        </Grid>
-        <Grid Grid.Column="1" Grid.Row="1">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"/>
                 <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="20"/>
             </Grid.ColumnDefinitions>
-            <Grid Margin="10,10">
-                <ListBox 
-                        ItemContainerStyle="{StaticResource TeamPgListBoxItem}" 
-                        Style="{StaticResource TeamList}"  
-                        HorizontalAlignment="Stretch" 
-                        ItemsSource="{Binding Matches}"
-                        ScrollViewer.VerticalScrollBarVisibility="Disabled" 
-                        ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                        HorizontalContentAlignment="Stretch">
+            <Rectangle Grid.Row="0" Opacity="0.8"  Grid.ColumnSpan="4" RadiusX="20" RadiusY="20">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="{Binding TournamentIcon}" Stretch="UniformToFill" />
+                </Rectangle.Fill>
+            </Rectangle>
+            <Button Grid.Column="1" Visibility="{Binding IsAdmin, Converter={StaticResource Converter}}" Command="{Binding ChangeTournamentCommand}" Style="{StaticResource EditProfileButtonStyle}">
+                <Image Margin="10" Width="40" Source="pack://application:,,,/Resources/Images/edit.png"/>
+            </Button>
 
-                    <ListBox.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel Orientation="Vertical"/>
-                        </ItemsPanelTemplate>
-                    </ListBox.ItemsPanel>
-
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-
-                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="0">
-                                    <Image Style="{StaticResource SmallSquareImage}" Source="{Binding FirstTeam.TeamLogo, Converter={StaticResource IMGConv}}"/>
-                                    <TextBlock Style="{StaticResource PlayerTeamPgHeaderBlock}" Text="{Binding FirstTeam.TeamName}" Margin="5,0"/>
-                                </StackPanel>
-
-                                <TextBlock Style="{StaticResource PlayerTeamPgHeaderBlock}" Text="VS" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
-                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="2" HorizontalAlignment="Right">
-                                    <TextBlock Style="{StaticResource PlayerTeamPgHeaderBlock}" Text="{Binding SecondTeam.TeamName}" Margin="0,0,5,0"/>
-                                    <Image Style="{StaticResource SmallSquareImage}" Source="{Binding SecondTeam.TeamLogo, Converter={StaticResource IMGConv}}"/>
-                                </StackPanel>
-                                <Grid.InputBindings>
-                                    <MouseBinding Gesture="LeftDoubleClick" 
-                                                  Command="{Binding DataContext.ToMatchPageCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" 
-                                                  CommandParameter="{Binding}" />
-                                </Grid.InputBindings>
-                            </Grid>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-            </Grid>
-            <Grid Grid.Column="1" Margin="10" Cursor="">
+            <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="70"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                    <TextBox Text="{Binding CommentContent}" Style="{StaticResource H2TextBox}"/>
-                    <Button Content="Add comment" Margin="10,0,0,0" Command="{Binding AddMessageCommand}" Style="{StaticResource HeadButton}"/>
-                    <Button Visibility="{Binding IsAdmin, Converter={StaticResource Converter}}" Height="40" Grid.Column="2"
-                            Grid.Row="1" Style="{StaticResource IconDeleteButtonStyle}" Command="{Binding DeleteMessageCommand}">
-                        <Image Style="{StaticResource DeleteIconImageStyle}" Source="pack://application:,,,/Resources/Images/delete.png"/>
-                    </Button>
-                </StackPanel>
-                <ListBox Grid.Row="1"
-                         SelectedItem="{Binding SelectedComment}"
-                         ItemContainerStyle="{StaticResource TeamPgListBoxItem}" 
-                         Style="{StaticResource TeamList}"  
-                         HorizontalAlignment="Stretch" 
-                         ItemsSource="{Binding TournamentComments}"
-                         ScrollViewer.VerticalScrollBarVisibility="Disabled" 
-                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                         HorizontalContentAlignment="Stretch">
-                    <ListBox.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel Orientation="Vertical"/>
-                        </ItemsPanelTemplate>
-                    </ListBox.ItemsPanel>
-
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="50"/>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
-                                <StackPanel Orientation="Horizontal">
-                                    <Ellipse Style="{StaticResource UserIconEllipseStyle}">
-                                        <Ellipse.Fill>
-                                            <ImageBrush ImageSource="{Binding User.Logo, Converter={StaticResource IMGConv}}" Stretch="UniformToFill" />
-                                        </Ellipse.Fill>
-                                    </Ellipse>
-                                    <TextBlock Margin="5,0,0,0" Style="{StaticResource H2TextBlock}" Text="{Binding User.Username}"/>
-                                    <TextBlock Style="{StaticResource PlayerTeamPgStandardBlock}" Text="{Binding CreatedAt}"/>
+                <Button Command="{Binding ChangeFavoriteCommand}" Grid.ColumnSpan="4" Margin="0,10,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Visibility="{Binding IsLogin, Converter={StaticResource Converter}}" Grid.Row="0" Grid.RowSpan="2" Style="{StaticResource ContentButtonStyle}">
+                    <Image Width="20" Height="20" Source="{Binding FavoriteIcon}"/>
+                </Button>
+                <Border HorizontalAlignment="Center" VerticalAlignment="Center" Background="#121212" BorderBrush="#383838" BorderThickness="1" CornerRadius="5">
+                    <TextBlock Margin="5" Style="{StaticResource FavTextBlock}" Text="{Binding TournamentName}"/>
+                </Border>
+                <Grid Height="Auto" Margin="20,5,20,5" Grid.Row="1">
+                    <ListBox ItemContainerStyle="{StaticResource TeamListBox}" HorizontalAlignment="Center" Style="{StaticResource TeamPlayersListBox}" ItemsSource="{Binding Teams}" Grid.Column="1"
+         ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Stretch"/>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical" Cursor="Hand">
+                                    <Image Margin="10" Width="50" Height="50" Source="{Binding TeamLogo, Converter={StaticResource IMGConv}}"/>
+                                    <StackPanel.InputBindings>
+                                        <MouseBinding Gesture="LeftDoubleClick" 
+                                  Command="{Binding DataContext.ToTeamPageCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" 
+                                  CommandParameter="{Binding}" />
+                                    </StackPanel.InputBindings>
                                 </StackPanel>
-                                <TextBlock Margin="5" HorizontalAlignment="Left" Style="{StaticResource H2TextBlock}" Grid.Row="1" Text="{Binding Content}"/>
-                            </Grid>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
             </Grid>
-            
+            <Grid Grid.Column="1" Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid Margin="10,10">
+                    <ListBox 
+                    ItemContainerStyle="{StaticResource TeamPgListBoxItem}" 
+                    Style="{StaticResource TeamList}"  
+                    HorizontalAlignment="Stretch" 
+                    ItemsSource="{Binding Matches}"
+                    ScrollViewer.VerticalScrollBarVisibility="Disabled" 
+                    ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                    HorizontalContentAlignment="Stretch">
+
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Vertical"/>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="0">
+                                        <Image Style="{StaticResource SmallSquareImage}" Source="{Binding FirstTeam.TeamLogo, Converter={StaticResource IMGConv}}"/>
+                                        <TextBlock Style="{StaticResource PlayerTeamPgHeaderBlock}" Text="{Binding FirstTeam.TeamName}" Margin="5,0"/>
+                                    </StackPanel>
+
+                                    <TextBlock Style="{StaticResource PlayerTeamPgHeaderBlock}" Text="VS" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="2" HorizontalAlignment="Right">
+                                        <TextBlock Style="{StaticResource PlayerTeamPgHeaderBlock}" Text="{Binding SecondTeam.TeamName}" Margin="0,0,5,0"/>
+                                        <Image Style="{StaticResource SmallSquareImage}" Source="{Binding SecondTeam.TeamLogo, Converter={StaticResource IMGConv}}"/>
+                                    </StackPanel>
+                                    <Grid.InputBindings>
+                                        <MouseBinding Gesture="LeftDoubleClick" 
+                                              Command="{Binding DataContext.ToMatchPageCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" 
+                                              CommandParameter="{Binding}" />
+                                    </Grid.InputBindings>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+                <Grid Grid.Column="1" Margin="10" Cursor="">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Visibility="{Binding IsLogin, Converter={StaticResource Converter}}" Orientation="Horizontal" HorizontalAlignment="Left">
+                        <TextBox Text="{Binding CommentContent}" Style="{StaticResource H2TextBox}"/>
+                        <Button Content="Add comment" Margin="10,0,0,0" Command="{Binding AddMessageCommand}" Style="{StaticResource HeadButton}"/>
+                        <Button Visibility="{Binding IsAdmin, Converter={StaticResource Converter}}" Height="40" Grid.Column="2"
+                        Grid.Row="1" Style="{StaticResource IconDeleteButtonStyle}" Command="{Binding DeleteMessageCommand}">
+                            <Image Style="{StaticResource DeleteIconImageStyle}" Source="pack://application:,,,/Resources/Images/delete.png"/>
+                        </Button>
+                    </StackPanel>
+                    <ListBox Grid.Row="1"
+                     SelectedItem="{Binding SelectedComment}"
+                     ItemContainerStyle="{StaticResource TeamPgListBoxItem}" 
+                     Style="{StaticResource TeamList}"  
+                     HorizontalAlignment="Stretch" 
+                     ItemsSource="{Binding TournamentComments}"
+                     ScrollViewer.VerticalScrollBarVisibility="Disabled" 
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                     HorizontalContentAlignment="Stretch">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Vertical"/>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="50"/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Ellipse Style="{StaticResource UserIconEllipseStyle}">
+                                            <Ellipse.Fill>
+                                                <ImageBrush ImageSource="{Binding User.Logo, Converter={StaticResource IMGConv}}" Stretch="UniformToFill" />
+                                            </Ellipse.Fill>
+                                        </Ellipse>
+                                        <TextBlock Margin="5,0,0,0" Style="{StaticResource H2TextBlock}" Text="{Binding User.Username}"/>
+                                        <TextBlock Style="{StaticResource PlayerTeamPgStandardBlock}" Text="{Binding CreatedAt}"/>
+                                    </StackPanel>
+                                    <TextBlock Margin="5" HorizontalAlignment="Left" Style="{StaticResource H2TextBlock}" Grid.Row="1" Text="{Binding Content}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+
+            </Grid>
+
+            <Grid Grid.Column="1" Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Border Background="#121212" CornerRadius="5"
+                BorderBrush="#383838" BorderThickness="1"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center" Grid.Column="1">
+                    <Grid Margin="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" Command="{Binding PreviousPageCommand}" Style="{StaticResource ContentButtonStyle}">
+                            <Image Width="20" Source="pack://application:,,,/Resources/Images/leftArrow.png"/>
+                        </Button>
+                        <TextBlock Margin="5,0" Grid.Column="1" Style="{StaticResource H2TextBlock}" Text="{Binding CurrentCommentsPage}"/>
+                        <Button Command="{Binding NextPageCommand}" Grid.Column="2" Style="{StaticResource ContentButtonStyle}">
+                            <Image Width="20" Source="pack://application:,,,/Resources/Images/rightArrow.png"/>
+                        </Button>
+                    </Grid>
+                </Border>
+                <Border Background="#121212" CornerRadius="5"
+                BorderBrush="#383838" BorderThickness="1"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center" Grid.Column="0">
+                    <Grid Margin="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Button Command="{Binding PreviousMatchesPageCommand}" Grid.Column="0"  Style="{StaticResource ContentButtonStyle}">
+                            <Image Width="20" Source="pack://application:,,,/Resources/Images/leftArrow.png"/>
+                        </Button>
+                        <TextBlock Margin="5,0"  Grid.Column="1" Style="{StaticResource H2TextBlock}" Text="{Binding CurrentMatchesPage}"/>
+                        <Button Command="{Binding NextMatchesPageCommand}" Grid.Column="2" Style="{StaticResource ContentButtonStyle}">
+                            <Image Width="20" Source="pack://application:,,,/Resources/Images/rightArrow.png"/>
+                        </Button>
+                    </Grid>
+                </Border>
+            </Grid>
         </Grid>
-        
-        <Grid Grid.Column="1" Grid.Row="2">
+        <Grid Margin="50, 20" Visibility="{Binding IsChanging, Converter={StaticResource Converter}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="240"/>
+                <RowDefinition/>
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"/>
                 <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="20"/>
             </Grid.ColumnDefinitions>
-            <Border Background="#121212" CornerRadius="5"
-                    BorderBrush="#383838" BorderThickness="1"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Center" Grid.Column="1">
-                <Grid Margin="5">
+            <Rectangle Grid.Row="0" Opacity="0.8"  Grid.ColumnSpan="4" RadiusX="20" RadiusY="20">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="{Binding TmpTournamentIcon}" Stretch="UniformToFill" />
+                </Rectangle.Fill>
+            </Rectangle>
+            <Button Grid.ColumnSpan="4"
+                    Style="{StaticResource HeadButton}"
+                    Command="{Binding SelectLogoCommand}"
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Left"
+                    Margin="10,0,0,10"
+                    Content="Select logo"/>
+            <Grid Grid.Column="1" Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="300"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="150"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
-                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="280"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" Command="{Binding PreviousPageCommand}" Style="{StaticResource ContentButtonStyle}">
-                        <Image Width="20" Source="pack://application:,,,/Resources/Images/leftArrow.png"/>
+                    <TextBlock Style="{StaticResource H2TextBlock}" Grid.Column="1"  Grid.Row="0" Text="Tournament name"/>
+                    <TextBox Style="{StaticResource H2TextBox}" Text="{Binding NewTournamentName}" Grid.Column="2" Grid.Row="0"/>
+                    <TextBlock Style="{StaticResource H2TextBlock}" Grid.Column="1" Grid.Row="1" Text="Team to add"/>
+                    <ComboBox Width="250" Grid.Row="1" Grid.Column="2" Style="{StaticResource ComboBoxStyle}" SelectedItem="{Binding TeamToAdd}" ItemsSource="{Binding TeamsToAdd}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Style="{StaticResource H2TextBlock}" Text="{Binding TeamName}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <TextBlock Style="{StaticResource H2TextBlock}" Grid.Column="1" Grid.Row="2" Text="Team to remove"/>
+                    <ComboBox Width="250" Grid.Row="2" Grid.Column="2" Style="{StaticResource ComboBoxStyle}" SelectedItem="{Binding TeamToRemove}" ItemsSource="{Binding TeamsToRemove}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Style="{StaticResource H2TextBlock}" Text="{Binding TeamName}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <Button Grid.Column="3" Command="{Binding AddTeamCommand}" Grid.Row="1" Margin="0" Style="{StaticResource EditProfileButtonStyle}" VerticalAlignment="Center" HorizontalAlignment="Left">
+                        <Image Margin="5" Width="20"  Source="pack://application:,,,/Resources/Images/check.png"/>
                     </Button>
-                    <TextBlock Margin="5,0" Grid.Column="1" Style="{StaticResource H2TextBlock}" Text="{Binding CurrentCommentsPage}"/>
-                    <Button Command="{Binding NextPageCommand}" Grid.Column="2" Style="{StaticResource ContentButtonStyle}">
-                        <Image Width="20" Source="pack://application:,,,/Resources/Images/rightArrow.png"/>
+                    <Button Grid.Column="3" Command="{Binding RemoveTeamCommand}" Grid.Row="2" Margin="0" Style="{StaticResource EditProfileButtonStyle}" VerticalAlignment="Center" HorizontalAlignment="Left">
+                        <Image Margin="5" Width="20"  Source="pack://application:,,,/Resources/Images/check.png"/>
                     </Button>
                 </Grid>
-            </Border>
-            <Border Background="#121212" CornerRadius="5"
-                    BorderBrush="#383838" BorderThickness="1"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Center" Grid.Column="0">
-                <Grid Margin="5">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Button Command="{Binding PreviousMatchesPageCommand}" Grid.Column="0"  Style="{StaticResource ContentButtonStyle}">
-                        <Image Width="20" Source="pack://application:,,,/Resources/Images/leftArrow.png"/>
-                    </Button>
-                    <TextBlock Margin="5,0"  Grid.Column="1" Style="{StaticResource H2TextBlock}" Text="{Binding CurrentMatchesPage}"/>
-                    <Button Command="{Binding NextMatchesPageCommand}" Grid.Column="2" Style="{StaticResource ContentButtonStyle}">
-                        <Image Width="20" Source="pack://application:,,,/Resources/Images/rightArrow.png"/>
-                    </Button>
-                </Grid>
-            </Border>
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
+                    <Button Grid.Column="1" Grid.Row="1" Style="{StaticResource HeadButton}" Command="{Binding UpdateProfileCommand}" Content="Save changes"/>
+                    <Button Margin="10,0,0,0" Grid.Column="1" Grid.Row="1" Style="{StaticResource HeaderEditButton}" Command="{Binding DismissChangesCommand}" Content="Dismiss"/>
+                </StackPanel>
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>

@@ -20,6 +20,8 @@ namespace TournamentsApplication.Utility
         public Repository<Tournament> Tournaments { get; set; }
         public Repository<TournamentComment> TournamentComments { get; set; }
         public Repository<Statistics> Statistics { get; set; }
+        public Repository<TournamentTeam> TournamentTeams { get; set; }
+
 
         public UnitOfWork(DbContext context)
         {
@@ -32,6 +34,7 @@ namespace TournamentsApplication.Utility
             Teams = new Repository<Team>(_context);
             Tournaments = new Repository<Tournament>(_context);
             TournamentComments = new Repository<TournamentComment>(_context);
+            TournamentTeams = new Repository<TournamentTeam>(_context);
             Statistics = new Repository<Statistics>(_context);
         }
         public void Save()

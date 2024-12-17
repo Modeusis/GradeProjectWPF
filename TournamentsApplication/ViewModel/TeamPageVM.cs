@@ -187,11 +187,11 @@ namespace TournamentsApplication.ViewModel
                 var matches = uow.Matches.GetAll().Where(a => a.FirstParticipantId == team.TeamId || a.SecondParticipantId == team.TeamId).Take(3);
                 TeamMatches = new ObservableCollection<Match>(matches);
             }
-            if (uow.Tournaments.GetAll().Where(a => a.Teams.Any(a => a.TeamId == team.TeamId)).Count() > 0)
+            if (team.Tournaments.Select(tt => tt.Tournament).Count() > 0)
             {
                 IsHaveTeamTournaments = true;
-                var tournaments = uow.Tournaments.GetAll().Select(a => a.Teams.Where(a => a.TeamId == team.TeamId).Take(3));
-                TeamTournaments = new ObservableCollection<Tournament>(team.Tournaments);
+                var tournaments = uow.TournamentTeams.GetAll().Where(tt => tt.TeamId == Team.TeamId).Select(tt => tt.Tournament).Take(3);
+                TeamTournaments = new ObservableCollection<Tournament>(tournaments);
             }
         }
         private void OnContentChanged()

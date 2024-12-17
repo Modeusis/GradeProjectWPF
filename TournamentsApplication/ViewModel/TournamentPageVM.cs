@@ -20,11 +20,16 @@ namespace TournamentsApplication.ViewModel
         public bool IsLogin => UserService.Instance.Login;
         public bool IsAdmin => UserService.Instance.Admin;
         private Tournament showedTournament;
+        private Team? teamToRemove;
+        private Team? teamToAdd;
+        private string? newTournamentName;
         private string tournamentName;
         private string commentContent;
         private bool isFavoriteTournament = false;
         private byte[] favoriteIcon;
         private byte[] tournamentIcon;
+        private byte[] tmpTournamentIcon;
+        private bool isChanging = false;
         private bool isHereCommentsPage = false;
         private bool isHereMatchesPage = false;
         private int currentCommentsPage = 1;
@@ -36,10 +41,20 @@ namespace TournamentsApplication.ViewModel
             get => isHereCommentsPage;
             set { isHereCommentsPage = value; OnPropertyChanged(); }
         }
+        public string? NewTournamentName
+        {
+            get => newTournamentName;
+            set { newTournamentName = value; OnPropertyChanged(); }
+        }
         public bool IsHereMatchesPage
         {
             get => isHereMatchesPage;
             set { isHereMatchesPage = value; OnPropertyChanged(); }
+        }
+        public bool IsChanging
+        {
+            get => isChanging;
+            set { isChanging = value; OnPropertyChanged(); }
         }
         public int CurrentCommentsPage
         {
@@ -63,7 +78,150 @@ namespace TournamentsApplication.ViewModel
         }
         public ObservableCollection<TournamentComment> TournamentComments { get; set; }
         public ObservableCollection<Team> Teams { get; set; }
+        public ObservableCollection<Team> TeamsToAdd { get; set; }
+        public ObservableCollection<Team> TeamsToRemove { get; set; }
         public ObservableCollection<Match> Matches { get; set; }
+        private RelayCommand? selectLogoCommand;
+        public RelayCommand? SelectLogoCommand
+        {
+            get
+            {
+                return selectLogoCommand ??
+                    (selectLogoCommand = new RelayCommand((obj) =>
+                    {
+                        try
+                        {
+                            var openedImage = ImageConverter.OpenAndLoadImage();
+                            if (openedImage is byte[] imgByte)
+                            {
+                                TmpTournamentIcon = imgByte;
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            StatusService.Instance.SetStatusMessage(ex.Message);
+                        }
+                    }));
+            }
+        }
+        private RelayCommand? dismissChangesCommand;
+        public RelayCommand? DismissChangesCommand
+        {
+            get
+            {
+                return dismissChangesCommand ??
+                    (dismissChangesCommand = new RelayCommand((obj) =>
+                    {
+                        TmpTournamentIcon = null;
+                        NewTournamentName = null;
+                        IsChanging = false;
+                    }));
+            }
+        }
+        private RelayCommand? removeTeamCommand;
+        public RelayCommand? RemoveTeamCommand
+        {
+            get
+            {
+                return removeTeamCommand ??
+                    (removeTeamCommand = new RelayCommand((obj) =>
+                    {
+                        try
+                        {
+                            if (TeamToRemove != null)
+                            {
+                                TeamsToAdd.Add(TeamToRemove);
+                                StatusService.Instance.SetStatusMessage($"Team {TeamToRemove.TeamName} removed");
+                                TeamsToRemove.Remove(TeamToRemove);
+                            }
+                            else
+                            {
+                                throw new Exception("Team not selected");
+                            }
+
+                        }
+                        catch (Exception ex)
+                        {
+                            StatusService.Instance.SetStatusMessage(ex.Message);
+                        }
+                    }));
+            }
+        }
+        private RelayCommand? addTeamCommand;
+        public RelayCommand? AddTeamCommand
+        {
+            get
+            {
+                return addTeamCommand ??
+                    (addTeamCommand = new RelayCommand((obj) =>
+                    {
+                        if (TeamToAdd != null)
+                        {
+                            TeamsToRemove.Add(TeamToAdd);
+                            StatusService.Instance.SetStatusMessage($"Team {TeamToAdd.TeamName} Add");
+                            TeamsToAdd.Remove(TeamToAdd);
+                        }
+                        else
+                        {
+                            StatusService.Instance.SetStatusMessage("$Team not selected");
+                        }
+                    }));
+            }
+        }
+        private RelayCommand? updateProfileCommand;
+        public RelayCommand? UpdateProfileCommand
+        {
+            get
+            {
+                return updateProfileCommand ??
+                    (updateProfileCommand = new RelayCommand((obj) =>
+                    {
+                        try
+                        {
+                            Tournament tmp = ShowedTournament;
+                            bool equal = !Teams.Select(t => t.TeamId).Except(TeamsToRemove.Select(t => t.TeamId)).Any()
+                                        && !TeamsToRemove.Select(t => t.TeamId).Except(Teams.Select(t => t.TeamId)).Any();
+                            
+                            if (string.IsNullOrEmpty(NewTournamentName) && equal && TmpTournamentIcon == TournamentIcon)
+                            {
+                                throw new Exception("Nothing to update");
+                            }
+                            if (!string.IsNullOrEmpty(NewTournamentName))
+                            {
+                                tmp.TournamentName = NewTournamentName;
+                            }
+                            if (TournamentIcon != TmpTournamentIcon)
+                            {
+                                tmp.Img = TmpTournamentIcon;
+                            }
+                            if (!equal)
+                            {
+                                TournamentTeam tmpTT = new TournamentTeam();
+                                foreach (Team team in Teams)
+                                {
+                                    tmpTT.TournamentId = ShowedTournament.TournamentId;
+                                    tmpTT.TeamId = team.TeamId;
+                                    uow.TournamentTeams.Delete(tmpTT);
+                                }
+                                foreach (Team team in TeamsToRemove)
+                                {
+                                    tmpTT.TournamentId = ShowedTournament.TournamentId;
+                                    tmpTT.TeamId = team.TeamId;
+                                    uow.TournamentTeams.Add(tmpTT);
+                                }
+                            }
+                            uow.Tournaments.Update(tmp);
+                            uow.Save();
+                            ContentNavigationService.Instance.SwitchCurrentContentView(new TournamentPageView(uow.Tournaments.GetById(tmp.TournamentId)));
+                        }
+                        catch (Exception e)
+                        {
+                            StatusService.Instance.SetStatusMessage(e.Message);
+                            uow.Dispose();
+                        }
+                    }));
+            }
+        }
         private TournamentComment? _selectedComment;
         public TournamentComment? SelectedComment
         {
@@ -77,7 +235,33 @@ namespace TournamentsApplication.ViewModel
                 }
             }
         }
+        public Team? TeamToRemove
+        {
+            get => teamToRemove;
+            set { teamToRemove = value; OnPropertyChanged(); }
+        }
+        public Team? TeamToAdd
+        {
+            get => teamToAdd;
+            set { teamToAdd = value; OnPropertyChanged(); }
+        }
+        private RelayCommand? changeTournamentCommand;
+        public RelayCommand? ChangeTournamentCommand
+        {
+            get
+            {
+                return changeTournamentCommand ??= new RelayCommand((obj) =>
+                {
+                    IsChanging = false;
+                    if (!IsChanging)
+                    {
+                        TmpTournamentIcon = TournamentIcon;
+                        IsChanging = true;
+                    }
 
+                });
+            }
+        }
         public Tournament ShowedTournament
         {
             get => showedTournament;
@@ -253,6 +437,7 @@ namespace TournamentsApplication.ViewModel
                             uow.TournamentComments.Add(tempComment);
                             TournamentComments.Add(tempComment);
                             uow.Save();
+                            LoadComments(CurrentCommentsPage, 3);
                         }
                         catch (Exception e)
                         {
@@ -303,6 +488,11 @@ namespace TournamentsApplication.ViewModel
             get { return tournamentIcon; }
             set { tournamentIcon = value; OnPropertyChanged(); }
         }
+        public byte[] TmpTournamentIcon
+        {
+            get { return tmpTournamentIcon; }
+            set { tmpTournamentIcon = value; OnPropertyChanged(); }
+        }
         public TournamentPageVM(Tournament tournament)
         {
             uow = new UnitOfWork(new ApplicationContext());
@@ -311,6 +501,9 @@ namespace TournamentsApplication.ViewModel
             TournamentComments = new ObservableCollection<TournamentComment>();
 
             ShowedTournament = tournament;
+            TmpTournamentIcon = tournament.Img;
+            TeamsToRemove = new ObservableCollection<Team>(uow.Teams.GetAll().Where(a => a.Tournaments.Any(b => b.TournamentId == ShowedTournament.TournamentId)));
+            TeamsToAdd = new ObservableCollection<Team>(uow.Teams.GetAll().Where(a => !a.Tournaments.Any(b => b.TournamentId == ShowedTournament.TournamentId)));
             FavoriteIcon = ImageConverter.LoadImageAsByteArray("pack://application:,,,/Resources/Images/starEmpty.png");
             if (CurrentUser != null && CurrentUser.FavTournamentId == ShowedTournament.TournamentId)
             {
@@ -321,12 +514,20 @@ namespace TournamentsApplication.ViewModel
             TournamentIcon = ShowedTournament.Img;
             if (ShowedTournament.Teams.Count() > 0)
             {
-                Teams =new ObservableCollection<Team>(ShowedTournament.Teams);
+                Teams =new ObservableCollection<Team>(ShowedTournament.Teams.Select(tt => tt.Team));
+            }
+            else
+            {
+                Teams = new ObservableCollection<Team>();
             }
             if (ShowedTournament.Matches.Count() > 0)
             {
                 Matches = new ObservableCollection<Match>(ShowedTournament.Matches);
                 LoadMatches(CurrentMatchesPage, 4);
+            }
+            else
+            {
+                Matches = new ObservableCollection<Match>();
             }
             if (uow.TournamentComments.GetAll().Where(a => a.TournamentId == ShowedTournament.TournamentId).Count() > 0)
             {

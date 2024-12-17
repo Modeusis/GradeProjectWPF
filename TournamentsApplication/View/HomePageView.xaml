@@ -58,7 +58,7 @@
                 </Button>
                 <RadioButton Style="{StaticResource NavMenuButtonStyle}" 
                              Command="{Binding SwitchContentCommand}"
-                             CommandParameter="{x:Type local:TournamentsView}"
+                             CommandParameter="{x:Type local:MatchesView}"
                              IsChecked="{Binding SelectedContentType, Converter={StaticResource TEConv}, ConverterParameter={x:Type local:MatchesView}}"
                              Cursor="Hand">
                     <Image Style="{StaticResource NavMenuImageStyle}" Source="pack://application:,,,/Resources/Images/matches.png"/>

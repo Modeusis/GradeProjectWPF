@@ -24,6 +24,7 @@ namespace TournamentsApplication.Model
         public DbSet<Team> Teams { get; set; } = null!;
         public DbSet<Tournament> Tournaments { get; set; } = null!;
         public DbSet<TournamentComment> TournamentComments { get; set; } = null!;
+        public DbSet<TournamentTeam> TournamentTeams { get; set; } = null!;
         public DbSet<Discipline> Disciplines { get; set; } = null!;
         public DbSet<Statistics> Statistics { get; set; } = null!;
         public ApplicationContext()
@@ -66,6 +67,8 @@ namespace TournamentsApplication.Model
                 .HasKey(c => c.DisciplineId);
             modelBuilder.Entity<Statistics>()
                 .HasKey(c => c.StatisticId);
+            modelBuilder.Entity<TournamentTeam>()
+                .HasKey(c => c.TournamentTeamId);
 
             modelBuilder.Entity<Statistics>()
                 .HasOne(s => s.Player)
@@ -119,12 +122,12 @@ namespace TournamentsApplication.Model
                 .HasForeignKey(f => f.CurTeamId);
             modelBuilder.Entity<Team>()
                 .HasMany(a => a.Tournaments)
-                .WithMany(f => f.Teams)
-                .UsingEntity<Dictionary<string, object>>(
-                    "TournamentTeam",
-                    j => j.HasOne<Tournament>().WithMany().HasForeignKey("TournamentId"),
-                    j => j.HasOne<Team>().WithMany().HasForeignKey("TeamId")
-                    );
+                .WithOne(f => f.Team)
+                .HasForeignKey(f => f.TeamId);
+            modelBuilder.Entity<Tournament>()
+                .HasMany(a => a.Teams)
+                .WithOne(f => f.Tournament)
+                .HasForeignKey(f => f.TournamentId);
             modelBuilder.Entity<Match>()
                 .HasOne(m => m.FirstTeam)
                 .WithMany(a => a.MatchesAsFirstTeam)

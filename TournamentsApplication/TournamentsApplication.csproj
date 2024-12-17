@@ -13,6 +13,7 @@
     <None Remove="Resources\Fonts\NunitoItalic.ttf" />
     <None Remove="Resources\Images\backgroundCS2.png" />
     <None Remove="Resources\Images\blankImage.png" />
+    <None Remove="Resources\Images\check.png" />
     <None Remove="Resources\Images\close.png" />
     <None Remove="Resources\Images\code.png" />
     <None Remove="Resources\Images\delete.png" />
@@ -81,6 +82,7 @@
   <ItemGroup>
     <Resource Include="Resources\Fonts\NunitoItalic.ttf" />
     <Resource Include="Resources\Images\blankImage.png" />
+    <Resource Include="Resources\Images\check.png" />
     <Resource Include="Resources\Images\code.png" />
     <Resource Include="Resources\Images\delete.png" />
     <Resource Include="Resources\Images\edit.png" />

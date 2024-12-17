@@ -61,7 +61,7 @@ namespace TournamentsApplication.Model
         }
         public virtual ICollection<Match> Matches { get; set; } = new List<Match>();
         public virtual Discipline Discipline { get; set; }
-        public virtual ICollection<Team> Teams { get; set; } = new List<Team>();
+        public virtual ICollection<TournamentTeam> Teams { get; set; } = new List<TournamentTeam>();
         public virtual ICollection<TournamentComment> TournamentComments { get; set; } = new List<TournamentComment>();
         public virtual ICollection<User> Users { get; set; } = new List<User>();
     }

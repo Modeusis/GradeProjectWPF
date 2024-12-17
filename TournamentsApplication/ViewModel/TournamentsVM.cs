@@ -32,6 +32,19 @@ namespace TournamentsApplication.ViewModel
             set { amountOfTournamentsPages = value; OnPropertyChanged(); }
         }
         public ObservableCollection<Tournament> SortedTournaments { get; set; }
+        private Tournament? _selectedItem;
+        public Tournament? SelectedItem
+        {
+            get => _selectedItem;
+            set
+            {
+                if (_selectedItem != value)
+                {
+                    _selectedItem = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
         private RelayCommand? toTournamentPageCommand;
         public RelayCommand? ToTournamentPageCommand
@@ -55,11 +68,30 @@ namespace TournamentsApplication.ViewModel
                     if (CurrentTournamentsPage < AmountOfTournamentsPages)
                     {
                         CurrentTournamentsPage++;
-                        LoadTournaments(CurrentTournamentsPage, 3);
+                        LoadTournaments(CurrentTournamentsPage, 4);
                     }
                 });
             }
         }
+        
+        private RelayCommand? deleteTournamentCommand;
+        public RelayCommand? DeleteTournamentCommand
+        {
+            get
+            {
+                return deleteTournamentCommand ??= new RelayCommand((obj) =>
+                {
+                    if (obj is Tournament tournament)
+                    {
+                        StatusService.Instance.SetStatusMessage($"Deleting tournament: {tournament.TournamentName}");
+                        uow.Tournaments.Delete(tournament);
+                        uow.Save();
+                        LoadTournaments(CurrentTournamentsPage, 4);
+                    }
+                });
+            }
+        }
+
 
         private RelayCommand? previousPageCommand;
         public RelayCommand? PreviousPageCommand
@@ -71,7 +103,7 @@ namespace TournamentsApplication.ViewModel
                     if (CurrentTournamentsPage > 1)
                     {
                         CurrentTournamentsPage--;
-                        LoadTournaments(CurrentTournamentsPage, 3);
+                        LoadTournaments(CurrentTournamentsPage, 4);
                     }
                 });
             }
@@ -86,7 +118,7 @@ namespace TournamentsApplication.ViewModel
 
             if (uow.Tournaments.GetAll().Count() > 0)
             {
-                LoadTournaments(CurrentTournamentsPage, 5);
+                LoadTournaments(CurrentTournamentsPage, 4);
             }
         }
         private void LoadTournaments(int pageNumber, int pageSize)
