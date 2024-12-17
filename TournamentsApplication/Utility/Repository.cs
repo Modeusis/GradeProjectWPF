@@ -40,14 +40,26 @@ namespace TournamentsApplication.Utility
         }
         public (List<T> items, int TotalPages) Get(int pageNumber, int pageSize, Func<T, object> orderBy, Func<T, bool> filter = null)
         {
-            var totalCount = _dbSet.Where(filter).Count();
+            var totalCount = _dbSet.Count();
+            if (filter != null)
+            {
+                totalCount = _dbSet.Where(filter).Count();
+            }
             var totalPages = (int)Math.Ceiling((double)totalCount / pageSize);
 
-            var items = _dbSet.Where(filter)
-                .OrderBy(orderBy)
-                .Skip((pageNumber - 1) * pageSize)
-                .Take(pageSize)
-                .ToList();
+            var items = _dbSet
+                    .OrderBy(orderBy)
+                    .Skip((pageNumber - 1) * pageSize)
+                    .Take(pageSize)
+                    .ToList();
+            if (filter != null) 
+            {
+                items = _dbSet.Where(filter)
+                    .OrderBy(orderBy)
+                    .Skip((pageNumber - 1) * pageSize)
+                    .Take(pageSize)
+                    .ToList();
+            }
 
             return (items, totalPages);
         }

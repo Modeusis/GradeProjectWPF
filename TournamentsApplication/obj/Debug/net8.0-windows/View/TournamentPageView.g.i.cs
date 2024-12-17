@@ -59,7 +59,7 @@ namespace TournamentsApplication.View {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/TournamentsApplication;V1.0.0.0;component/view/tournamentpageview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/TournamentsApplication;component/view/tournamentpageview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\View\TournamentPageView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

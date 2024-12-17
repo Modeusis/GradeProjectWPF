@@ -16,5 +16,5 @@ C:\programms\GitProject\GradeProjectWPF\TournamentsApplication\App.xaml
 2152104689590
 MainWindow.xaml;Styles\DarkThemeDictionary.xaml;View\AdminPanelView.xaml;View\HomePageView.xaml;View\LoginView.xaml;View\MainContentView.xaml;View\MatchesView.xaml;View\MatchPageView.xaml;View\PlayerPageView.xaml;View\PlayersView.xaml;View\RegistrationView.xaml;View\TeamPageView.xaml;View\TeamsView.xaml;View\TournamentPageView.xaml;View\TournamentsView.xaml;View\UserPageView.xaml;
 
-False
+True
 
