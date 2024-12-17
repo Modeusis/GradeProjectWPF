@@ -100,10 +100,10 @@ namespace TournamentsApplication.Model
             set { updated_at = value; OnPropertyChanged(nameof(UpdatedAt)); }
         }
 
-        public ICollection<TournamentComment> Comments { get; set; }
+        public virtual ICollection<TournamentComment> Comments { get; set; } = new List<TournamentComment>();
 
-        public Tournament Tournament {get; set;}
-        public Team Team { get; set; }
-        public Player Player { get; set; }
+        public virtual Tournament Tournament {get; set;}
+        public virtual Team Team { get; set; }
+        public virtual Player Player { get; set; }
     }
 }

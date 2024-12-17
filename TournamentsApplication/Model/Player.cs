@@ -66,8 +66,9 @@ namespace TournamentsApplication.Model
             set { updated_at = value; OnPropertyChanged(nameof(UpdatedAt)); }
         }
 
-        public Team Team { get; set; }
+        public virtual Team Team { get; set; }
 
-        public ICollection<User> Users { get; set; }
+        public virtual ICollection<User> Users { get; set; } = new List<User>();
+        public virtual ICollection<Statistics> Statistics { get; set; } = new List<Statistics>();
     }
 }

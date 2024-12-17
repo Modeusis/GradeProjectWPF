@@ -41,6 +41,6 @@ namespace TournamentsApplication.Model
             set { updated_at = value; OnPropertyChanged(nameof(UpdatedAt)); }
         }
 
-        public ICollection<Tournament> Tournaments { get; set; }
+        public virtual ICollection<Tournament> Tournaments { get; set; } = new List<Tournament>();
     }
 }

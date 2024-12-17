@@ -46,9 +46,11 @@ namespace TournamentsApplication.Model
             get { return updated_at; }
             set { updated_at = value; OnPropertyChanged(nameof(UpdatedAt)); }
         }
-        public ICollection<Player> Players { get; set; }
-        public ICollection<TournamentTeam> TournamentTeams { get; set; }
-        public ICollection<Match> Matches { get; set; }
-        public ICollection<User> Users { get; set; }
+        public virtual ICollection<Player> Players { get; set; } = new List<Player>();
+        public virtual ICollection<Tournament> Tournaments { get; set; } = new List<Tournament>();
+        public virtual ICollection<Match> MatchesAsFirstTeam { get; set; } = new List<Match>();
+        public virtual ICollection<Match> MatchesAsSecondTeam { get; set; } = new List<Match>();
+        public virtual ICollection<User> Users { get; set; } = new List<User>();
+        public virtual ICollection<Statistics> Statistics { get; set; } = new List<Statistics>();
     }
 }

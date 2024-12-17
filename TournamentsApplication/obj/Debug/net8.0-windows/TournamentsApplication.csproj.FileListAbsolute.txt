@@ -138,3 +138,5 @@ D:\University\GradeProject\TournamentsApplication\TournamentsApplication\obj\Deb
 D:\University\GradeProject\TournamentsApplication\TournamentsApplication\obj\Debug\net8.0-windows\VIew\TournamentPageView.baml
 D:\University\GradeProject\TournamentsApplication\TournamentsApplication\obj\Debug\net8.0-windows\VIew\TournamentsView.baml
 D:\University\GradeProject\TournamentsApplication\TournamentsApplication\obj\Debug\net8.0-windows\VIew\UserPageView.baml
+C:\programms\GitProject\GradeProjectWPF\TournamentsApplication\bin\Debug\net8.0-windows\Castle.Core.dll
+C:\programms\GitProject\GradeProjectWPF\TournamentsApplication\bin\Debug\net8.0-windows\Microsoft.EntityFrameworkCore.Proxies.dll

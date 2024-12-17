@@ -13,9 +13,10 @@ namespace TournamentsApplication.Model
         private int tournament_id;
         private int first_participant_id;
         private int second_participant_id;
+        public int? scoreFirstTeam;
+        public int? scoreSecondTeam;
         private DateTime match_time;
-        private string status;
-        private string result;
+        private bool status;
         private int? winner_id;
         private DateTime created_at;
         private DateTime? updated_at;
@@ -40,20 +41,25 @@ namespace TournamentsApplication.Model
             get { return second_participant_id; }
             set { second_participant_id = value; OnPropertyChanged(nameof(SecondParticipantId)); }
         }
+        public int? ScoreFirstTeam
+        {
+            get { return scoreFirstTeam; }
+            set { scoreFirstTeam = value; OnPropertyChanged(nameof(ScoreFirstTeam)); }
+        }
+        public int? ScoreSecondTeam
+        {
+            get { return scoreSecondTeam; }
+            set { scoreSecondTeam = value; OnPropertyChanged(nameof(ScoreSecondTeam)); }
+        }
         public DateTime MatchTime
         {
             get { return match_time; }
             set { match_time = value; OnPropertyChanged(nameof(MatchTime)); }
         }
-        public string Status
+        public bool Status
         {
             get { return status; }
             set { status = value; OnPropertyChanged(nameof(Status)); }
-        }
-        public string Result
-        {
-            get { return result; }
-            set { result = value; OnPropertyChanged(nameof(Result)); }
         }
         public int? WinnerId
         {
@@ -71,9 +77,10 @@ namespace TournamentsApplication.Model
             set { updated_at = value; OnPropertyChanged(nameof(UpdatedAt)); }
         }
 
-        public Tournament Tournament { get; set; }
-        public Team FirstTeam { get; set; }
-        public Team SecondTeam { get; set; }
+        public virtual Tournament Tournament { get; set; }
+        public virtual Team FirstTeam { get; set; }
+        public virtual Team SecondTeam { get; set; }
+        public virtual ICollection<Statistics> Statistics { get; set; } = new List<Statistics>();
 
     }
 }

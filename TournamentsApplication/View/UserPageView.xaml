@@ -73,7 +73,7 @@
                 <StackPanel Height="40" HorizontalAlignment="Center" Visibility="{Binding IsFavTeamExists, Converter={StaticResource Converter}}"
                             Orientation="Horizontal" VerticalAlignment="Center">
                     <TextBlock Style="{StaticResource FavTextBlock}" Text="Favorite team is "/>
-                    <Button Style="{StaticResource ContentButtonStyle}" Margin="10" Command="{Binding ToTeamPageCommand}" Cursor="Hand">
+                    <Button Style="{StaticResource ContentButtonStyle}" Margin="10" Command="{Binding TeamClickedCommand}" CommandParameter="{Binding FavTeam}" Cursor="Hand">
                         <TextBlock FontWeight="Bold" Style="{StaticResource FavTextBlock}" Text="{Binding TeamName}"/>
                     </Button>
                     <Image Margin="10,0,0,0" Width="40" Stretch="Uniform" Source="{Binding TeamIcon}"/>
@@ -103,7 +103,7 @@
                 </Grid>
                 <StackPanel Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Visibility="{Binding IsFavTournamentExists, Converter={StaticResource Converter}}">
                     <TextBlock Style="{StaticResource FavTextBlock}" Text="Featured tournament: "/>
-                    <Button Style="{StaticResource ContentButtonStyle}" Cursor="Hand" Command="{Binding ToTournamentPageCommand}">
+                    <Button Style="{StaticResource ContentButtonStyle}" Cursor="Hand" Command="{Binding TournamentClickedCommand}" CommandParameter="{Binding FavTournament}">
                         <TextBlock FontWeight="Bold" TextDecorations="Underline" Style="{StaticResource FavTextBlock}" Text="{Binding TournamentName}"/>
                     </Button>
                 </StackPanel>

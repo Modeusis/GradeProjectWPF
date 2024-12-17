@@ -45,7 +45,8 @@ namespace TournamentsApplication.ViewModel
         private RelayCommand? editProfileCommand;
         private RelayCommand? deleteProfileCommand;
         private RelayCommand? updateProfileCommand;
-        private RelayCommand? playerClickedCommand;
+        private RelayCommand? teamClickedCommand;
+        private RelayCommand? tournamentClickedCommand;
         private RelayCommand? selectLogoCommand;
         private RelayCommand? selectHeaderCommand;
         private RelayCommand? dismissChangesCommand;
@@ -224,14 +225,26 @@ namespace TournamentsApplication.ViewModel
                     }));
             }
         }
-        public RelayCommand? PlayerClickedCommand
+        public RelayCommand? TeamClickedCommand
         {
             get
             {
-                return playerClickedCommand ??
-                    (playerClickedCommand = new RelayCommand((obj) =>
+                return teamClickedCommand ??
+                    (teamClickedCommand = new RelayCommand((obj) =>
                     {
-                        
+                        if (obj is Team team) ContentNavigationService.Instance.SwitchCurrentContentView(new TeamPageView(team));
+
+                    }));
+            }
+        }
+        public RelayCommand? TournamentClickedCommand
+        {
+            get
+            {
+                return tournamentClickedCommand ??
+                    (tournamentClickedCommand = new RelayCommand((obj) =>
+                    {
+                        if (obj is Tournament tournament) ContentNavigationService.Instance.SwitchCurrentContentView(new TournamentPageView(tournament));
                     }));
             }
         }
@@ -383,8 +396,9 @@ namespace TournamentsApplication.ViewModel
             Login = CurrentUser.Login;
             TmpUserLogo = CurrentUserLogo;
             TmpUserHeader = CurrentUserHeader;
-            if (CurrentUser.Team is Team team)
+            if (CurrentUser.FavTeamId != null)
             {
+                Team team = uow.Teams.GetAll().Where(a => a.TeamId == CurrentUser.FavTeamId).FirstOrDefault();
                 FavTeam = team;
                 isFavTeamExists = true;
                 TeamPlayers = new ObservableCollection<Player>(team.Players);
@@ -395,16 +409,18 @@ namespace TournamentsApplication.ViewModel
             {
                 TeamName = "-";
             }
-            if (CurrentUser.Player is Player player)
+            if (CurrentUser.FavPlayerId != null)
             {
+                Player player = uow.Players.GetAll().Where(a => a.PlayerId == CurrentUser.FavPlayerId).FirstOrDefault();
                 FavPlayer = player;
                 isFavPlayerExists = true;
                 PlayerIcon = player.PlayerImg;
                 PlayerName = player.PlayerName;
                 PlayerPosition = player.Position;
             }
-            if (CurrentUser.Tournament is Tournament tournament)
+            if (CurrentUser.FavTournamentId != null)
             {
+                Tournament tournament = uow.Tournaments.GetAll().Where(a => a.TournamentId == CurrentUser.FavTournamentId).FirstOrDefault();
                 FavTournament = tournament;
                 isFavTournamentExists = true;
                 TournamentName = tournament.TournamentName;

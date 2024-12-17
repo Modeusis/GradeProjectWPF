@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TournamentsApplication.Model;
 using TournamentsApplication.ViewModel;
 
 namespace TournamentsApplication.View
@@ -21,11 +22,11 @@ namespace TournamentsApplication.View
     /// </summary>
     public partial class MatchPageView : UserControl
     {
-        public MatchPageView()
+        public MatchPageView(Match match)
         {
             InitializeComponent();
 
-            DataContext = new MatchPageVM();
+            DataContext = new MatchPageVM(match);
         }
     }
 }

@@ -26,9 +26,11 @@
     <None Remove="Resources\Images\iconBlack.png" />
     <None Remove="Resources\Images\IconFigma.png" />
     <None Remove="Resources\Images\IconWhite.png" />
+    <None Remove="Resources\Images\leftArrow.png" />
     <None Remove="Resources\Images\login.png" />
     <None Remove="Resources\Images\logout.png" />
     <None Remove="Resources\Images\MainIcon.png" />
+    <None Remove="Resources\Images\matches.png" />
     <None Remove="Resources\Images\minus.png" />
     <None Remove="Resources\Images\playersBack.jpg" />
     <None Remove="Resources\Images\Players\Aleksib.png" />
@@ -57,9 +59,12 @@
     <None Remove="Resources\Images\Players\xertioN.png" />
     <None Remove="Resources\Images\Players\zont1x.png" />
     <None Remove="Resources\Images\Players\ZywOo.png" />
+    <None Remove="Resources\Images\rightArrow.png" />
     <None Remove="Resources\Images\s1mpleGraff.jpg" />
     <None Remove="Resources\Images\StandardUserImage.png" />
     <None Remove="Resources\Images\star.png" />
+    <None Remove="Resources\Images\starEmpty.png" />
+    <None Remove="Resources\Images\starFill.png" />
     <None Remove="Resources\Images\teamback.jpg" />
     <None Remove="Resources\Images\Teams\Falcons.png" />
     <None Remove="Resources\Images\Teams\G2.png" />
@@ -82,8 +87,10 @@
     <Resource Include="Resources\Images\expand.png" />
     <Resource Include="Resources\Images\group.png" />
     <Resource Include="Resources\Images\IconFigma.png" />
+    <Resource Include="Resources\Images\leftArrow.png" />
     <Resource Include="Resources\Images\login.png" />
     <Resource Include="Resources\Images\logout.png" />
+    <Resource Include="Resources\Images\matches.png" />
     <Resource Include="Resources\Images\playersBack.jpg" />
     <Resource Include="Resources\Images\Players\Aleksib.png" />
     <Resource Include="Resources\Images\Players\apEX.png" />
@@ -111,7 +118,10 @@
     <Resource Include="Resources\Images\Players\xertioN.png" />
     <Resource Include="Resources\Images\Players\zont1x.png" />
     <Resource Include="Resources\Images\Players\ZywOo.png" />
+    <Resource Include="Resources\Images\rightArrow.png" />
     <Resource Include="Resources\Images\StandardUserImage.png" />
+    <Resource Include="Resources\Images\starEmpty.png" />
+    <Resource Include="Resources\Images\starFill.png" />
     <Resource Include="Resources\Images\teamback.jpg" />
     <Resource Include="Resources\Images\Teams\Falcons.png" />
     <Resource Include="Resources\Images\Teams\G2.png" />
@@ -133,6 +143,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="9.0.0" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.135" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.1" />
   </ItemGroup>

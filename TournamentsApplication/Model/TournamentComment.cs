@@ -47,7 +47,7 @@ namespace TournamentsApplication.Model
             set { updated_at = value; OnPropertyChanged(nameof(UpdatedAt)); }
         }
 
-        public User User { get; set; }
-        public Tournament Tournament { get; set; }
+        public virtual User User { get; set; }
+        public virtual Tournament Tournament { get; set; }
     }
 }

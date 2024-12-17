@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Proxies;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ using System.Drawing;
 using System.IO;
 using TournamentsApplication.Utility;
 using System.Windows.Media.Imaging;
+using Microsoft.Extensions.Options;
 
 namespace TournamentsApplication.Model
 {
@@ -22,27 +24,28 @@ namespace TournamentsApplication.Model
         public DbSet<Team> Teams { get; set; } = null!;
         public DbSet<Tournament> Tournaments { get; set; } = null!;
         public DbSet<TournamentComment> TournamentComments { get; set; } = null!;
-        public DbSet<TournamentTeam> TournamentTeams { get; set; } = null!;
         public DbSet<Discipline> Disciplines { get; set; } = null!;
-
+        public DbSet<Statistics> Statistics { get; set; } = null!;
         public ApplicationContext()
         {
             //Database.EnsureDeleted();
             Database.EnsureCreated();
-
-            Users.Load();
-            Players.Load();
-            Matches.Load();
-            Teams.Load();
-            Tournaments.Load();
-            TournamentComments.Load();
-            TournamentTeams.Load();
-            Disciplines.Load();
+            
+            //Users.Load();
+            //Players.Load();
+            //Matches.Load();
+            //Teams.Load();
+            //Tournaments.Load();
+            //TournamentComments.Load();
+            //Disciplines.Load();
+            //Statistics.Load();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=tournamentdb;Username=postgres;Password=123456");
+            optionsBuilder.UseLazyLoadingProxies();
+            base.OnConfiguring(optionsBuilder);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -59,10 +62,32 @@ namespace TournamentsApplication.Model
                 .HasKey(c => c.TournamentId);
             modelBuilder.Entity<TournamentComment>()
                 .HasKey(c => c.CommentId);
-            modelBuilder.Entity<TournamentTeam>()
-                .HasKey(c => c.TournamentTeamId);
             modelBuilder.Entity<Discipline>()
                 .HasKey(c => c.DisciplineId);
+            modelBuilder.Entity<Statistics>()
+                .HasKey(c => c.StatisticId);
+
+            modelBuilder.Entity<Statistics>()
+                .HasOne(s => s.Player)
+                .WithMany(p => p.Statistics)
+                .HasForeignKey(s => s.PlayerId);
+                
+            modelBuilder.Entity<Statistics>()
+                .HasMany(s => s.Matches)
+                .WithMany(m => m.Statistics)
+                .UsingEntity<Dictionary<string, object>>(
+                    "MatchStatistic",
+                    j => j.HasOne<Match>().WithMany().HasForeignKey("MatchId"),
+                    j => j.HasOne<Statistics>().WithMany().HasForeignKey("StatisticId")
+                    );
+            modelBuilder.Entity<Statistics>()
+                .HasMany(s => s.Teams)
+                .WithMany(t => t.Statistics)
+                .UsingEntity<Dictionary<string, object>>(
+                    "TeamStatistic",
+                    j => j.HasOne<Team>().WithMany().HasForeignKey("TeamId"),
+                    j => j.HasOne<Statistics>().WithMany().HasForeignKey("StatisticId")
+                    );
 
             modelBuilder.Entity<User>()
                 .HasMany(f => f.Comments)
@@ -72,10 +97,6 @@ namespace TournamentsApplication.Model
                 .HasMany(a => a.Users)
                 .WithOne(f => f.Team)
                 .HasForeignKey(f => f.FavTeamId);
-            modelBuilder.Entity<Tournament>()
-                .HasMany(a => a.TournamentTeams)
-                .WithOne(f => f.Tournament)
-                .HasForeignKey(f => f.TournamentId);
             modelBuilder.Entity<Tournament>()
                 .HasMany(a => a.Matches)
                 .WithOne(f => f.Tournament)
@@ -97,16 +118,20 @@ namespace TournamentsApplication.Model
                 .WithOne(f => f.Team)
                 .HasForeignKey(f => f.CurTeamId);
             modelBuilder.Entity<Team>()
-                .HasMany(a => a.TournamentTeams)
-                .WithOne(f => f.Team)
-                .HasForeignKey(f => f.TeamId);
+                .HasMany(a => a.Tournaments)
+                .WithMany(f => f.Teams)
+                .UsingEntity<Dictionary<string, object>>(
+                    "TournamentTeam",
+                    j => j.HasOne<Tournament>().WithMany().HasForeignKey("TournamentId"),
+                    j => j.HasOne<Team>().WithMany().HasForeignKey("TeamId")
+                    );
             modelBuilder.Entity<Match>()
                 .HasOne(m => m.FirstTeam)
-                .WithMany()
+                .WithMany(a => a.MatchesAsFirstTeam)
                 .HasForeignKey(m => m.FirstParticipantId);
             modelBuilder.Entity<Match>()
                 .HasOne(m => m.SecondTeam)
-                .WithMany()
+                .WithMany(a => a.MatchesAsSecondTeam)
                 .HasForeignKey(m => m.SecondParticipantId);
             modelBuilder.Entity<Player>()
                 .HasMany(a => a.Users)
@@ -171,13 +196,12 @@ namespace TournamentsApplication.Model
                     DisciplineId = 1,
                     Img = ImageConverter.LoadImageAsByteArray("pack://application:,,,/Resources/Images/Tournaments/pglRMR.png"),
                     CreatedAt = DateTime.UtcNow,
+                    StartDate = DateTime.UtcNow
                 });
-
-            modelBuilder.Entity<TournamentTeam>().HasData(
-                new TournamentTeam { TournamentTeamId = 1, TournamentId = 1, TeamId = 1 },
-                new TournamentTeam { TournamentTeamId = 2, TournamentId = 1, TeamId = 2 }, 
-                new TournamentTeam { TournamentTeamId = 3, TournamentId = 1, TeamId = 3 }, 
-                new TournamentTeam { TournamentTeamId = 4, TournamentId = 1, TeamId = 4 } 
+            modelBuilder.Entity<Match>().HasData(
+                new Match() { MatchId = 1, TournamentId = 1, FirstParticipantId = 1, SecondParticipantId = 2, Status = true, WinnerId = 1, ScoreFirstTeam = 13, ScoreSecondTeam = 9, MatchTime = DateTime.Parse("15.12.2024").ToUniversalTime() },
+                new Match() { MatchId = 2, TournamentId = 1, FirstParticipantId = 3, SecondParticipantId = 4, Status = true, WinnerId = 3, ScoreFirstTeam = 13, ScoreSecondTeam = 11, MatchTime = DateTime.Parse("15.12.2024").ToUniversalTime() },
+                new Match() { MatchId = 3, TournamentId = 1, FirstParticipantId = 1, SecondParticipantId = 3, Status = false, MatchTime = DateTime.Parse("16.12.2024").ToUniversalTime() }
             );
         }
     }

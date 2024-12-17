@@ -67,7 +67,7 @@ namespace TournamentsApplication.Utility
             {
                 CurrentWindowBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#2d2d2d"));
                 window.Width = 1280;
-                window.Height = 800;
+                window.Height = 850;
                 CenterWindow();
             }
             NavigationChanged?.Invoke();

@@ -13,19 +13,66 @@ namespace TournamentsApplication.ViewModel
 {
     internal class PlayerPageVM : ViewModelBase
     {
+        private UnitOfWork uow;
         public UserControl? CurrentContentView => ContentNavigationService.Instance.CurrentContentView;
+        public User? CurrentUser => UserService.Instance.CurrentUser;
+        public bool IsLogin => UserService.Instance.Login;
         private Player showedPlayer;
         private byte[] showedPlayerImg;
         private byte[]? teamIcon;
+        private byte[] favoriteIcon;
         private string showedPlayerName;
         private string teamName;
         private string showedPlayerRealName;
         private string showedPlayerPosition;
         private int showedPlayerAge;
-        private bool isFavoritePlayer;
-        private bool isHaveCurrentTeam;
+        private bool isFavoritePlayer = false;
+        private bool isHaveCurrentTeam = false;
         private Team? showedPlayerTeam;
+        
         public ObservableCollection<Player>? TeamPlayers { get; set; }
+        private RelayCommand? changeFavoriteCommand;
+        public RelayCommand ChangeFavoriteCommand
+        {
+            get
+            {
+                return changeFavoriteCommand ??
+                    (changeFavoriteCommand = new RelayCommand((obj) =>
+                    {
+                        try
+                        {
+                            if (IsFavoritePlayer == true)
+                            {
+                                User user = CurrentUser;
+                                user.FavPlayerId = null;
+                                IsFavoritePlayer = false;
+                                StatusService.Instance.SetStatusMessage("Unfavorite");
+                                FavoriteIcon = ImageConverter.LoadImageAsByteArray("pack://application:,,,/Resources/Images/starEmpty.png");
+                                uow.Users.Update(user);
+                                uow.Save();
+                                UserService.Instance.RenewCurrentUser(user);
+                            }
+                            else
+                            {
+                                User user = CurrentUser;
+                                user.FavPlayerId = ShowedPlayer.PlayerId;
+                                IsFavoritePlayer = true;
+                                StatusService.Instance.SetStatusMessage("Favorite");
+                                FavoriteIcon = ImageConverter.LoadImageAsByteArray("pack://application:,,,/Resources/Images/starFill.png");
+                                uow.Users.Update(user);
+                                uow.Save();
+                                UserService.Instance.RenewCurrentUser(user);
+                            }
+                        }
+                        catch (Exception ex)
+                        { 
+                            
+                        }
+                        
+
+                    }));
+            }
+        }
         private RelayCommand? itemClickCommand;
         public RelayCommand? ItemClickCommand
         {
@@ -66,6 +113,11 @@ namespace TournamentsApplication.ViewModel
         {
             get { return showedPlayerImg; }
             set { showedPlayerImg = value; OnPropertyChanged(); }
+        }
+        public byte[] FavoriteIcon
+        {
+            get { return favoriteIcon; }
+            set { favoriteIcon = value; OnPropertyChanged(); }
         }
         public byte[]? TeamIcon
         {
@@ -115,9 +167,17 @@ namespace TournamentsApplication.ViewModel
 
         public PlayerPageVM(Player player)
         {
+            uow = new UnitOfWork(new ApplicationContext());
             ContentNavigationService.Instance.NavigationChanged += OnContentChanged;
+            UserService.Instance.UserChanged += OnUserChanged;
 
             ShowedPlayer = player;
+            FavoriteIcon = ImageConverter.LoadImageAsByteArray("pack://application:,,,/Resources/Images/starEmpty.png");
+            if (CurrentUser != null && CurrentUser.FavPlayerId == ShowedPlayer.PlayerId)
+            {
+                IsFavoritePlayer = true;
+                FavoriteIcon = ImageConverter.LoadImageAsByteArray("pack://application:,,,/Resources/Images/starFill.png");
+            }
             ShowedPlayerName = ShowedPlayer.PlayerName;
             ShowedPlayerRealName = ShowedPlayer.PlayerRealName;
             ShowedPlayerPosition = ShowedPlayer.Position;
@@ -138,6 +198,11 @@ namespace TournamentsApplication.ViewModel
         private void OnContentChanged()
         {
             OnPropertyChanged(nameof(CurrentContentView));
+        }
+        private void OnUserChanged()
+        {
+            OnPropertyChanged(nameof(CurrentUser));
+            OnPropertyChanged(nameof(IsLogin));
         }
 
         public static int CalculateAge(DateTime birthDate, DateTime? currentDate = null)

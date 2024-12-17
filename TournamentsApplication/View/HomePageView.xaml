@@ -59,6 +59,13 @@
                 <RadioButton Style="{StaticResource NavMenuButtonStyle}" 
                              Command="{Binding SwitchContentCommand}"
                              CommandParameter="{x:Type local:TournamentsView}"
+                             IsChecked="{Binding SelectedContentType, Converter={StaticResource TEConv}, ConverterParameter={x:Type local:MatchesView}}"
+                             Cursor="Hand">
+                    <Image Style="{StaticResource NavMenuImageStyle}" Source="pack://application:,,,/Resources/Images/matches.png"/>
+                </RadioButton>
+                <RadioButton Style="{StaticResource NavMenuButtonStyle}" 
+                             Command="{Binding SwitchContentCommand}"
+                             CommandParameter="{x:Type local:TournamentsView}"
                              IsChecked="{Binding SelectedContentType, Converter={StaticResource TEConv}, ConverterParameter={x:Type local:TournamentsView}}"
                              Cursor="Hand">
                     <Image Style="{StaticResource NavMenuImageStyle}" Source="pack://application:,,,/Resources/Images/trophy.png"/>

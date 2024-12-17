@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -58,10 +59,10 @@ namespace TournamentsApplication.Model
             get { return updated_at; }
             set { updated_at = value; OnPropertyChanged(nameof(UpdatedAt)); }
         }
-        public ICollection<Match> Matches { get; set; }
-        public Discipline Discipline { get; set; }
-        public ICollection<TournamentTeam> TournamentTeams { get; set; }
-        public ICollection<TournamentComment> TournamentComments { get; set; }
-        public ICollection<User> Users { get; set; }
+        public virtual ICollection<Match> Matches { get; set; } = new List<Match>();
+        public virtual Discipline Discipline { get; set; }
+        public virtual ICollection<Team> Teams { get; set; } = new List<Team>();
+        public virtual ICollection<TournamentComment> TournamentComments { get; set; } = new List<TournamentComment>();
+        public virtual ICollection<User> Users { get; set; } = new List<User>();
     }
 }

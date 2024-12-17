@@ -22,7 +22,7 @@ namespace TournamentsApplication.Utility
             return _dbSet.Find(id);
         }
 
-        public IEnumerable<T> GetAll(Func<T, object> orderBy = null, Func<T, bool> searchBy = null)
+        public IQueryable<T> GetAll(Func<T, object> orderBy = null, Func<T, bool> searchBy = null)
         {
             IQueryable<T> query = _dbSet;
 
@@ -36,7 +36,20 @@ namespace TournamentsApplication.Utility
                 query = query.OrderBy(orderBy).AsQueryable();
             }
 
-            return query.ToList();
+            return query;
+        }
+        public (List<T> items, int TotalPages) Get(int pageNumber, int pageSize, Func<T, object> orderBy, Func<T, bool> filter = null)
+        {
+            var totalCount = _dbSet.Where(filter).Count();
+            var totalPages = (int)Math.Ceiling((double)totalCount / pageSize);
+
+            var items = _dbSet.Where(filter)
+                .OrderBy(orderBy)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            return (items, totalPages);
         }
 
         public void Add(T entity)
