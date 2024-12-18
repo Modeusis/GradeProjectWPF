@@ -11,8 +11,8 @@ namespace TournamentsApplication.Model
     {
         private int match_id;
         private int tournament_id;
-        private int first_participant_id;
-        private int second_participant_id;
+        private int? first_participant_id;
+        private int? second_participant_id;
         public int? scoreFirstTeam;
         public int? scoreSecondTeam;
         private DateTime match_time;
@@ -31,12 +31,12 @@ namespace TournamentsApplication.Model
             get { return tournament_id; }
             set { tournament_id = value; OnPropertyChanged(nameof(TournamentId)); }
         }
-        public int FirstParticipantId
+        public int? FirstParticipantId
         {
             get { return first_participant_id; }
             set { first_participant_id = value; OnPropertyChanged(nameof(FirstParticipantId)); }
         }
-        public int SecondParticipantId
+        public int? SecondParticipantId
         {
             get { return second_participant_id; }
             set { second_participant_id = value; OnPropertyChanged(nameof(SecondParticipantId)); }
@@ -80,7 +80,7 @@ namespace TournamentsApplication.Model
         public virtual Tournament Tournament { get; set; }
         public virtual Team FirstTeam { get; set; }
         public virtual Team SecondTeam { get; set; }
-        public virtual ICollection<Statistics> Statistics { get; set; } = new List<Statistics>();
+        public virtual ICollection<MatchStatistic> Statistics { get; set; } = new List<MatchStatistic>();
 
     }
 }

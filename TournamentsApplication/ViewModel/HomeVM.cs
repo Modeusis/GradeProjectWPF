@@ -81,7 +81,7 @@ namespace TournamentsApplication.ViewModel
                 (toMainPageCommand = new RelayCommand((obj) =>
                 {
                     SelectedContentType = null;
-                    ContentNavigationService.Instance.SwitchCurrentContentView(new MainContentView());
+                    ContentNavigationService.Instance.SwitchCurrentContentView(new MatchesView());
                 }));
             }
         }
@@ -106,7 +106,7 @@ namespace TournamentsApplication.ViewModel
             NavigationService.Instance.NavigationChanged += OnViewChanged;
             ContentNavigationService.Instance.NavigationChanged += OnContentViewChanged;
 
-            ContentNavigationService.Instance.SwitchCurrentContentView(new MainContentView());
+            ContentNavigationService.Instance.SwitchCurrentContentView(new UserPageView());
         }
         private void OnUserChanged()
         {

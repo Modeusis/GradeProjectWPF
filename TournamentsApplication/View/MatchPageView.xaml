@@ -14,7 +14,283 @@
         <u:TEConverter x:Key="TEConv"/>
         <u:ImageConverter x:Key="IMGConv"/>
     </UserControl.Resources>
-    <Grid>
-            
+    <Grid Margin="50, 20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <Rectangle Grid.ColumnSpan="2" Grid.RowSpan="2" Opacity="0.3" RadiusX="20" RadiusY="20">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="pack://application:,,,/Resources/Images/matchHeader.jpg" Stretch="UniformToFill" />
+            </Rectangle.Fill>
+        </Rectangle>
+        <StackPanel Visibility="{Binding IsMatchFinished, Converter={StaticResource Converter}}" Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="0,20,0,0" 
+                    VerticalAlignment="Top" HorizontalAlignment="Center">
+            <TextBlock Style="{StaticResource FavTextBlock}" Text="{Binding WinnerTeamName}"/>
+            <TextBlock Foreground="#ff5500" FontWeight="Bold" Style="{StaticResource FavTextBlock}" Text="WIN"/>
+        </StackPanel>
+        <Button Grid.RowSpan="2" Style="{StaticResource ContentButtonStyle}" Margin="10" Command="{Binding ToTeamPageCommand}" CommandParameter="{Binding FirstTeam}" Cursor="Hand">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock FontWeight="Bold" Style="{StaticResource HeaderTextBlock}" Text="{Binding FirstTeam.TeamName}"/>
+                <Border Margin="10,0,0,0" Width="80" Height="80">
+                    <Border.Background>
+                        <RadialGradientBrush Center="0.5,0.5" GradientOrigin="0.5,0.5">
+                            <GradientStop Color="#ff5500" Offset="0"/>
+                            <GradientStop Color="Transparent" Offset="1"/>
+                        </RadialGradientBrush>
+                    </Border.Background>
+                    <Image Stretch="Uniform" Source="{Binding FirstTeam.TeamLogo}"/>
+                </Border>
+            </StackPanel>
+        </Button>
+        <Button Grid.RowSpan="2" Grid.Column="1" Style="{StaticResource ContentButtonStyle}" Margin="10" Command="{Binding ToTeamPageCommand}" CommandParameter="{Binding SecondTeam}" Cursor="Hand">
+            <StackPanel Orientation="Horizontal">
+                <Border Margin="0,0,10,0" Width="80" Height="80">
+                    <Border.Background>
+                        <RadialGradientBrush Center="0.5,0.5" GradientOrigin="0.5,0.5">
+                            <GradientStop Color="#ff5500" Offset="0"/>
+                            <GradientStop Color="Transparent" Offset="1"/>
+                        </RadialGradientBrush>
+                    </Border.Background>
+                    <Image Stretch="Uniform" Source="{Binding SecondTeam.TeamLogo}"/>
+                </Border>
+                <TextBlock FontWeight="Bold" Style="{StaticResource HeaderTextBlock}" Text="{Binding SecondTeam.TeamName}"/>
+            </StackPanel>
+        </Button>
+        <StackPanel Grid.ColumnSpan="2" Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Style="{StaticResource FavTextBlock}" Text="{Binding ScoreFirstTeam}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Margin="20,0" Style="{StaticResource PlayerTeamPgHeaderBlock}" Text=":" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Style="{StaticResource FavTextBlock}" Text="{Binding ScoreSecondTeam}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </StackPanel>
+        <Grid Margin="5" Grid.ColumnSpan="2" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width ="50"/>
+                    <ColumnDefinition Width ="50"/>
+                    <ColumnDefinition Width ="50"/>
+                    <ColumnDefinition Width ="50"/>
+                    <ColumnDefinition Width ="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Style="{StaticResource H2TextBlock}" Opacity="0.6" Grid.Column="1" FontStyle="Italic" Text="Nickname"/>
+                <TextBlock Style="{StaticResource FavTextBlock}" FontWeight="Thin" FontSize="20" FontStyle="Italic" Opacity="0.6" Grid.Column="2" Text="K"/>
+                <TextBlock Style="{StaticResource FavTextBlock}" FontWeight="Thin" FontSize="20" FontStyle="Italic" Opacity="0.6" Grid.Column="3" Text="D"/>
+                <TextBlock Style="{StaticResource FavTextBlock}" FontWeight="Thin" FontSize="20" FontStyle="Italic" Opacity="0.6" Grid.Column="4" Text="A"/>
+                <TextBlock Style="{StaticResource FavTextBlock}" FontWeight="Thin" FontSize="20" FontStyle="Italic" Opacity="0.6" Grid.Column="5" Text="KD"/>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width ="50"/>
+                    <ColumnDefinition Width ="50"/>
+                    <ColumnDefinition Width ="50"/>
+                    <ColumnDefinition Width ="50"/>
+                    <ColumnDefinition Width ="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Style="{StaticResource H2TextBlock}" Opacity="0.6" Grid.Column="1" FontStyle="Italic" Text="Nickname"/>
+                <TextBlock Style="{StaticResource FavTextBlock}" FontWeight="Thin" FontSize="20" FontStyle="Italic" Opacity="0.6" Grid.Column="2" Text="K"/>
+                <TextBlock Style="{StaticResource FavTextBlock}" FontWeight="Thin" FontSize="20" FontStyle="Italic" Opacity="0.6" Grid.Column="3" Text="D"/>
+                <TextBlock Style="{StaticResource FavTextBlock}" FontWeight="Thin" FontSize="20" FontStyle="Italic" Opacity="0.6" Grid.Column="4" Text="A"/>
+                <TextBlock Style="{StaticResource FavTextBlock}" FontWeight="Thin" FontSize="20" FontStyle="Italic" Opacity="0.6" Grid.Column="5" Text="KD"/>
+            </Grid>
+        </Grid>
+        
+        
+        <Grid Grid.Row="3" Grid.Column="0" Margin="5,5,5,20">
+            <Border Background="#121212" CornerRadius="10"/>
+            <ListBox VerticalAlignment="Stretch"
+                     ItemContainerStyle="{StaticResource TeamPgListBoxItem}"
+                     Style="{StaticResource StatisticsList}"
+                     ItemsSource="{Binding FirstTeamStatistics}"
+                     SelectedItem="{Binding SelectedFirstTeamStatistic}"
+                     ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Height="60">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="180"/>
+                                <ColumnDefinition Width ="50"/>
+                                <ColumnDefinition Width ="50"/>
+                                <ColumnDefinition Width ="50"/>
+                                <ColumnDefinition Width ="50"/>
+                                <ColumnDefinition Width ="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border Width="50" Height="50" CornerRadius="5" HorizontalAlignment="Center">
+                                <Border.Background>
+                                    <LinearGradientBrush Opacity="0.6" StartPoint="0,0" EndPoint="1,1">
+                                        <GradientStop Color="#1d1d1d" Offset="0.2" />
+                                        <GradientStop Color="#ff5500" Offset="0.8" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <Image Source="{Binding Player.PlayerImg, Converter={StaticResource IMGConv}}" Stretch="Uniform" />
+                            </Border>
+                            <TextBlock Grid.Column="1" Style="{StaticResource FavTextBlock}" Text="{Binding Player.PlayerName}" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="2" Style="{StaticResource FavTextBlock}" Text="{Binding PlayerKills}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="3" Style="{StaticResource FavTextBlock}" Text="{Binding PlayerDeaths}"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="4" Style="{StaticResource FavTextBlock}" Text="{Binding PlayerAssists}"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="5" Style="{StaticResource FavTextBlock}" Text="{Binding PlayerKD}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+
+        <Grid Grid.Row="3" Grid.Column="1" Margin="5,5,5,20">
+            <Border Background="#121212" CornerRadius="10"/>
+            <ListBox VerticalAlignment="Stretch"
+             ItemContainerStyle="{StaticResource TeamPgListBoxItem}"
+             Style="{StaticResource StatisticsList}"
+             ItemsSource="{Binding SecondTeamStatistics}"
+             SelectedItem="{Binding SelectedSecondTeamStatistic}"
+             ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Height="60">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="180"/>
+                                <ColumnDefinition Width ="50"/>
+                                <ColumnDefinition Width ="50"/>
+                                <ColumnDefinition Width ="50"/>
+                                <ColumnDefinition Width ="50"/>
+                                <ColumnDefinition Width ="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border Width="50" Height="50" CornerRadius="5" HorizontalAlignment="Center">
+                                <Border.Background>
+                                    <LinearGradientBrush Opacity="0.6" StartPoint="0,0" EndPoint="1,1">
+                                        <GradientStop Color="#1d1d1d" Offset="0.2" />
+                                        <GradientStop Color="#ff5500" Offset="0.8" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <Image Source="{Binding Player.PlayerImg, Converter={StaticResource IMGConv}}" Stretch="Uniform" />
+                            </Border>
+                            <TextBlock Grid.Column="1" Style="{StaticResource FavTextBlock}" Text="{Binding Player.PlayerName}" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="2" Style="{StaticResource FavTextBlock}" Text="{Binding PlayerKills}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="3" Style="{StaticResource FavTextBlock}" Text="{Binding PlayerDeaths}"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="4" Style="{StaticResource FavTextBlock}" Text="{Binding PlayerAssists}"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="5" Style="{StaticResource FavTextBlock}" Text="{Binding PlayerKD}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+        
+        
+        <Grid Grid.ColumnSpan="2" Grid.Row="4" Visibility="{Binding IsAdmin, Converter={StaticResource Converter}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Visibility="{Binding IsMatchFinished, Converter={StaticResource Converter}}"  Grid.Column="0" VerticalAlignment="Center" Margin="0" HorizontalAlignment="Left" Command="{Binding ChangeFirstTeamStatisticsCommand}" Style="{StaticResource EditProfileButtonStyle}">
+                <Image Margin="5" Width="30" Source="pack://application:,,,/Resources/Images/edit.png"/>
+            </Button>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Button Command="{Binding StartFinishCommand}" Margin="10" Visibility="{Binding IsMatchFinished, Converter={StaticResource ReverseConverter}}" Content="Finish" Style="{StaticResource HeadButton}"/>
+                <Button Grid.Column="2" Grid.Row="1" Style="{StaticResource IconDeleteButtonStyle}" Command="{Binding DeleteMatchCommand}">
+                    <Image Style="{StaticResource DeleteIconImageStyle}" Source="pack://application:,,,/Resources/Images/delete.png"/>
+                </Button>
+            </StackPanel>
+            <Button Visibility="{Binding IsMatchFinished, Converter={StaticResource Converter}}" Grid.Column="2" VerticalAlignment="Center" Margin="0" Command="{Binding ChangeSecondTeamStatisticsCommand}" Style="{StaticResource EditProfileButtonStyle}">
+                <Image Margin="5" Width="30" Source="pack://application:,,,/Resources/Images/edit.png"/>
+            </Button>
+        </Grid>
+        <Border Visibility="{Binding IsChangingStatistics, Converter={StaticResource Converter}}" Grid.Row="0" Grid.RowSpan="6" Grid.ColumnSpan="2" CornerRadius="20">
+            <Border.Background>
+                <ImageBrush ImageSource="pack://application:,,,/Resources/Images/teamback.jpg" Stretch="UniformToFill" />
+            </Border.Background>
+            <Grid>
+                <Grid Margin="0, 200">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="260"/>
+                        <ColumnDefinition Width="260"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition Height="80"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Style="{StaticResource HeaderTextBlock}" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding TmpStatisticPlayerName}"/>
+                    <TextBlock Margin="10,0,0,0" Grid.Row="1" Grid.Column="1" Style="{StaticResource H2TextBlock}" Text="Kills"/>
+                    <TextBox Grid.Row="1" Grid.Column="2" Style="{StaticResource H2TextBox}" Text="{Binding Kills}"/>
+                    <TextBlock Margin="10,0,0,0" Grid.Row="2" Grid.Column="1" Style="{StaticResource H2TextBlock}" Text="Deaths"/>
+                    <TextBox Grid.Row="2" Grid.Column="2" Style="{StaticResource H2TextBox}" Text="{Binding Deaths}"/>
+                    <TextBlock Margin="10,0,0,0" Grid.Row="3" Grid.Column="1" Style="{StaticResource H2TextBlock}" Text="Assists"/>
+                    <TextBox Grid.Row="3" Grid.Column="2" Style="{StaticResource H2TextBox}" Text="{Binding Assists}"/>
+                    <StackPanel VerticalAlignment="Center" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center"
+                Grid.ColumnSpan="2" Orientation="Horizontal">
+                        <Button Command="{Binding SaveStatisticsCommand}" Content="Save stats" Style="{StaticResource HeadButton}"/>
+                        <Button Command="{Binding DismissStatisticsCommand}" Content="Dismiss" Margin="20,0,0,0" Style="{StaticResource HeaderEditButton}"/>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Border>
+        <Border Visibility="{Binding IsChanging, Converter={StaticResource Converter}}" Grid.Row="0" Grid.RowSpan="6" Grid.ColumnSpan="2" CornerRadius="20">
+            <Border.Background>
+                <ImageBrush ImageSource="pack://application:,,,/Resources/Images/teamback.jpg" Stretch="UniformToFill" />
+            </Border.Background>
+            <Grid>
+                <Grid Margin="0, 200">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="260"/>
+                        <ColumnDefinition Width="260"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition Height="80"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Style="{StaticResource HeaderTextBlock}" Grid.Column="1" Grid.ColumnSpan="2" Text="Finish match"/>
+                    <TextBlock Margin="10,0,0,0" Grid.Row="1" Grid.Column="1" Style="{StaticResource H2TextBlock}" Text="Winner"/>
+                    <ComboBox Width="250" Grid.Row="1" Grid.Column="2" Style="{StaticResource ComboBoxStyle}" SelectedItem="{Binding TmpTeamWinner}" ItemsSource="{Binding Participants}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Style="{StaticResource H2TextBlock}" Text="{Binding TeamName}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <StackPanel Orientation="Horizontal" Margin="10,0,0,0" Grid.Row="2" Grid.Column="1">
+                        <TextBlock  Style="{StaticResource H2TextBlock}" Text="{Binding FirstTeam.TeamName}"/>
+                        <TextBlock  Style="{StaticResource H2TextBlock}" Text=" score is:"/>
+                    </StackPanel>
+                    <TextBox Grid.Row="2" Grid.Column="2" Style="{StaticResource H2TextBox}" Text="{Binding TmpFScore}"/>
+                    <StackPanel Orientation="Horizontal" Margin="10,0,0,0" Grid.Row="3" Grid.Column="1">
+                        <TextBlock  Style="{StaticResource H2TextBlock}" Text="{Binding SecondTeam.TeamName}"/>
+                        <TextBlock  Style="{StaticResource H2TextBlock}" Text=" score is:"/>
+                    </StackPanel>
+                    
+                    <TextBox Grid.Row="3" Grid.Column="2" Style="{StaticResource H2TextBox}" Text="{Binding TmpSScore}"/>
+                    <StackPanel VerticalAlignment="Center" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center"
+                                Grid.ColumnSpan="2" Orientation="Horizontal">
+                        <Button Command="{Binding FinishMatchCommand}" Content="Save stats" Style="{StaticResource HeadButton}"/>
+                        <Button Command="{Binding DismissMatchCommand}" Content="Dismiss" Margin="20,0,0,0" Style="{StaticResource HeaderEditButton}"/>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Border>
     </Grid>
 </UserControl>

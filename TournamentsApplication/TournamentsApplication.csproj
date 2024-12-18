@@ -32,6 +32,7 @@
     <None Remove="Resources\Images\logout.png" />
     <None Remove="Resources\Images\MainIcon.png" />
     <None Remove="Resources\Images\matches.png" />
+    <None Remove="Resources\Images\matchHeader.jpg" />
     <None Remove="Resources\Images\minus.png" />
     <None Remove="Resources\Images\playersBack.jpg" />
     <None Remove="Resources\Images\Players\Aleksib.png" />
@@ -93,6 +94,7 @@
     <Resource Include="Resources\Images\login.png" />
     <Resource Include="Resources\Images\logout.png" />
     <Resource Include="Resources\Images\matches.png" />
+    <Resource Include="Resources\Images\matchHeader.jpg" />
     <Resource Include="Resources\Images\playersBack.jpg" />
     <Resource Include="Resources\Images\Players\Aleksib.png" />
     <Resource Include="Resources\Images\Players\apEX.png" />

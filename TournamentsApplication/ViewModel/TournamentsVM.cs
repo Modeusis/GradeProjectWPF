@@ -9,6 +9,7 @@ using System.Windows.Controls;
 using TournamentsApplication.Model;
 using TournamentsApplication.Utility;
 using TournamentsApplication.View;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace TournamentsApplication.ViewModel
 {
@@ -30,6 +31,19 @@ namespace TournamentsApplication.ViewModel
         {
             get => amountOfTournamentsPages;
             set { amountOfTournamentsPages = value; OnPropertyChanged(); }
+        }
+        private string currentText;
+        public string CurrentText
+        {
+            get => currentText;
+            set
+            { 
+                currentText = value;
+                OnPropertyChanged();
+                findFunc = (txt => txt.TournamentName.Contains(currentText, StringComparison.OrdinalIgnoreCase));
+                CurrentTournamentsPage = 1;
+                LoadTournaments(CurrentTournamentsPage, 4);
+            }
         }
         public ObservableCollection<Tournament> SortedTournaments { get; set; }
         private Tournament? _selectedItem;
@@ -86,6 +100,7 @@ namespace TournamentsApplication.ViewModel
                         StatusService.Instance.SetStatusMessage($"Deleting tournament: {tournament.TournamentName}");
                         uow.Tournaments.Delete(tournament);
                         uow.Save();
+                        UserService.Instance.RenewCurrentUser(uow.Users.GetById(CurrentUser.UserId));
                         LoadTournaments(CurrentTournamentsPage, 4);
                     }
                 });

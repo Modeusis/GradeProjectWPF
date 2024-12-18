@@ -16,7 +16,6 @@
     </UserControl.Resources>
     <Grid Margin="150, 20">
         <Grid.RowDefinitions>
-
             <RowDefinition Height="400"/>
             <RowDefinition Height="70"/>
             <RowDefinition/>
@@ -75,7 +74,7 @@
                 <TextBlock Margin="10,0,0,0" Grid.Row="3" Style="{StaticResource H2TextBlock}" Text="Age"/>
                 <TextBlock Margin="10,0,0,0" Grid.Row="3" Grid.Column="1" Style="{StaticResource H2TextBlock}" Text="{Binding ShowedPlayerAge}"/>
                 <TextBlock Margin="10,0,0,0" Grid.Row="4" Style="{StaticResource H2TextBlock}" Text="Average KD"/>
-                <TextBlock Margin="10,0,0,0" Grid.Row="4" Grid.Column="1" Style="{StaticResource H2TextBlock}" Text="-"/>
+                <TextBlock Margin="10,0,0,0" Grid.Row="4" Grid.Column="1" Style="{StaticResource H2TextBlock}" Text="{Binding AKD}"/>
             </Grid>
         </Grid>
 

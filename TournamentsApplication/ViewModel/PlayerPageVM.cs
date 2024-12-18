@@ -26,11 +26,17 @@ namespace TournamentsApplication.ViewModel
         private string showedPlayerRealName;
         private string showedPlayerPosition;
         private int showedPlayerAge;
+        private double aKD;
         private bool isFavoritePlayer = false;
         private bool isHaveCurrentTeam = false;
         private Team? showedPlayerTeam;
         
         public ObservableCollection<Player>? TeamPlayers { get; set; }
+        public double AKD 
+        {
+            get { return aKD; }
+            set { aKD = value; OnPropertyChanged(); }
+        }
         private RelayCommand? changeFavoriteCommand;
         public RelayCommand ChangeFavoriteCommand
         {
@@ -170,8 +176,19 @@ namespace TournamentsApplication.ViewModel
             uow = new UnitOfWork(new ApplicationContext());
             ContentNavigationService.Instance.NavigationChanged += OnContentChanged;
             UserService.Instance.UserChanged += OnUserChanged;
-
-            ShowedPlayer = player;
+            ShowedPlayer = uow.Players.GetById(player.PlayerId);
+            double AKDSum = 0;
+            foreach (var item in uow.Statistics.GetAll().Where(a => a.PlayerId == ShowedPlayer.PlayerId))
+            {
+                if(item.PlayerKD == "P")
+                {
+                    AKDSum += 1.5;
+                    continue;
+                }
+                double tmpAKD = double.Parse(item.PlayerKD);
+                AKDSum += tmpAKD;
+            }
+            AKD = (double)AKDSum / uow.Statistics.GetAll().Where(a => a.PlayerId == ShowedPlayer.PlayerId).Count();
             FavoriteIcon = ImageConverter.LoadImageAsByteArray("pack://application:,,,/Resources/Images/starEmpty.png");
             if (CurrentUser != null && CurrentUser.FavPlayerId == ShowedPlayer.PlayerId)
             {

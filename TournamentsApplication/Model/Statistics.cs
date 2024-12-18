@@ -9,7 +9,7 @@ namespace TournamentsApplication.Model
         private int matchId;
         private int teamId;
         private int playerId;
-        private double playerKD;
+        private string playerKD;
         private int playerKills;
         private int playerDeaths;
         private int playerAssists;
@@ -38,7 +38,7 @@ namespace TournamentsApplication.Model
             set { playerId = value; OnPropertyChanged(nameof(PlayerId)); }
         }
 
-        public double PlayerKD
+        public string PlayerKD
         {
             get => playerKD;
             set { playerKD = value; OnPropertyChanged(nameof(PlayerKD)); }
@@ -62,7 +62,7 @@ namespace TournamentsApplication.Model
             set { playerAssists = value; OnPropertyChanged(nameof(PlayerAssists)); }
         }
 
-        public virtual ICollection<Match> Matches { get; set; } = new List<Match>();
+        public virtual ICollection<MatchStatistic> Matches { get; set; } = new List<MatchStatistic>();
         public virtual ICollection<Team> Teams { get; set; } = new List<Team>();
         public virtual Player Player { get; set; }
     }

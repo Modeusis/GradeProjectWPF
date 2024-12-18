@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 C:\programms\GitProject\GradeProjectWPF\TournamentsApplication\App.xaml
-16-1981833659
+15-924853289
 
-60270084945
+601291535457
 2152104689590
-MainWindow.xaml;Styles\DarkThemeDictionary.xaml;View\AdminPanelView.xaml;View\HomePageView.xaml;View\LoginView.xaml;View\MainContentView.xaml;View\MatchesView.xaml;View\MatchPageView.xaml;View\PlayerPageView.xaml;View\PlayersView.xaml;View\RegistrationView.xaml;View\TeamPageView.xaml;View\TeamsView.xaml;View\TournamentPageView.xaml;View\TournamentsView.xaml;View\UserPageView.xaml;
+MainWindow.xaml;Styles\DarkThemeDictionary.xaml;View\AdminPanelView.xaml;View\HomePageView.xaml;View\LoginView.xaml;View\MatchesView.xaml;View\MatchPageView.xaml;View\PlayerPageView.xaml;View\PlayersView.xaml;View\RegistrationView.xaml;View\TeamPageView.xaml;View\TeamsView.xaml;View\TournamentPageView.xaml;View\TournamentsView.xaml;View\UserPageView.xaml;
 
 False
 

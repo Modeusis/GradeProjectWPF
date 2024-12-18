@@ -51,6 +51,5 @@ namespace TournamentsApplication.Model
         public virtual ICollection<Match> MatchesAsFirstTeam { get; set; } = new List<Match>();
         public virtual ICollection<Match> MatchesAsSecondTeam { get; set; } = new List<Match>();
         public virtual ICollection<User> Users { get; set; } = new List<User>();
-        public virtual ICollection<Statistics> Statistics { get; set; } = new List<Statistics>();
     }
 }

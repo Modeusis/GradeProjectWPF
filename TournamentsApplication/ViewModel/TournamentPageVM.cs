@@ -130,9 +130,9 @@ namespace TournamentsApplication.ViewModel
                         {
                             if (TeamToRemove != null)
                             {
-                                TeamsToAdd.Add(TeamToRemove);
-                                StatusService.Instance.SetStatusMessage($"Team {TeamToRemove.TeamName} removed");
                                 TeamsToRemove.Remove(TeamToRemove);
+                                StatusService.Instance.SetStatusMessage($"Team {TeamToRemove.TeamName} removed");
+                                TeamsToAdd.Add(TeamToRemove);
                             }
                             else
                             {
@@ -163,7 +163,7 @@ namespace TournamentsApplication.ViewModel
                         }
                         else
                         {
-                            StatusService.Instance.SetStatusMessage("$Team not selected");
+                            StatusService.Instance.SetStatusMessage("Team not selected");
                         }
                     }));
             }
@@ -197,14 +197,17 @@ namespace TournamentsApplication.ViewModel
                             if (!equal)
                             {
                                 TournamentTeam tmpTT = new TournamentTeam();
-                                foreach (Team team in Teams)
+                                if (Teams.Count() > 0)
                                 {
-                                    tmpTT.TournamentId = ShowedTournament.TournamentId;
-                                    tmpTT.TeamId = team.TeamId;
-                                    uow.TournamentTeams.Delete(tmpTT);
+                                    foreach (Team team in Teams)
+                                    {
+                                        tmpTT = uow.TournamentTeams.GetAll().Where(a => a.TeamId == team.TeamId && a.TournamentId == ShowedTournament.TournamentId).FirstOrDefault();
+                                        uow.TournamentTeams.Delete(tmpTT);
+                                    }
                                 }
                                 foreach (Team team in TeamsToRemove)
                                 {
+                                    tmpTT = new TournamentTeam();
                                     tmpTT.TournamentId = ShowedTournament.TournamentId;
                                     tmpTT.TeamId = team.TeamId;
                                     uow.TournamentTeams.Add(tmpTT);
@@ -435,8 +438,8 @@ namespace TournamentsApplication.ViewModel
                             tempComment.TournamentId = ShowedTournament.TournamentId;
                             tempComment.CreatedAt = DateTime.UtcNow;
                             uow.TournamentComments.Add(tempComment);
-                            TournamentComments.Add(tempComment);
                             uow.Save();
+                            TournamentComments.Add(tempComment);
                             LoadComments(CurrentCommentsPage, 3);
                         }
                         catch (Exception e)
@@ -500,8 +503,8 @@ namespace TournamentsApplication.ViewModel
             UserService.Instance.UserChanged += OnUserChanged;
             TournamentComments = new ObservableCollection<TournamentComment>();
 
-            ShowedTournament = tournament;
-            TmpTournamentIcon = tournament.Img;
+            ShowedTournament = uow.Tournaments.GetById(tournament.TournamentId);
+            TmpTournamentIcon = ShowedTournament.Img;
             TeamsToRemove = new ObservableCollection<Team>(uow.Teams.GetAll().Where(a => a.Tournaments.Any(b => b.TournamentId == ShowedTournament.TournamentId)));
             TeamsToAdd = new ObservableCollection<Team>(uow.Teams.GetAll().Where(a => !a.Tournaments.Any(b => b.TournamentId == ShowedTournament.TournamentId)));
             FavoriteIcon = ImageConverter.LoadImageAsByteArray("pack://application:,,,/Resources/Images/starEmpty.png");

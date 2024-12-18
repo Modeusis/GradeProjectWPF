@@ -14,7 +14,303 @@
         <u:TEConverter x:Key="TEConv"/>
         <u:ImageConverter x:Key="IMGConv"/>
     </UserControl.Resources>
-    <Grid>
-            
+    <Grid Margin="150, 20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Command="{Binding AddTournamentCommand}" Width="150" Content="Add tournament" Style="{StaticResource HeadButton}"/>
+            <Button Command="{Binding AddMatchCommand}" Grid.Column="1" Content="Add match" Style="{StaticResource HeaderEditButton}"/>
+            <Button Command="{Binding AddPlayerCommand}" Grid.Column="2" Content="Add player" Style="{StaticResource HeaderEditButton}"/>
+            <Button Command="{Binding AddTeamCommand}" Grid.Column="3" Content="Add team" Style="{StaticResource HeaderEditButton}"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Border Background="#121212" CornerRadius="20">
+                <Grid>
+                    <Grid Visibility="{Binding IsAddTournament, Converter={StaticResource Converter}}">
+                        <!--N-->
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="240"/>
+                            <RowDefinition/>
+                            <RowDefinition Height="60"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Rectangle Grid.Row="0" Opacity="0.8"  Grid.ColumnSpan="4" RadiusX="20" RadiusY="20">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="{Binding TmpTournamentIcon}" Stretch="UniformToFill" />
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <Button Grid.ColumnSpan="4"
+                                Style="{StaticResource HeadButton}"
+                                Command="{Binding SelectTournamentLogoCommand}"
+                                VerticalAlignment="Bottom"
+                                HorizontalAlignment="Left"
+                                Margin="10,0,0,10"
+                                Content="Select logo"/>
+                        <Grid Grid.Column="1" Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="300"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="150"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="200"/>
+                                    <ColumnDefinition Width="280"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Style="{StaticResource H2TextBlock}" Grid.Column="1"  Grid.Row="0" Text="Tournament name"/>
+                                <TextBox Style="{StaticResource H2TextBox}" Text="{Binding NewTournamentName}" Grid.Column="2" Grid.Row="0"/>
+                                <TextBlock Style="{StaticResource H2TextBlock}" Grid.Column="1" Grid.Row="1" Text="Discipline"/>
+                                <ComboBox Width="250" Grid.Row="1" Grid.Column="2" Style="{StaticResource ComboBoxStyle}" SelectedItem="{Binding SelectedDiscipline}" ItemsSource="{Binding Disciplines}">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel>
+                                                <TextBlock Style="{StaticResource H2TextBlock}" Text="{Binding DisciplineName}"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                            </Grid>
+                            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
+                                <Button Grid.Column="1" Grid.Row="1" Style="{StaticResource HeadButton}" Command="{Binding AddTournamentConfirmCommand}" Width="150" Content="Add tournament"/>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                    <Grid Visibility="{Binding IsAddMatch, Converter={StaticResource Converter}}">
+                        <!--<Grid Visibility="{Binding IsAddPlyer, Converter={StaticResource Converter}}">-->
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="240"/>
+                            <RowDefinition/>
+                            <RowDefinition Height="60"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="1" Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="300"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="150"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="200"/>
+                                    <ColumnDefinition Width="280"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Style="{StaticResource H2TextBlock}" Grid.Column="1"  Grid.Row="0" Text="Match tournament"/>
+                                <ComboBox Width="250" Grid.Row="0" Grid.Column="2" Style="{StaticResource ComboBoxStyle}" SelectedItem="{Binding SelectedTournament}" ItemsSource="{Binding Tournaments}">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel>
+                                                <TextBlock Style="{StaticResource H2TextBlock}" Text="{Binding TournamentName}"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                                <TextBlock Style="{StaticResource H2TextBlock}" Grid.Column="1" Grid.Row="1" Text="First team"/>
+                                <ComboBox Width="250" Grid.Row="1" Grid.Column="2" Style="{StaticResource ComboBoxStyle}" SelectedItem="{Binding SelectedFirstTeam}" ItemsSource="{Binding Teams}">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel>
+                                                <TextBlock Style="{StaticResource H2TextBlock}" Text="{Binding TeamName}"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                                <TextBlock Style="{StaticResource H2TextBlock}" Grid.Column="1" Grid.Row="2" Text="Second team"/>
+                                <ComboBox Width="250" Grid.Row="2" Grid.Column="2" Style="{StaticResource ComboBoxStyle}" SelectedItem="{Binding SelectedSecondTeam}" ItemsSource="{Binding Teams}">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel>
+                                                <TextBlock Style="{StaticResource H2TextBlock}" Text="{Binding TeamName}"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                            </Grid>
+                            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
+                                <Button Grid.Column="1" Grid.Row="1" Style="{StaticResource HeadButton}" Command="{Binding AddMatchConfirmCommand}" Width="150" Content="Add match"/>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                    <Grid Visibility="{Binding IsAddPlayer, Converter={StaticResource Converter}}">
+                        <!--<Grid Visibility="Collapsed">-->
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="240"/>
+                            <RowDefinition/>
+                            <RowDefinition Height="60"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Row="0" Margin="300,20">
+                            <Border BorderBrush="#383838" BorderThickness="1" Opacity="0.5" CornerRadius="10">
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                        <GradientStop Color="#1d1d1d" Offset="0.2" />
+                                        <GradientStop Color="#ff5500" Offset="0.8" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                            </Border>
+                            <Image Style="{StaticResource PlayerPageImage}" Source="{Binding NewPlayerImg, Converter={StaticResource IMGConv}}"/>
+                        </Grid>
+                        <Button Grid.ColumnSpan="4"
+                                Style="{StaticResource HeadButton}"
+                                Command="{Binding SelectPlayerLogoCommand}"
+                                VerticalAlignment="Bottom"
+                                HorizontalAlignment="Left"
+                                Margin="10,0,0,10"
+                                Content="Select logo"/>
+                        <Grid Grid.Column="1" Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="300"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="150"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <Grid Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="200"/>
+                                    <ColumnDefinition Width="280"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Style="{StaticResource H2TextBlock}" Grid.Column="1"  Grid.Row="0" Text="Nickname"/>
+                                <TextBox Style="{StaticResource H2TextBox}" Text="{Binding NewPlayerName}" Grid.Column="2" Grid.Row="0"/>
+                                <TextBlock Style="{StaticResource H2TextBlock}" Grid.Column="1" Grid.Row="1" Text="Full name"/>
+                                <TextBox Style="{StaticResource H2TextBox}" Text="{Binding NewFullPlayerName}" Grid.Column="2" Grid.Row="1"/>
+                                <TextBlock Style="{StaticResource H2TextBlock}" Grid.Column="1" Grid.Row="2" Text="Position"/>
+                                <TextBox Style="{StaticResource H2TextBox}" Text="{Binding NewPositionName}" Grid.Column="2" Grid.Row="2"/>
+                                <TextBlock Style="{StaticResource H3TextBlock}" Grid.Column="1" Grid.Row="3" Text="Birthday(DD.MM.YYYY)"/>
+                                <TextBox Style="{StaticResource H2TextBox}" Text="{Binding NewBirthdayDate}" Grid.Column="2" Grid.Row="3"/>
+                                <TextBlock Style="{StaticResource H2TextBlock}" Grid.Column="1" Grid.Row="4" Text="Team (can be null)"/>
+                                
+                                <ComboBox Width="250" Grid.Row="4" Grid.Column="2" Style="{StaticResource ComboBoxStyle}" SelectedItem="{Binding SelectedTeam}" ItemsSource="{Binding AvailableTeams}">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel>
+                                                <TextBlock Style="{StaticResource H2TextBlock}" Text="{Binding TeamName}"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                            </Grid>
+                            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
+                                <Button Grid.Column="1" Grid.Row="1" Style="{StaticResource HeadButton}" Command="{Binding AddPlayerConfirmCommand}" Width="150" Content="Add player"/>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                    <Grid Visibility="{Binding IsAddTeam, Converter={StaticResource Converter}}">
+                        <!--<Grid Visibility="{Binding IsAddTournament}">-->
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="240"/>
+                            <RowDefinition/>
+                            <RowDefinition Height="60"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Row="0" Margin="250,20">
+                            <Border BorderBrush="#383838" BorderThickness="1" Opacity="0.5" CornerRadius="10">
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                        <GradientStop Color="#1d1d1d" Offset="0.2" />
+                                        <GradientStop Color="#ff5500" Offset="0.8" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                            </Border>
+                            <Image Style="{StaticResource PlayerPageImage}" Source="{Binding NewTeamImg, Converter={StaticResource IMGConv}}"/>
+                        </Grid>
+                        <Button Grid.ColumnSpan="4"
+                                Style="{StaticResource HeadButton}"
+                                Command="{Binding SelectTeamLogoCommand}"
+                                VerticalAlignment="Bottom"
+                                HorizontalAlignment="Left"
+                                Margin="10,0,0,10"
+                                Content="Select logo"/>
+                        <Grid Grid.Column="1" Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="300"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="150"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="200"/>
+                                    <ColumnDefinition Width="280"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Style="{StaticResource H2TextBlock}" Grid.Column="1"  Grid.Row="0" Text="Team name"/>
+                                <TextBox Style="{StaticResource H2TextBox}" Text="{Binding NewPlayerName}" Grid.Column="2" Grid.Row="0"/>
+                                <TextBlock Style="{StaticResource H2TextBlock}" Grid.Column="1" Grid.Row="1" Text="World rank"/>
+                                <TextBox Style="{StaticResource H2TextBox}" Text="{Binding NewTournamentName}" Grid.Column="2" Grid.Row="1"/>
+                            </Grid>
+                            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
+                                <Button Grid.Column="1" Grid.Row="1" Style="{StaticResource HeadButton}" Command="{Binding AddTeamConfirmCommand}" Width="150" Content="Add team"/>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Border>
+        </Grid>
     </Grid>
 </UserControl>

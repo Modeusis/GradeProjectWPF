@@ -17,6 +17,7 @@ namespace TournamentsApplication.ViewModel
         public UserControl? CurrentContentView => ContentNavigationService.Instance.CurrentContentView;
         public User? CurrentUser => UserService.Instance.CurrentUser;
         public bool IsLogin => UserService.Instance.Login;
+        public bool IsAdmin => UserService.Instance.Admin;
         private Team team;
         private string teamName;
         private int worldRanking;
@@ -203,6 +204,7 @@ namespace TournamentsApplication.ViewModel
         {
             OnPropertyChanged(nameof(CurrentUser));
             OnPropertyChanged(nameof(IsLogin));
+            OnPropertyChanged(nameof(IsAdmin));
         }
     }
 }

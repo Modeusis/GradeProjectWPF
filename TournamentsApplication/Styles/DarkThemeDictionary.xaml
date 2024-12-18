@@ -1060,20 +1060,70 @@
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
     </Style>
-    <!--ComboBox-->
+    <Style TargetType="ListBox" x:Key="StatisticsList">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+    </Style>
+
+    <Style TargetType="ListBoxItem" x:Key="StatisticsListBoxItem">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListBoxItem">
+                    <Grid>
+                        <Border x:Name="border" 
+                            Background="Transparent"
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="1"
+                            Opacity="0.6"/>
+                        <ContentPresenter HorizontalAlignment="Stretch" 
+                                      VerticalAlignment="Stretch"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="border" 
+                                                    Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" 
+                                                    To="#FFDDDDDD" Duration="0:0:0.1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="border" 
+                                                    Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" 
+                                                    To="Transparent" Duration="0:0:0.1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="#383838"/>
+                            <Setter TargetName="border" Property="Opacity" Value="1"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
     <ControlTemplate x:Key="ComboBoxToggleButton" TargetType="ToggleButton">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition Width="20" />
             </Grid.ColumnDefinitions>
-            <!-- Основной фон с закруглёнными углами -->
             <Border x:Name="Border" Grid.ColumnSpan="2"
                 Background="#1D1D1D"
                 BorderBrush="Transparent"
                 CornerRadius="10"
                 BorderThickness="1"/>
-            <!-- Область стрелки -->
             <Path x:Name="Arrow" Grid.Column="1"
               Fill="White"
               HorizontalAlignment="Center"
@@ -1081,15 +1131,12 @@
               Data="M 0 0 L 4 4 L 8 0 Z"/>
         </Grid>
         <ControlTemplate.Triggers>
-            <!-- Анимация при наведении -->
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter TargetName="Border" Property="Background" Value="#2E2E2E"/>
             </Trigger>
-            <!-- Анимация при нажатии -->
             <Trigger Property="IsPressed" Value="True">
                 <Setter TargetName="Border" Property="Background" Value="#3C3C3C"/>
             </Trigger>
-            <!-- Отключённое состояние -->
             <Trigger Property="IsEnabled" Value="False">
                 <Setter TargetName="Border" Property="Background" Value="#3C3C3C"/>
                 <Setter TargetName="Border" Property="BorderBrush" Value="Gray"/>
@@ -1111,60 +1158,58 @@
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Padding" Value="10, 0, 0, 0"/>
         <Setter Property="Margin" Value="5, 0, 0, 0"/>
-        <Setter Property="FontFamily" Value="pack://application:,,,/Resources/Fonts/NunitoFont.ttf#Nunito"/>
+        <Setter Property="FontFamily" Value="Nunito Regular"/>
         <Setter Property="FontSize" Value="16"/>
-        <Setter Property="Foreground" Value="#FFF5F5F5"/>
+        <Setter Property="Foreground" Value="White"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ComboBox">
                     <Grid>
-                        <Border x:Name="Border"
-                            Background="#1D1D1D"
-                            CornerRadius="10"
-                            BorderThickness="0"
-                            BorderBrush="Transparent">
+                        <Border Background="#1D1D1D"
+                                CornerRadius="5"
+                                BorderThickness="0"
+                                BorderBrush="Transparent">
                             <Grid>
-                                <!-- Content of the ComboBox -->
-                                <ContentPresenter x:Name="ContentSite"
-                                              IsHitTestVisible="False"
-                                              Content="{TemplateBinding SelectionBoxItem}"
-                                              ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
-                                              Margin="10,0,0,0"
-                                              VerticalAlignment="Center"
-                                              HorizontalAlignment="Left"/>
-                                <TextBox x:Name="PART_EditableTextBox"
-                                     Style="{x:Null}"
-                                     Template="{StaticResource ComboBoxTextBox}"
-                                     HorizontalAlignment="Left"
-                                     VerticalAlignment="Center"
-                                     Margin="3,0,0,0"
-                                     Focusable="True"
-                                     Visibility="Hidden"
-                                     IsReadOnly="{TemplateBinding IsReadOnly}"/>
                                 <ToggleButton x:Name="ToggleButton"
-                                          Template="{StaticResource ComboBoxToggleButton}"
-                                          Grid.Column="2"
-                                          Focusable="false"
-                                          IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                                          ClickMode="Press"/>
+                                Template="{StaticResource ComboBoxToggleButton}"
+                                Grid.Column="2"
+                                Focusable="false"
+                                IsChecked="{Binding Path=IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}"
+                                ClickMode="Press"/>
+                                <ContentPresenter x:Name="ContentSite"
+                                IsHitTestVisible="False"
+                                Content="{TemplateBinding SelectionBoxItem}"
+                                ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                Margin="5, 0, 0, 0"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Left"/>
+                                <TextBox x:Name="PART_EditableTextBox"
+                                    Style="{x:Null}"
+                                    Template="{StaticResource ComboBoxTextBox}"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Margin="3,0,0,0"
+                                    Focusable="True"
+                                    Visibility="Hidden"
+                                    IsReadOnly="{TemplateBinding IsReadOnly}"/>
                                 <Popup x:Name="Popup"
-                                   Placement="Bottom"
-                                   IsOpen="{TemplateBinding IsDropDownOpen}"
-                                   AllowsTransparency="True"
-                                   Focusable="False"
-                                   PopupAnimation="Slide">
+                                Placement="Bottom"
+                                IsOpen="{TemplateBinding IsDropDownOpen}"
+                                AllowsTransparency="True"
+                                Focusable="False"
+                                PopupAnimation="Slide">
                                     <Grid x:Name="DropDown"
-                                      SnapsToDevicePixels="True"
-                                      MinWidth="{TemplateBinding ActualWidth}"
-                                      MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                    SnapsToDevicePixels="True"
+                                    MinWidth="{TemplateBinding ActualWidth}"
+                                    MaxHeight="{TemplateBinding MaxDropDownHeight}">
                                         <Border x:Name="DropDownBorder"
-                                            Background="#2E2E2E"
-                                            BorderThickness="1"
-                                            BorderBrush="Transparent"
-                                            CornerRadius="10"/>
+                                        Background="#1d1d1d"
+                                        CornerRadius="10"
+                                        BorderThickness="1"
+                                        BorderBrush="Transparent"/>
                                         <ScrollViewer Margin="4,6,4,6" SnapsToDevicePixels="True">
-                                            <StackPanel IsItemsHost="True"
-                                                    KeyboardNavigation.DirectionalNavigation="Contained"/>
+                                            <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained"/>
                                         </ScrollViewer>
                                     </Grid>
                                 </Popup>
@@ -1172,45 +1217,23 @@
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <!-- Mouse Enter Animation -->
-                        <EventTrigger RoutedEvent="MouseEnter" SourceName="Border">
-                            <BeginStoryboard>
-                                <Storyboard>
-                                    <ColorAnimation Storyboard.TargetName="Border"
-                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                From="#1D1D1D"
-                                                To="#2E2E2E"
-                                                Duration="0:0:0.3"/>
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </EventTrigger>
-                        <!-- Mouse Leave Animation -->
-                        <EventTrigger RoutedEvent="MouseLeave" SourceName="Border">
-                            <BeginStoryboard>
-                                <Storyboard>
-                                    <ColorAnimation Storyboard.TargetName="Border"
-                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                From="#2E2E2E"
-                                                To="#1D1D1D"
-                                                Duration="0:0:0.3"/>
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </EventTrigger>
-                        <!-- Focus Trigger -->
-                        <Trigger Property="IsFocused" Value="True">
-                            <Setter TargetName="Border" Property="BorderBrush" Value="#2E2E2E"/>
-                            <Setter TargetName="Border" Property="BorderThickness" Value="2"/>
-                        </Trigger>
-                        <!-- Disabled State -->
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter TargetName="Border" Property="Background" Value="#3C3C3C"/>
+                            <Setter TargetName="DropDownBorder" Property="Background" Value="LightGray"/>
+                            <Setter TargetName="DropDownBorder" Property="BorderBrush" Value="Gray"/>
                             <Setter Property="Foreground" Value="Gray"/>
+                        </Trigger>
+                        <Trigger SourceName="Popup" Property="Popup.AllowsTransparency" Value="True">
+                            <Setter TargetName="DropDownBorder" Property="CornerRadius" Value="0,0,4,4"/>
+                            <Setter TargetName="DropDownBorder" Property="Margin" Value="0,0,0,0"/>
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter TargetName="DropDownBorder" Property="BorderBrush" Value="#1d1d1d"/>
+                            <Setter TargetName="DropDownBorder" Property="BorderThickness" Value="2"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
-
 
 </ResourceDictionary>

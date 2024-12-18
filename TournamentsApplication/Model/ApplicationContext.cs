@@ -24,14 +24,16 @@ namespace TournamentsApplication.Model
         public DbSet<Team> Teams { get; set; } = null!;
         public DbSet<Tournament> Tournaments { get; set; } = null!;
         public DbSet<TournamentComment> TournamentComments { get; set; } = null!;
+        public DbSet<MatchComment> MatchComments { get; set; } = null!;
         public DbSet<TournamentTeam> TournamentTeams { get; set; } = null!;
         public DbSet<Discipline> Disciplines { get; set; } = null!;
         public DbSet<Statistics> Statistics { get; set; } = null!;
+        public DbSet<MatchStatistic> MatchStatistics { get; set; } = null!;
         public ApplicationContext()
         {
             //Database.EnsureDeleted();
             Database.EnsureCreated();
-            
+
             //Users.Load();
             //Players.Load();
             //Matches.Load();
@@ -63,8 +65,12 @@ namespace TournamentsApplication.Model
                 .HasKey(c => c.TournamentId);
             modelBuilder.Entity<TournamentComment>()
                 .HasKey(c => c.CommentId);
+            modelBuilder.Entity<MatchComment>()
+                .HasKey(c => c.CommentId);
             modelBuilder.Entity<Discipline>()
                 .HasKey(c => c.DisciplineId);
+            modelBuilder.Entity<Statistics>()
+                .HasKey(c => c.StatisticId);
             modelBuilder.Entity<Statistics>()
                 .HasKey(c => c.StatisticId);
             modelBuilder.Entity<TournamentTeam>()
@@ -73,45 +79,41 @@ namespace TournamentsApplication.Model
             modelBuilder.Entity<Statistics>()
                 .HasOne(s => s.Player)
                 .WithMany(p => p.Statistics)
-                .HasForeignKey(s => s.PlayerId);
-                
-            modelBuilder.Entity<Statistics>()
-                .HasMany(s => s.Matches)
+                .HasForeignKey(s => s.PlayerId)
+                .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<MatchStatistic>()
+                .HasOne(s => s.Match)
                 .WithMany(m => m.Statistics)
-                .UsingEntity<Dictionary<string, object>>(
-                    "MatchStatistic",
-                    j => j.HasOne<Match>().WithMany().HasForeignKey("MatchId"),
-                    j => j.HasOne<Statistics>().WithMany().HasForeignKey("StatisticId")
-                    );
-            modelBuilder.Entity<Statistics>()
-                .HasMany(s => s.Teams)
-                .WithMany(t => t.Statistics)
-                .UsingEntity<Dictionary<string, object>>(
-                    "TeamStatistic",
-                    j => j.HasOne<Team>().WithMany().HasForeignKey("TeamId"),
-                    j => j.HasOne<Statistics>().WithMany().HasForeignKey("StatisticId")
-                    );
-
+                .HasForeignKey(m => m.MatchId)
+                .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<MatchStatistic>()
+                .HasOne(s => s.Statistic)
+                .WithMany(m => m.Matches)
+                .HasForeignKey(m => m.StatisticId);
             modelBuilder.Entity<User>()
                 .HasMany(f => f.Comments)
                 .WithOne(a => a.User)
-                .HasForeignKey(a => a.Author);
-            modelBuilder.Entity<Team>()
-                .HasMany(a => a.Users)
-                .WithOne(f => f.Team)
-                .HasForeignKey(f => f.FavTeamId);
+                .HasForeignKey(a => a.Author)
+                .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<User>()
+                .HasOne(a => a.Team)
+                .WithMany(f => f.Users)
+                .HasForeignKey(f => f.FavTeamId)
+                .OnDelete(DeleteBehavior.SetNull);
             modelBuilder.Entity<Tournament>()
-                .HasMany(a => a.Matches)
-                .WithOne(f => f.Tournament)
-                .HasForeignKey(f => f.TournamentId);
+                .HasMany(t => t.Matches)
+                .WithOne(m => m.Tournament)
+                .HasForeignKey(m => m.TournamentId)
+                .OnDelete(DeleteBehavior.Cascade);
             modelBuilder.Entity<Tournament>()
                 .HasMany(a => a.TournamentComments)
                 .WithOne(f => f.Tournament)
                 .HasForeignKey(f => f.TournamentId);
-            modelBuilder.Entity<Tournament>()
-                .HasMany(a => a.Users)
-                .WithOne(f => f.Tournament)
-                .HasForeignKey(f => f.FavTournamentId);
+            modelBuilder.Entity<User>()
+                .HasOne(a => a.Tournament)
+                .WithMany(f => f.Users)
+                .HasForeignKey(f => f.FavTournamentId)
+                .OnDelete(DeleteBehavior.SetNull);
             modelBuilder.Entity<Discipline>()
                 .HasMany(a => a.Tournaments)
                 .WithOne(f => f.Discipline)
@@ -119,11 +121,13 @@ namespace TournamentsApplication.Model
             modelBuilder.Entity<Team>()
                 .HasMany(a => a.Players)
                 .WithOne(f => f.Team)
-                .HasForeignKey(f => f.CurTeamId);
+                .HasForeignKey(f => f.CurTeamId)
+                .OnDelete(DeleteBehavior.SetNull);
             modelBuilder.Entity<Team>()
                 .HasMany(a => a.Tournaments)
                 .WithOne(f => f.Team)
-                .HasForeignKey(f => f.TeamId);
+                .HasForeignKey(f => f.TeamId)
+                .OnDelete(DeleteBehavior.Cascade);
             modelBuilder.Entity<Tournament>()
                 .HasMany(a => a.Teams)
                 .WithOne(f => f.Tournament)
@@ -131,15 +135,18 @@ namespace TournamentsApplication.Model
             modelBuilder.Entity<Match>()
                 .HasOne(m => m.FirstTeam)
                 .WithMany(a => a.MatchesAsFirstTeam)
-                .HasForeignKey(m => m.FirstParticipantId);
+                .HasForeignKey(m => m.FirstParticipantId)
+                .OnDelete(DeleteBehavior.Cascade);
             modelBuilder.Entity<Match>()
                 .HasOne(m => m.SecondTeam)
                 .WithMany(a => a.MatchesAsSecondTeam)
-                .HasForeignKey(m => m.SecondParticipantId);
-            modelBuilder.Entity<Player>()
-                .HasMany(a => a.Users)
-                .WithOne(f => f.Player)
-                .HasForeignKey(f => f.FavPlayerId);
+                .HasForeignKey(m => m.SecondParticipantId)
+                .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<User>()
+                .HasOne(a => a.Player)
+                .WithMany(f => f.Users)
+                .HasForeignKey(f => f.FavPlayerId)
+                .OnDelete(DeleteBehavior.SetNull);
             modelBuilder.Entity<User>()
                 .HasData(
                     new User() { UserId = 1, Username = "Modeus", FavTeamId = 1, FavPlayerId = 26, FavTournamentId = 1, Description = "Creator of this App", Login = "1", Password = PasswordHasher.HashPassword("1"), IsLogined=false, IsAdmin = true, Logo = ImageConverter.StandardUserIcon, HeaderImg = ImageConverter.StandardHeaderIcon, CreatedAt = DateTime.UtcNow},
