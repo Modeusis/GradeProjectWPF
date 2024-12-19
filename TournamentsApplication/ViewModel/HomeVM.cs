@@ -106,7 +106,7 @@ namespace TournamentsApplication.ViewModel
             NavigationService.Instance.NavigationChanged += OnViewChanged;
             ContentNavigationService.Instance.NavigationChanged += OnContentViewChanged;
 
-            ContentNavigationService.Instance.SwitchCurrentContentView(new UserPageView());
+            ContentNavigationService.Instance.SwitchCurrentContentView(new MatchesView());
         }
         private void OnUserChanged()
         {

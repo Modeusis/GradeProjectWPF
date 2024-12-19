@@ -149,8 +149,8 @@ namespace TournamentsApplication.Model
                 .OnDelete(DeleteBehavior.SetNull);
             modelBuilder.Entity<User>()
                 .HasData(
-                    new User() { UserId = 1, Username = "Modeus", FavTeamId = 1, FavPlayerId = 26, FavTournamentId = 1, Description = "Creator of this App", Login = "1", Password = PasswordHasher.HashPassword("1"), IsLogined=false, IsAdmin = true, Logo = ImageConverter.StandardUserIcon, HeaderImg = ImageConverter.StandardHeaderIcon, CreatedAt = DateTime.UtcNow},
-                    new User() { UserId = 2, Username = "ModeusGuest", FavPlayerId = 15, FavTournamentId = 1, Description = "Guest of this App", Login = "2", Password = PasswordHasher.HashPassword("2"), IsLogined=false, IsAdmin = false, Logo = ImageConverter.StandardUserIcon, HeaderImg = ImageConverter.StandardHeaderIcon, CreatedAt = DateTime.UtcNow}
+                    new User() { UserId = 1, Username = "Modeus", FavTeamId = 1, FavPlayerId = 26, Description = "Creator of this App", Login = "1", Password = PasswordHasher.HashPassword("1"), IsLogined=false, IsAdmin = true, Logo = ImageConverter.StandardUserIcon, HeaderImg = ImageConverter.StandardHeaderIcon, CreatedAt = DateTime.UtcNow},
+                    new User() { UserId = 2, Username = "ModeusGuest", FavPlayerId = 15, Description = "Guest of this App", Login = "2", Password = PasswordHasher.HashPassword("2"), IsLogined=false, IsAdmin = false, Logo = ImageConverter.StandardUserIcon, HeaderImg = ImageConverter.StandardHeaderIcon, CreatedAt = DateTime.UtcNow}
                 );
             modelBuilder.Entity<Discipline>()
                 .HasData(
@@ -197,21 +197,6 @@ namespace TournamentsApplication.Model
                 new Player { PlayerId = 25, PlayerName = "Jimpphat", PlayerRealName = "Jimi Salo", Position = "Rifler", BirthDayDate = new DateTime(2005, 6, 3).ToUniversalTime(), PlayerImg = ImageConverter.LoadImageAsByteArray("pack://application:,,,/Resources/Images/Players/Jimpphat.png"), CurTeamId = 5, CreatedAt = DateTime.UtcNow, UpdatedAt = null },
 
                 new Player { PlayerId = 26, PlayerName = "s1mple", PlayerRealName = "Oleksandr Kostyliev", Position = "AWPer", BirthDayDate = new DateTime(1997, 10, 2).ToUniversalTime(), PlayerImg = ImageConverter.LoadImageAsByteArray("pack://application:,,,/Resources/Images/Players/s1mple.png"), CurTeamId = 6, CreatedAt = DateTime.UtcNow, UpdatedAt = null }
-            );
-            modelBuilder.Entity<Tournament>().HasData(
-                new Tournament
-                {
-                    TournamentId = 1,
-                    TournamentName = "PGL RMR Winter Cup",
-                    DisciplineId = 1,
-                    Img = ImageConverter.LoadImageAsByteArray("pack://application:,,,/Resources/Images/Tournaments/pglRMR.png"),
-                    CreatedAt = DateTime.UtcNow,
-                    StartDate = DateTime.UtcNow
-                });
-            modelBuilder.Entity<Match>().HasData(
-                new Match() { MatchId = 1, TournamentId = 1, FirstParticipantId = 1, SecondParticipantId = 2, Status = true, WinnerId = 1, ScoreFirstTeam = 13, ScoreSecondTeam = 9, MatchTime = DateTime.Parse("15.12.2024").ToUniversalTime() },
-                new Match() { MatchId = 2, TournamentId = 1, FirstParticipantId = 3, SecondParticipantId = 4, Status = true, WinnerId = 3, ScoreFirstTeam = 13, ScoreSecondTeam = 11, MatchTime = DateTime.Parse("15.12.2024").ToUniversalTime() },
-                new Match() { MatchId = 3, TournamentId = 1, FirstParticipantId = 1, SecondParticipantId = 3, Status = false, MatchTime = DateTime.Parse("16.12.2024").ToUniversalTime() }
             );
         }
     }

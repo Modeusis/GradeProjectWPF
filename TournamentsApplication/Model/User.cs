@@ -101,7 +101,6 @@ namespace TournamentsApplication.Model
         }
 
         public virtual ICollection<TournamentComment> Comments { get; set; } = new List<TournamentComment>();
-        public virtual ICollection<MatchComment> MatchComments { get; set; } = new List<MatchComment>();
 
         public virtual Tournament Tournament {get; set;}
         public virtual Team Team { get; set; }

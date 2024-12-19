@@ -7,7 +7,7 @@ using TournamentsApplication.Utility;
 
 namespace TournamentsApplication.Model
 {
-    public class MatchComment : ViewModelBase
+    internal class MatchComment : ViewModelBase
     {
         private int comment_id;
         private int match_id;
@@ -48,6 +48,6 @@ namespace TournamentsApplication.Model
         }
 
         public virtual User User { get; set; }
-        public virtual Match Match { get; set; }
+        public virtual Tournament Tournament { get; set; }
     }
 }

@@ -48,6 +48,10 @@ namespace TournamentsApplication.ViewModel
                         try
                         { 
                             User? tmpUser;
+                            if (string.IsNullOrEmpty(Login) || string.IsNullOrEmpty(Password))
+                            {
+                                throw new Exception("Fill all fields");
+                            }
                             if (uow.Users.GetAll().Where(a => a.Login == Login).Count() != 1)
                             {
                                 throw new Exception("Invalid Login.");
@@ -94,6 +98,7 @@ namespace TournamentsApplication.ViewModel
                 return guestContinueCommand ?? (guestContinueCommand = new RelayCommand((obj) =>
                 {
                     NavigationService.Instance.SwitchCurrentView(new HomePageView());
+                    StatusService.Instance.SetStatusMessage("Login later to unlock all functions");
                 }));
             }
         }

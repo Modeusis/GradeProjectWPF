@@ -20,6 +20,7 @@ namespace TournamentsApplication.ViewModel
         private string newPositionName;
         private string newTeamName;
         private string newBirthdayDate;
+        private string newWorldRank;
         private byte[]? tmpTournamentIcon;
         private byte[]? newPlayerImg;
         private byte[]? newTeamImg;
@@ -74,6 +75,11 @@ namespace TournamentsApplication.ViewModel
         {
             get { return newTournamentName; }
             set { newTournamentName = value; OnPropertyChanged(); }
+        }
+        public string NewWorldRank
+        {
+            get { return newWorldRank; }
+            set { newWorldRank = value; OnPropertyChanged(); }
         }
         public string NewPlayerName
         {
@@ -243,6 +249,8 @@ namespace TournamentsApplication.ViewModel
             }
         }
 
+        
+
         private RelayCommand? addMatchConfirmCommand;
         public RelayCommand? AddMatchConfirmCommand
         {
@@ -277,7 +285,6 @@ namespace TournamentsApplication.ViewModel
                 });
             }
         }
-
         private RelayCommand? addPlayerConfirmCommand;
         public RelayCommand? AddPlayerConfirmCommand
         {
@@ -331,6 +338,39 @@ namespace TournamentsApplication.ViewModel
                 {
                     try
                     {
+                        Team tmpTeam = new Team();
+                        if (NewTeamImg == null && string.IsNullOrEmpty(NewTeamName) && string.IsNullOrEmpty(NewWorldRank))
+                        {
+                            throw new Exception("Fill all fields");
+                        }
+                        int WorldRank;
+                        if (!int.TryParse(NewWorldRank, out WorldRank))
+                        {
+                            throw new Exception("Incorrect world rank");
+                        }
+                        if (WorldRank < 0)
+                        {
+                            throw new Exception("Incorrect world rank");
+                        }
+                        int amountOfTeams = uow.Teams.GetAll().Count();
+                        if (WorldRank > amountOfTeams + 1)
+                        {
+                            WorldRank = amountOfTeams + 1;
+                        }
+                        tmpTeam.WorldRanking = WorldRank;
+                        tmpTeam.TeamName = NewTeamName;
+                        tmpTeam.TeamLogo = NewTeamImg;
+                        var TeamCollection = uow.Teams.GetAll().Where(a => a.WorldRanking >= WorldRank);
+                        if (TeamCollection.Count() > 0)
+                        {
+                            foreach (var team in TeamCollection)
+                            {
+                                team.WorldRanking++;
+                                uow.Teams.Update(team);
+                            }
+                        }
+                        uow.Teams.Add(tmpTeam);
+                        uow.Save();
                         ContentNavigationService.Instance.SwitchCurrentContentView(new TeamsView());
                         StatusService.Instance.SetStatusMessage("Created succesful");
                     }

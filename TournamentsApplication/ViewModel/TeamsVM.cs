@@ -127,14 +127,27 @@ namespace TournamentsApplication.ViewModel
             {
                 return deleteTeamCommand ??= new RelayCommand((obj) =>
                 {
-                    if (obj is Team Team)
+                    try
                     {
-                        StatusService.Instance.SetStatusMessage($"Deleting Team: {Team.TeamName}");
-                        uow.Teams.Delete(Team);
-                        uow.Save();
-                        UserService.Instance.RenewCurrentUser(uow.Users.GetById(CurrentUser.UserId));
-                        LoadTeams(CurrentTeamsPage, 6);
+                        if (obj is Team DeleteTeam)
+                        {
+                            foreach (Team team in uow.Teams.GetAll().Where(a => a.WorldRanking > DeleteTeam.WorldRanking))
+                            {
+                                team.WorldRanking--;
+                                uow.Teams.Update(team);
+                            }
+                            StatusService.Instance.SetStatusMessage($"Deleting Team: {DeleteTeam.TeamName}");
+                            uow.Teams.Delete(DeleteTeam);
+                            uow.Save();
+                            UserService.Instance.RenewCurrentUser(uow.Users.GetById(CurrentUser.UserId));
+                            LoadTeams(CurrentTeamsPage, 6);
+                        }
                     }
+                    catch (Exception e)
+                    {
+                        StatusService.Instance.SetStatusMessage(e.Message);
+                    }
+                    
                 });
             }
         }

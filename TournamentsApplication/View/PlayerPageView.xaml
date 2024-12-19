@@ -44,7 +44,6 @@
             <Image Style="{StaticResource PlayerPageImage}" Source="{Binding ShowedPlayerImg, Converter={StaticResource IMGConv}}"/>
         </Grid>
         <Grid Grid.Column="1" Grid.Row="0" Margin="0,50,20,50">
-            
             <Border Grid.ColumnSpan="2" Grid.RowSpan="5" CornerRadius="10" Opacity="0.8" Background="#1D1D1D" BorderThickness="0"/>
             <Grid Margin="20,0">
                 <Grid.RowDefinitions>
@@ -76,6 +75,9 @@
                 <TextBlock Margin="10,0,0,0" Grid.Row="4" Style="{StaticResource H2TextBlock}" Text="Average KD"/>
                 <TextBlock Margin="10,0,0,0" Grid.Row="4" Grid.Column="1" Style="{StaticResource H2TextBlock}" Text="{Binding AKD}"/>
             </Grid>
+            <Button Visibility="{Binding IsAdmin, Converter={StaticResource Converter}}" Grid.Column="1" Command="{Binding EditChangeTeamCommand}" Style="{StaticResource EditProfileButtonStyle}">
+                <Image Margin="5" Width="30" Source="pack://application:,,,/Resources/Images/edit.png"/>
+            </Button>
         </Grid>
 
         <Button Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" Command="{Binding ToTeamPageCommand}" Style="{StaticResource ContentButtonStyle}" Cursor="Hand">
@@ -108,5 +110,86 @@
                 </ListBox.ItemTemplate>
             </ListBox>
         </Grid>
+        <Border Visibility="{Binding IsChanging, Converter={StaticResource Converter}}" Grid.ColumnSpan="2" Grid.RowSpan="3" Background="#121212">
+            <!--<Grid Visibility="{Binding IsChanging, Converter={StaticResource Converter}}">-->
+                <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="240"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="60"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Row="0" Margin="300,20">
+                    <Border BorderBrush="#383838" BorderThickness="1" Opacity="0.5" CornerRadius="10">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#1d1d1d" Offset="0.2" />
+                                <GradientStop Color="#ff5500" Offset="0.8" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
+                    <Image Style="{StaticResource PlayerPageImage}" Source="{Binding NewPlayerImg, Converter={StaticResource IMGConv}}"/>
+                </Grid>
+                <Button Grid.ColumnSpan="4"
+    Style="{StaticResource HeadButton}"
+    Command="{Binding SelectPlayerLogoCommand}"
+    VerticalAlignment="Bottom"
+    HorizontalAlignment="Left"
+    Margin="10,0,0,10"
+    Content="Select logo"/>
+                <Grid Grid.Column="1" Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="300"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="150"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="200"/>
+                            <ColumnDefinition Width="280"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{StaticResource H2TextBlock}" Grid.Column="1"  Grid.Row="0" Text="Nickname"/>
+                        <TextBox Style="{StaticResource H2TextBox}" Text="{Binding NewPlayerName}" Grid.Column="2" Grid.Row="0"/>
+                        <TextBlock Style="{StaticResource H2TextBlock}" Grid.Column="1" Grid.Row="1" Text="Full name"/>
+                        <TextBox Style="{StaticResource H2TextBox}" Text="{Binding NewFullPlayerName}" Grid.Column="2" Grid.Row="1"/>
+                        <TextBlock Style="{StaticResource H2TextBlock}" Grid.Column="1" Grid.Row="2" Text="Position"/>
+                        <TextBox Style="{StaticResource H2TextBox}" Text="{Binding NewPositionName}" Grid.Column="2" Grid.Row="2"/>
+                        <TextBlock Style="{StaticResource H3TextBlock}" Grid.Column="1" Grid.Row="3" Text="Birthday(DD.MM.YYYY)"/>
+                        <TextBox Style="{StaticResource H2TextBox}" Text="{Binding NewBirthdayDate}" Grid.Column="2" Grid.Row="3"/>
+                        <TextBlock Style="{StaticResource H2TextBlock}" Grid.Column="1" Grid.Row="4" Text="Team (can be null)"/>
+
+                        <ComboBox Width="250" Grid.Row="4" Grid.Column="2" Style="{StaticResource ComboBoxStyle}" SelectedItem="{Binding SelectedTeam}" ItemsSource="{Binding AvailableTeams}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <TextBlock Style="{StaticResource H2TextBlock}" Text="{Binding TeamName}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </Grid>
+                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
+                        <Button Grid.Column="1" Grid.Row="1" Style="{StaticResource HeadButton}" Command="{Binding AddPlayerConfirmCommand}" Width="150" Content="Add player"/>
+                        <Button Grid.Column="1" Grid.Row="1" Style="{StaticResource HeaderEditButton}" Margin="10,0,0,0" Command="{Binding DismissPlayerConfirmCommand}" Width="150" Content="Dismiss"/>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Border>
     </Grid>
 </UserControl>

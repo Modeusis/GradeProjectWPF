@@ -35,7 +35,6 @@
             <Border Background="#121212" CornerRadius="20">
                 <Grid>
                     <Grid Visibility="{Binding IsAddTournament, Converter={StaticResource Converter}}">
-                        <!--N-->
                         <Grid.RowDefinitions>
                             <RowDefinition Height="240"/>
                             <RowDefinition/>
@@ -99,7 +98,6 @@
                         </Grid>
                     </Grid>
                     <Grid Visibility="{Binding IsAddMatch, Converter={StaticResource Converter}}">
-                        <!--<Grid Visibility="{Binding IsAddPlyer, Converter={StaticResource Converter}}">-->
                         <Grid.RowDefinitions>
                             <RowDefinition Height="240"/>
                             <RowDefinition/>
@@ -300,9 +298,9 @@
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Style="{StaticResource H2TextBlock}" Grid.Column="1"  Grid.Row="0" Text="Team name"/>
-                                <TextBox Style="{StaticResource H2TextBox}" Text="{Binding NewPlayerName}" Grid.Column="2" Grid.Row="0"/>
+                                <TextBox Style="{StaticResource H2TextBox}" Text="{Binding NewTeamName}" Grid.Column="2" Grid.Row="0"/>
                                 <TextBlock Style="{StaticResource H2TextBlock}" Grid.Column="1" Grid.Row="1" Text="World rank"/>
-                                <TextBox Style="{StaticResource H2TextBox}" Text="{Binding NewTournamentName}" Grid.Column="2" Grid.Row="1"/>
+                                <TextBox Style="{StaticResource H2TextBox}" Text="{Binding NewWorldRank}" Grid.Column="2" Grid.Row="1"/>
                             </Grid>
                             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
                                 <Button Grid.Column="1" Grid.Row="1" Style="{StaticResource HeadButton}" Command="{Binding AddTeamConfirmCommand}" Width="150" Content="Add team"/>

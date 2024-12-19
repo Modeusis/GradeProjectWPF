@@ -10,6 +10,7 @@ namespace TournamentsApplication.Utilities
     {
         T GetById(int id);
         IQueryable<T> GetAll(Func<T, object> orderBy, Func<T, bool> searchBy = null);
+        public (List<T> items, int TotalPages) Get(int pageNumber, int pageSize, Func<T, object> orderBy, Func<T, bool> filter);
         void Add(T entity);
         void Update(T entity);
         void Delete(T entity);

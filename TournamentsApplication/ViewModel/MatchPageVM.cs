@@ -251,7 +251,7 @@ namespace TournamentsApplication.ViewModel
                             }
                             else
                             {
-                                double kd = (double)tmpKills/ tmpDeaths;
+                                double kd = Math.Round((double)tmpKills/ tmpDeaths, 1);
                                 TmpStatistics.PlayerKD = kd.ToString();
                             }
                             uow.Statistics.Update(TmpStatistics);

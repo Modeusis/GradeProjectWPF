@@ -14,7 +14,7 @@
         <u:TEConverter x:Key="TEConv"/>
         <u:ImageConverter x:Key="IMGConv"/>
     </UserControl.Resources>
-    <Grid Margin="50, 20">
+    <Grid Margin="50,20">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -32,7 +32,7 @@
             </Rectangle.Fill>
         </Rectangle>
         <StackPanel Visibility="{Binding IsMatchFinished, Converter={StaticResource Converter}}" Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="0,20,0,0" 
-                    VerticalAlignment="Top" HorizontalAlignment="Center">
+                VerticalAlignment="Top" HorizontalAlignment="Center">
             <TextBlock Style="{StaticResource FavTextBlock}" Text="{Binding WinnerTeamName}"/>
             <TextBlock Foreground="#ff5500" FontWeight="Bold" Style="{StaticResource FavTextBlock}" Text="WIN"/>
         </StackPanel>
@@ -107,16 +107,16 @@
                 <TextBlock Style="{StaticResource FavTextBlock}" FontWeight="Thin" FontSize="20" FontStyle="Italic" Opacity="0.6" Grid.Column="5" Text="KD"/>
             </Grid>
         </Grid>
-        
-        
+
+
         <Grid Grid.Row="3" Grid.Column="0" Margin="5,5,5,20">
             <Border Background="#121212" CornerRadius="10"/>
             <ListBox VerticalAlignment="Stretch"
-                     ItemContainerStyle="{StaticResource TeamPgListBoxItem}"
-                     Style="{StaticResource StatisticsList}"
-                     ItemsSource="{Binding FirstTeamStatistics}"
-                     SelectedItem="{Binding SelectedFirstTeamStatistic}"
-                     ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                 ItemContainerStyle="{StaticResource TeamPgListBoxItem}"
+                 Style="{StaticResource StatisticsList}"
+                 ItemsSource="{Binding FirstTeamStatistics}"
+                 SelectedItem="{Binding SelectedFirstTeamStatistic}"
+                 ScrollViewer.VerticalScrollBarVisibility="Disabled">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid Height="60">
@@ -152,11 +152,11 @@
         <Grid Grid.Row="3" Grid.Column="1" Margin="5,5,5,20">
             <Border Background="#121212" CornerRadius="10"/>
             <ListBox VerticalAlignment="Stretch"
-             ItemContainerStyle="{StaticResource TeamPgListBoxItem}"
-             Style="{StaticResource StatisticsList}"
-             ItemsSource="{Binding SecondTeamStatistics}"
-             SelectedItem="{Binding SelectedSecondTeamStatistic}"
-             ScrollViewer.VerticalScrollBarVisibility="Disabled">
+         ItemContainerStyle="{StaticResource TeamPgListBoxItem}"
+         Style="{StaticResource StatisticsList}"
+         ItemsSource="{Binding SecondTeamStatistics}"
+         SelectedItem="{Binding SelectedSecondTeamStatistic}"
+         ScrollViewer.VerticalScrollBarVisibility="Disabled">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid Height="60">
@@ -188,8 +188,8 @@
                 </ListBox.ItemTemplate>
             </ListBox>
         </Grid>
-        
-        
+
+
         <Grid Grid.ColumnSpan="2" Grid.Row="4" Visibility="{Binding IsAdmin, Converter={StaticResource Converter}}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -236,7 +236,7 @@
                     <TextBlock Margin="10,0,0,0" Grid.Row="3" Grid.Column="1" Style="{StaticResource H2TextBlock}" Text="Assists"/>
                     <TextBox Grid.Row="3" Grid.Column="2" Style="{StaticResource H2TextBox}" Text="{Binding Assists}"/>
                     <StackPanel VerticalAlignment="Center" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center"
-                Grid.ColumnSpan="2" Orientation="Horizontal">
+            Grid.ColumnSpan="2" Orientation="Horizontal">
                         <Button Command="{Binding SaveStatisticsCommand}" Content="Save stats" Style="{StaticResource HeadButton}"/>
                         <Button Command="{Binding DismissStatisticsCommand}" Content="Dismiss" Margin="20,0,0,0" Style="{StaticResource HeaderEditButton}"/>
                     </StackPanel>
@@ -282,10 +282,10 @@
                         <TextBlock  Style="{StaticResource H2TextBlock}" Text="{Binding SecondTeam.TeamName}"/>
                         <TextBlock  Style="{StaticResource H2TextBlock}" Text=" score is:"/>
                     </StackPanel>
-                    
+
                     <TextBox Grid.Row="3" Grid.Column="2" Style="{StaticResource H2TextBox}" Text="{Binding TmpSScore}"/>
                     <StackPanel VerticalAlignment="Center" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center"
-                                Grid.ColumnSpan="2" Orientation="Horizontal">
+                            Grid.ColumnSpan="2" Orientation="Horizontal">
                         <Button Command="{Binding FinishMatchCommand}" Content="Save stats" Style="{StaticResource HeadButton}"/>
                         <Button Command="{Binding DismissMatchCommand}" Content="Dismiss" Margin="20,0,0,0" Style="{StaticResource HeaderEditButton}"/>
                     </StackPanel>

@@ -188,6 +188,10 @@ namespace TournamentsApplication.ViewModel
                                 {
                                     throw new Exception("At least 4 characters for login");
                                 }
+                                if (uow.Users.GetAll().Where(a => a.Login == NewLogin).Count() != 0)
+                                {
+                                    throw new Exception("Login already exists.");
+                                }
                                 tmpUser.Login = NewLogin;
                                 whatSavedMessage += "Login ";
                             }
@@ -391,7 +395,6 @@ namespace TournamentsApplication.ViewModel
             NavigationService.Instance.NavigationChanged += OnCurrentViewChanged;
             ContentNavigationService.Instance.NavigationChanged += OnCurrentContentChanged;
             StatusService.Instance.StatusChanged += OnStatusChanged;
-
             Username = CurrentUser.Username;
             Login = CurrentUser.Login;
             TmpUserLogo = CurrentUserLogo;
