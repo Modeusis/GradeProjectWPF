@@ -236,6 +236,7 @@ namespace TournamentsApplication.ViewModel
                                 throw new ArgumentException("Invalid birth date");
                             }
                             tmpPlayer.BirthDayDate = tmpDate.ToUniversalTime();
+                            isUpdated = true;
                         }
 
                         if (isUpdated)
@@ -364,17 +365,24 @@ namespace TournamentsApplication.ViewModel
             }
             else
             {
-                foreach (var item in uow.Statistics.GetAll().Where(a => a.PlayerId == ShowedPlayer.PlayerId))
+                try
                 {
-                    if (item.PlayerKD == "P")
+                    foreach (var item in uow.Statistics.GetAll().Where(a => a.PlayerId == ShowedPlayer.PlayerId))
                     {
-                        AKDSum += 1.5;
-                        continue;
+                        if (item.PlayerKD == "P")
+                        {
+                            AKDSum += 1.5;
+                            continue;
+                        }
+                        double tmpAKD = double.Parse(item.PlayerKD);
+                        AKDSum += tmpAKD;
                     }
-                    double tmpAKD = double.Parse(item.PlayerKD);
-                    AKDSum += tmpAKD;
+                    AKD = (double)AKDSum / amountOfMatches;
                 }
-                AKD = (double)AKDSum / amountOfMatches;
+                catch (Exception e)
+                {
+                    AKD = 0;
+                }
             }
             
             FavoriteIcon = ImageConverter.LoadImageAsByteArray("pack://application:,,,/Resources/Images/starEmpty.png");
@@ -410,6 +418,7 @@ namespace TournamentsApplication.ViewModel
         {
             OnPropertyChanged(nameof(CurrentUser));
             OnPropertyChanged(nameof(IsLogin));
+            OnPropertyChanged(nameof(IsAdmin));
         }
 
         public static int CalculateAge(DateTime birthDate, DateTime? currentDate = null)

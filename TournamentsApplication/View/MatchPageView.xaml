@@ -31,6 +31,11 @@
                 <ImageBrush ImageSource="pack://application:,,,/Resources/Images/matchHeader.jpg" Stretch="UniformToFill" />
             </Rectangle.Fill>
         </Rectangle>
+        <Border Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="10" VerticalAlignment="Bottom"  HorizontalAlignment="Right" Background="#121212" BorderBrush="#383838" BorderThickness="0.5" CornerRadius="10">
+            <Button Margin="5" Command="{Binding SwitchStatistic}" Width="40" Height="40" Style="{StaticResource ContentButtonStyle}">
+                <Image Width="30" Source="pack://application:,,,/Resources/Images/coment.png"/>
+            </Button>
+        </Border>
         <StackPanel Visibility="{Binding IsMatchFinished, Converter={StaticResource Converter}}" Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="0,20,0,0" 
                 VerticalAlignment="Top" HorizontalAlignment="Center">
             <TextBlock Style="{StaticResource FavTextBlock}" Text="{Binding WinnerTeamName}"/>
@@ -143,6 +148,11 @@
                             <TextBlock Grid.Column="3" Style="{StaticResource FavTextBlock}" Text="{Binding PlayerDeaths}"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             <TextBlock Grid.Column="4" Style="{StaticResource FavTextBlock}" Text="{Binding PlayerAssists}"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             <TextBlock Grid.Column="5" Style="{StaticResource FavTextBlock}" Text="{Binding PlayerKD}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <Grid.InputBindings>
+                                <MouseBinding Gesture="LeftDoubleClick"
+                                              Command="{Binding DataContext.ToPlayerPageCommand, RelativeSource={RelativeSource AncestorType=ListBox}}"
+                                              CommandParameter="{Binding}"/>
+                            </Grid.InputBindings>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
@@ -183,7 +193,13 @@
                             <TextBlock Grid.Column="3" Style="{StaticResource FavTextBlock}" Text="{Binding PlayerDeaths}"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             <TextBlock Grid.Column="4" Style="{StaticResource FavTextBlock}" Text="{Binding PlayerAssists}"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             <TextBlock Grid.Column="5" Style="{StaticResource FavTextBlock}" Text="{Binding PlayerKD}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <Grid.InputBindings>
+                                <MouseBinding Gesture="LeftDoubleClick"
+                  Command="{Binding DataContext.ToPlayerPageCommand, RelativeSource={RelativeSource AncestorType=ListBox}}"
+                  CommandParameter="{Binding}"/>
+                            </Grid.InputBindings>
                         </Grid>
+                        
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
@@ -236,7 +252,7 @@
                     <TextBlock Margin="10,0,0,0" Grid.Row="3" Grid.Column="1" Style="{StaticResource H2TextBlock}" Text="Assists"/>
                     <TextBox Grid.Row="3" Grid.Column="2" Style="{StaticResource H2TextBox}" Text="{Binding Assists}"/>
                     <StackPanel VerticalAlignment="Center" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center"
-            Grid.ColumnSpan="2" Orientation="Horizontal">
+                                Grid.ColumnSpan="2" Orientation="Horizontal">
                         <Button Command="{Binding SaveStatisticsCommand}" Content="Save stats" Style="{StaticResource HeadButton}"/>
                         <Button Command="{Binding DismissStatisticsCommand}" Content="Dismiss" Margin="20,0,0,0" Style="{StaticResource HeaderEditButton}"/>
                     </StackPanel>

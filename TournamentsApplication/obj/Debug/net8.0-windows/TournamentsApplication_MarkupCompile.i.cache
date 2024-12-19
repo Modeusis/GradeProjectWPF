@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\University\GradeProject\TournamentsApplication\TournamentsApplication\obj\Debug\net8.0-windows\
+C:\programms\GitProject\GradeProjectWPF\TournamentsApplication\obj\Debug\net8.0-windows\
 TournamentsApplication
 none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
-D:\University\GradeProject\TournamentsApplication\TournamentsApplication\App.xaml
-16497247755
+C:\programms\GitProject\GradeProjectWPF\TournamentsApplication\App.xaml
+16-1370504817
 
-64-711189595
-215-573305392
-MainWindow.xaml;Styles\DarkThemeDictionary.xaml;VIew\AdminPanelView.xaml;VIew\HomePageView.xaml;VIew\LoginView.xaml;VIew\MatchCommentsView.xaml;VIew\MatchesView.xaml;VIew\MatchPageView.xaml;VIew\PlayerPageView.xaml;VIew\PlayersView.xaml;VIew\RegistrationView.xaml;VIew\TeamPageView.xaml;VIew\TeamsView.xaml;VIew\TournamentPageView.xaml;VIew\TournamentsView.xaml;VIew\UserPageView.xaml;
+641464212568
+2152104689590
+MainWindow.xaml;Styles\DarkThemeDictionary.xaml;View\AdminPanelView.xaml;View\HomePageView.xaml;View\LoginView.xaml;View\MatchCommentsView.xaml;View\MatchesView.xaml;View\MatchPageView.xaml;View\PlayerPageView.xaml;View\PlayersView.xaml;View\RegistrationView.xaml;View\TeamPageView.xaml;View\TeamsView.xaml;View\TournamentPageView.xaml;View\TournamentsView.xaml;View\UserPageView.xaml;
 
 True
 

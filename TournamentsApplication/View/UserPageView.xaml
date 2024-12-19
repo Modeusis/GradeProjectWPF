@@ -76,7 +76,15 @@
                     <Button Style="{StaticResource ContentButtonStyle}" Margin="10" Command="{Binding TeamClickedCommand}" CommandParameter="{Binding FavTeam}" Cursor="Hand">
                         <TextBlock FontWeight="Bold" Style="{StaticResource FavTextBlock}" Text="{Binding TeamName}"/>
                     </Button>
-                    <Image Margin="10,0,0,0" Width="40" Stretch="Uniform" Source="{Binding TeamIcon}"/>
+                    <Border Margin="10,0" Width="45" Height="45">
+                        <Border.Background>
+                            <RadialGradientBrush Center="0.5,0.5" GradientOrigin="0.5,0.5">
+                                <GradientStop Color="#ff5500" Offset="0"/>
+                                <GradientStop Color="Transparent" Offset="1"/>
+                            </RadialGradientBrush>
+                        </Border.Background>
+                        <Image Stretch="Uniform" Source="{Binding TeamIcon}"/>
+                    </Border>
                 </StackPanel>
                 <Grid Height="Auto" Margin="10,0,0,0" Visibility="{Binding IsFavTeamExists, Converter={StaticResource Converter}}" Grid.Row="3" Grid.ColumnSpan="2">
                     <ListBox ItemContainerStyle="{StaticResource TeamListBox}" HorizontalAlignment="Center" Style="{StaticResource TeamPlayersListBox}" ItemsSource="{Binding TeamPlayers}" Grid.Column="1"

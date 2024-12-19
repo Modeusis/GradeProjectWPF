@@ -78,8 +78,21 @@ namespace TournamentsApplication.ViewModel
         }
         public ObservableCollection<TournamentComment> TournamentComments { get; set; }
         public ObservableCollection<Team> Teams { get; set; }
-        public ObservableCollection<Team> TeamsToAdd { get; set; }
-        public ObservableCollection<Team> TeamsToRemove { get; set; }
+        private ObservableCollection<Team> teamsToAdd;
+        public ObservableCollection<Team> TeamsToAdd
+        {
+            get => teamsToAdd;
+            set
+            {
+                teamsToAdd = value; OnPropertyChanged();
+            }
+        }
+        public ObservableCollection<Team> teamsToRemove;
+        public ObservableCollection<Team> TeamsToRemove
+        {
+            get => teamsToRemove;
+            set { teamsToRemove = value; OnPropertyChanged(); }
+        }
         public ObservableCollection<Match> Matches { get; set; }
         private RelayCommand? selectLogoCommand;
         public RelayCommand? SelectLogoCommand
@@ -128,11 +141,11 @@ namespace TournamentsApplication.ViewModel
                     {
                         try
                         {
-                            if (TeamToRemove != null)
-                            {
-                                TeamsToRemove.Remove(TeamToRemove);
-                                StatusService.Instance.SetStatusMessage($"Team {TeamToRemove.TeamName} removed");
+                            if (TeamToRemove is Team && TeamToRemove != null)
+                            {                                          
                                 TeamsToAdd.Add(TeamToRemove);
+                                StatusService.Instance.SetStatusMessage($"Team removed");
+                                TeamsToRemove.Remove(TeamToRemove);                               
                             }
                             else
                             {
@@ -155,7 +168,7 @@ namespace TournamentsApplication.ViewModel
                 return addTeamCommand ??
                     (addTeamCommand = new RelayCommand((obj) =>
                     {
-                        if (TeamToAdd != null)
+                        if (TeamToAdd is Team && TeamToAdd != null)
                         {
                             TeamsToRemove.Add(TeamToAdd);
                             StatusService.Instance.SetStatusMessage($"Team {TeamToAdd.TeamName} Add");
@@ -439,8 +452,7 @@ namespace TournamentsApplication.ViewModel
                             tempComment.CreatedAt = DateTime.UtcNow;
                             uow.TournamentComments.Add(tempComment);
                             uow.Save();
-                            TournamentComments.Add(tempComment);
-                            LoadComments(CurrentCommentsPage, 3);
+                            ContentNavigationService.Instance.SwitchCurrentContentView(new TournamentPageView(uow.Tournaments.GetById(ShowedTournament.TournamentId)));
                         }
                         catch (Exception e)
                         {

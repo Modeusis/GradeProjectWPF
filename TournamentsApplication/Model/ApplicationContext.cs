@@ -96,6 +96,16 @@ namespace TournamentsApplication.Model
                 .HasForeignKey(a => a.Author)
                 .OnDelete(DeleteBehavior.Cascade);
             modelBuilder.Entity<User>()
+                .HasMany(f => f.MatchComments)
+                .WithOne(a => a.User)
+                .HasForeignKey(a => a.Author)
+                .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<Match>()
+                .HasMany(f => f.Comments)
+                .WithOne(a => a.Match)
+                .HasForeignKey(a => a.MatchId)
+                .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<User>()
                 .HasOne(a => a.Team)
                 .WithMany(f => f.Users)
                 .HasForeignKey(f => f.FavTeamId)

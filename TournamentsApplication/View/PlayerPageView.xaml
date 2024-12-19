@@ -84,7 +84,15 @@
             <StackPanel  Visibility="{Binding IsHaveCurrentTeam, Converter={StaticResource Converter}}"
                          Orientation="Horizontal" VerticalAlignment="Center">
                 <TextBlock Margin="10"  VerticalAlignment="Center" FontWeight="Bold" Style="{StaticResource FavTextBlock}" Text="{Binding TeamName}"/>
-                <Image  Margin="10,5,10,5" Width="40" Stretch="Uniform" Source="{Binding TeamIcon}"/>
+                <Border Margin="10,0" Width="45" Height="45">
+                    <Border.Background>
+                        <RadialGradientBrush Center="0.5,0.5" GradientOrigin="0.5,0.5">
+                            <GradientStop Color="#ff5500" Offset="0"/>
+                            <GradientStop Color="Transparent" Offset="1"/>
+                        </RadialGradientBrush>
+                    </Border.Background>
+                    <Image Stretch="Uniform" Source="{Binding TeamIcon}"/>
+                </Border>
             </StackPanel>
         </Button>
         <Grid Height="Auto" Margin="10,0,0,0" Visibility="{Binding IsHaveCurrentTeam, Converter={StaticResource Converter}}" Grid.Row="4" Grid.ColumnSpan="2">

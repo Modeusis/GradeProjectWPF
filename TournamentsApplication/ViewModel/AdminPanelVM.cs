@@ -260,13 +260,25 @@ namespace TournamentsApplication.ViewModel
                 {
                     try
                     {
+                        IQueryable<Match> currentMatches = uow.Matches.GetAll().Where(a => a.Status == false);
                         if (SelectedTournament == null || SelectedFirstTeam == null || SelectedSecondTeam == null)
                         {
-                            throw new ArgumentNullException("Select all fields");
+                            throw new Exception("Select all fields");
                         }
                         if (SelectedFirstTeam.TeamId == SelectedSecondTeam.TeamId)
                         {
-                            throw new ArgumentNullException("Select diferent teams fields");
+                            throw new Exception("Select diferent teams fields");
+                        }
+                        foreach (Match match in currentMatches)
+                        {
+                            if (match.FirstParticipantId == SelectedFirstTeam.TeamId || match.SecondParticipantId == SelectedFirstTeam.TeamId)
+                            {
+                                throw new Exception("First team already in match");
+                            }
+                            if (match.FirstParticipantId == SelectedSecondTeam.TeamId || match.SecondParticipantId == SelectedSecondTeam.TeamId)
+                            {
+                                throw new Exception("Second team already in match");
+                            }
                         }
                         Match mtch = new Match();
                         mtch.TournamentId = SelectedTournament.TournamentId;

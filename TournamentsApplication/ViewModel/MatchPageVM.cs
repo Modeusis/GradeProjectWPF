@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using TournamentsApplication.Model;
 using TournamentsApplication.Utility;
 using TournamentsApplication.View;
+using TournamentsApplication.VIew;
 
 namespace TournamentsApplication.ViewModel
 {
@@ -80,6 +82,24 @@ namespace TournamentsApplication.ViewModel
         private RelayCommand? finishMatchCommand;
         private RelayCommand? dismissMatchCommand;
         private RelayCommand? startFinishCommand;
+        private RelayCommand? switchStatistic;
+        public RelayCommand SwitchStatistic
+        {
+            get
+            {
+                return switchStatistic ??= new RelayCommand((obj) =>
+                {
+                    try
+                    {
+                        ContentNavigationService.Instance.SwitchCurrentContentView(new MatchCommentsView(uow.Matches.GetById(Match.MatchId)));
+                    }
+                    catch (Exception e)
+                    {
+                        StatusService.Instance.SetStatusMessage(e.Message);
+                    }
+                });
+            }
+        }
 
         public RelayCommand FinishMatchCommand
         {
@@ -98,6 +118,10 @@ namespace TournamentsApplication.ViewModel
                         if (!int.TryParse(TmpFScore,out tmpFirst) || !int.TryParse(TmpSScore, out tmpSecond))
                         {
                             throw new Exception("Only numbers");
+                        }
+                        if (tmpSecond < 0 || tmpFirst < 0)
+                        {
+                            throw new Exception("Only POSITIVE numbers");
                         }
                         bool isFirst = false;
                         if (TmpTeamWinner.TeamId == Match.FirstTeam.TeamId)
@@ -329,9 +353,21 @@ namespace TournamentsApplication.ViewModel
                 return toPlayerPageCommand ??
                     (toPlayerPageCommand = new RelayCommand((obj) =>
                     {
-                        if (obj is Player player)
+                        if (obj is Statistics stat)
                         {
-                            ContentNavigationService.Instance.SwitchCurrentContentView(new PlayerPageView(player));
+                            try
+                            {
+                                Player? player = uow.Players.GetById(stat.PlayerId);
+                                if (player != null)
+                                {
+                                    ContentNavigationService.Instance.SwitchCurrentContentView(new PlayerPageView(player));
+                                }
+                            }
+                            catch (Exception)
+                            {
+                                StatusService.Instance.SetStatusMessage("Empty");
+                            }
+                           
                         }
                     }));
             }
@@ -378,6 +414,10 @@ namespace TournamentsApplication.ViewModel
                                 TmpStatistics = SelectedSecondTeamStatistic;
                                 TmpStatisticPlayerName = TmpStatistics.Player.PlayerName;
                             }
+                            else
+                            {
+                                throw new Exception($"Select some one from ${SecondTeam.TeamName}");
+                            }
                         }
                         catch (Exception e)
                         {
@@ -402,6 +442,10 @@ namespace TournamentsApplication.ViewModel
                                 IsChangingStatistics = true;
                                 TmpStatistics = SelectedFirstTeamStatistic;
                                 TmpStatisticPlayerName = TmpStatistics.Player.PlayerName;
+                            }
+                            else
+                            {
+                                throw new Exception($"Select some one from ${SecondTeam.TeamName}");
                             }
                         }
                         catch (Exception e)
@@ -478,7 +522,7 @@ namespace TournamentsApplication.ViewModel
                     statistics.PlayerKills = 0;
                     statistics.PlayerDeaths = 0;
                     statistics.PlayerAssists = 0;
-                    statistics.PlayerKD = "-";
+                    statistics.PlayerKD = "0";
                     uow.Statistics.Add(statistics);
                     uow.Save();
                     SecondTeamStatistics.Add(uow.Statistics.GetAll()

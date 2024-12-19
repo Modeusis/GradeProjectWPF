@@ -140,3 +140,5 @@ D:\University\GradeProject\TournamentsApplication\TournamentsApplication\bin\Deb
 D:\University\GradeProject\TournamentsApplication\TournamentsApplication\bin\Debug\net8.0-windows\Microsoft.EntityFrameworkCore.Proxies.dll
 D:\University\GradeProject\TournamentsApplication\TournamentsApplication\obj\Debug\net8.0-windows\VIew\MatchCommentsView.g.cs
 D:\University\GradeProject\TournamentsApplication\TournamentsApplication\obj\Debug\net8.0-windows\VIew\MatchCommentsView.baml
+C:\programms\GitProject\GradeProjectWPF\TournamentsApplication\obj\Debug\net8.0-windows\View\MatchCommentsView.g.cs
+C:\programms\GitProject\GradeProjectWPF\TournamentsApplication\obj\Debug\net8.0-windows\View\MatchCommentsView.baml

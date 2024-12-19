@@ -16,9 +16,11 @@
     <None Remove="Resources\Images\check.png" />
     <None Remove="Resources\Images\close.png" />
     <None Remove="Resources\Images\code.png" />
+    <None Remove="Resources\Images\coment.png" />
     <None Remove="Resources\Images\delete.png" />
     <None Remove="Resources\Images\edit.png" />
     <None Remove="Resources\Images\expand.png" />
+    <None Remove="Resources\Images\graph.png" />
     <None Remove="Resources\Images\group.png" />
     <None Remove="Resources\Images\HeaderIcon.png" />
     <None Remove="Resources\Images\Icon.ico" />
@@ -85,9 +87,11 @@
     <Resource Include="Resources\Images\blankImage.png" />
     <Resource Include="Resources\Images\check.png" />
     <Resource Include="Resources\Images\code.png" />
+    <Resource Include="Resources\Images\coment.png" />
     <Resource Include="Resources\Images\delete.png" />
     <Resource Include="Resources\Images\edit.png" />
     <Resource Include="Resources\Images\expand.png" />
+    <Resource Include="Resources\Images\graph.png" />
     <Resource Include="Resources\Images\group.png" />
     <Resource Include="Resources\Images\IconFigma.png" />
     <Resource Include="Resources\Images\leftArrow.png" />

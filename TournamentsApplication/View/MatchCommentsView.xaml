@@ -28,11 +28,49 @@
                 <Image Style="{StaticResource DeleteIconImageStyle}" Source="pack://application:,,,/Resources/Images/delete.png"/>
             </Button>
         </StackPanel>
-        <Border  HorizontalAlignment="Right" Background="#121212" BorderBrush="#383838" BorderThickness="0.5" CornerRadius="10">
-            <Button Margin="5" Width="50" Height="50" Style="{StaticResource ContentButtonStyle}">
-                <Image Source="pack://application:,,,/Resources/Images/graph.png"/>
+        <Border Margin="5"  HorizontalAlignment="Right" Background="#121212" BorderBrush="#383838" BorderThickness="0.5" CornerRadius="10">
+            <Button Margin="5" Command="{Binding SwitchStatistic}" Width="40" Height="40" Style="{StaticResource ContentButtonStyle}">
+                <Image Width="30" Source="pack://application:,,,/Resources/Images/graph.png"/>
             </Button>
         </Border>
+        <Grid Grid.Row="1" Margin="10" Cursor="">
+            <ListBox Grid.Row="1"
+                     SelectedItem="{Binding SelectedComment}"
+                     ItemContainerStyle="{StaticResource TeamPgListBoxItem}" 
+                     Style="{StaticResource TeamList}"  
+                     HorizontalAlignment="Stretch" 
+                     ItemsSource="{Binding MatchComments}"
+                     ScrollViewer.VerticalScrollBarVisibility="Disabled" 
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                     HorizontalContentAlignment="Stretch">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <StackPanel Orientation="Horizontal">
+                                <Ellipse Style="{StaticResource UserIconEllipseStyle}">
+                                    <Ellipse.Fill>
+                                        <ImageBrush ImageSource="{Binding User.Logo, Converter={StaticResource IMGConv}}" Stretch="UniformToFill" />
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                                <TextBlock Margin="5,0,0,0" Style="{StaticResource H2TextBlock}" Text="{Binding User.Username}"/>
+                                <TextBlock Margin="10,0,0,0" Style="{StaticResource PlayerTeamPgStandardBlock}" Text="{Binding CreatedAt}"/>
+                            </StackPanel>
+                            <TextBlock Margin="5" HorizontalAlignment="Left" Style="{StaticResource H2TextBlock}" Grid.Row="1" Text="{Binding Content}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
         <Border Background="#121212" CornerRadius="5"
                 BorderBrush="#383838" BorderThickness="1"
                 VerticalAlignment="Center"

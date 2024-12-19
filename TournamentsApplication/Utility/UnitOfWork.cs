@@ -6,6 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using TournamentsApplication.Model;
+using TournamentsApplication.ViewModel;
 
 namespace TournamentsApplication.Utility
 {
@@ -21,6 +22,7 @@ namespace TournamentsApplication.Utility
         public Repository<TournamentComment> TournamentComments { get; set; }
         public Repository<Statistics> Statistics { get; set; }
         public Repository<MatchStatistic> MatchStatistics { get; set; }
+        public Repository<MatchComment> MatchComments { get; set; }
         public Repository<TournamentTeam> TournamentTeams { get; set; }
 
 
@@ -35,6 +37,7 @@ namespace TournamentsApplication.Utility
             Teams = new Repository<Team>(_context);
             Tournaments = new Repository<Tournament>(_context);
             TournamentComments = new Repository<TournamentComment>(_context);
+            MatchComments = new Repository<MatchComment>(_context);
             TournamentTeams = new Repository<TournamentTeam>(_context);
             Statistics = new Repository<Statistics>(_context);
             MatchStatistics = new Repository<MatchStatistic>(_context);

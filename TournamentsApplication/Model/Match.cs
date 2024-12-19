@@ -81,6 +81,7 @@ namespace TournamentsApplication.Model
         public virtual Team FirstTeam { get; set; }
         public virtual Team SecondTeam { get; set; }
         public virtual ICollection<MatchStatistic> Statistics { get; set; } = new List<MatchStatistic>();
+        public virtual ICollection<MatchComment> Comments { get; set; } = new List<MatchComment>();
 
     }
 }

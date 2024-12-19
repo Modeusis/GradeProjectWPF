@@ -163,6 +163,174 @@ namespace TournamentsApplication.ViewModel
         public ObservableCollection<Player> TeamPlayers { get; set; }
 
 
+
+        private bool isChanging;
+        public bool IsChanging
+        {
+            get => isChanging; 
+            set { isChanging = value; OnPropertyChanged(); }
+        }
+
+        private string newTeamName;
+        public string NewTeamName
+        {
+            get { return newTeamName; }
+            set { newTeamName = value; OnPropertyChanged(); }
+        }
+
+        private byte[]? newTeamImg;
+        public byte[]? NewTeamImg
+        {
+            get { return newTeamImg; }
+            set { newTeamImg = value; OnPropertyChanged(); }
+        }
+        private string newWorldRank;
+        public string NewWorldRank
+        {
+            get { return newWorldRank; }
+            set { newWorldRank = value; OnPropertyChanged(); }
+        }
+
+        private RelayCommand? editChangeTeamCommand;
+        public RelayCommand? EditChangeTeamCommand
+        {
+            get
+            {
+                return editChangeTeamCommand ??= new RelayCommand((obj) =>
+                {
+                    NewTeamImg = TeamLogo;
+                    IsChanging = true;
+                });
+            }
+        }
+        private RelayCommand selectTeamLogoCommand;
+        public RelayCommand SelectTeamLogoCommand
+        {
+            get
+            {
+                return selectTeamLogoCommand ??= new RelayCommand(obj =>
+                {
+                    try
+                    {
+                        var openedImage = ImageConverter.OpenAndLoadImage();
+                        if (openedImage is byte[] imgByte)
+                        {
+                            NewTeamImg = imgByte;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        StatusService.Instance.SetStatusMessage(ex.Message);
+                    }
+                });
+            }
+        }
+        private RelayCommand? changeTeamConfirmCommand;
+        public RelayCommand? ChangeTeamConfirmCommand
+        {
+            get
+            {
+                return changeTeamConfirmCommand ??= new RelayCommand(obj =>
+                {
+                    try
+                    {
+                        Team tmpTeam = Team;
+                        if (NewTeamImg == TeamLogo && string.IsNullOrEmpty(NewTeamName) && string.IsNullOrEmpty(NewWorldRank))
+                        {
+                            throw new Exception("Nothing is changed");
+                        }
+                        int WorldRank;
+                        if (!string.IsNullOrEmpty(NewWorldRank))
+                        {
+                            if (!int.TryParse(NewWorldRank, out WorldRank))
+                            {
+                                throw new Exception("Incorrect world rank");
+                            }
+                            if (WorldRank <= 0)
+                            {
+                                throw new Exception("Only POSITIVE rank");
+                            }
+                            int amountOfTeams = uow.Teams.GetAll().Count();
+                            if (WorldRank > amountOfTeams + 1)
+                            {
+                                WorldRank = amountOfTeams + 1;
+                            }
+                            if (WorldRank - WorldRanking < 0)
+                            {
+                                if (uow.Teams.GetAll().Where(a => a.WorldRanking < WorldRanking && a.WorldRanking >= WorldRank).Count() > 0)
+                                {
+                                    foreach (var team in uow.Teams.GetAll().Where(a => a.WorldRanking < WorldRanking && a.WorldRanking >= WorldRank))
+                                    {
+                                        team.WorldRanking++;
+                                        uow.Teams.Update(team);
+                                    }
+                                }
+                            }
+                            else if (WorldRank == WorldRanking)
+                            {
+                                throw new Exception("Cant have same rank");
+                            }
+                            else
+                            { 
+                                if (uow.Teams.GetAll().Where(a => a.WorldRanking > WorldRanking && a.WorldRanking <= WorldRank).Count() > 0)
+                                {
+                                    foreach (var team in uow.Teams.GetAll().Where(a => a.WorldRanking > WorldRanking && a.WorldRanking <= WorldRank))
+                                    {
+                                        team.WorldRanking--;
+                                        uow.Teams.Update(team);
+                                    }
+                                }
+                            }
+
+                            tmpTeam.WorldRanking = WorldRank;
+                        }
+                        if (!string.IsNullOrEmpty(NewTeamName))
+                        {
+                            tmpTeam.TeamName = NewTeamName;
+                        }                       
+                        if (NewTeamImg != null && NewTeamImg != TeamLogo)
+                        {
+                            tmpTeam.TeamLogo = NewTeamImg;
+                        }
+                        
+                        uow.Teams.Update(tmpTeam);
+                        uow.Save();
+                        ContentNavigationService.Instance.SwitchCurrentContentView(new TeamPageView(uow.Teams.GetById(Team.TeamId)));
+                        StatusService.Instance.SetStatusMessage("Updated");
+                    }
+                    catch (Exception e)
+                    {
+                        StatusService.Instance.SetStatusMessage(e.Message);
+                    }
+                });
+            }
+        }
+        private RelayCommand? dismissTeamConfirmCommand;
+        public RelayCommand? DismissTeamConfirmCommand
+        {
+            get
+            {
+                return dismissTeamConfirmCommand ??= new RelayCommand(obj =>
+                {
+                    try
+                    {
+                        IsChanging = false;
+                        NewTeamImg = null;
+                        NewTeamName = string.Empty;
+                        NewWorldRank = string.Empty;
+
+                        StatusService.Instance.SetStatusMessage("Changes dismissed successfully");
+                    }
+                    catch (Exception e)
+                    {
+                        StatusService.Instance.SetStatusMessage(e.Message);
+                    }
+                });
+            }
+        }
+
+
+
         public TeamPageVM(Team team)
         {
             uow = new UnitOfWork(new ApplicationContext());
